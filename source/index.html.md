@@ -15,6 +15,8 @@ search: true
 
 # Introduction
 
+> All shell commands are CURL. You can read more about CURL [here](https://curl.haxx.se/).
+
 Welcome to EXIR API! You can use our API to access EXIR API REST endpoints and fetch real-time updates through websocket.
 
 These endpoints are categorized into public and private. Public endpoints allow you to access public information such as price ticker, orderbook etc while private endpoints require authentication and allow you to get your balance, active orders as well as placing orders.
