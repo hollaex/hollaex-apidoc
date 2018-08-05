@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://pro.exir.io'>Sign Up for a Developer Key</a>
+  - <a href='https://hollaex.com/account/developers'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -17,13 +17,11 @@ search: true
 
 > All shell commands are CURL. You can read more about CURL [here](https://curl.haxx.se/).
 
-Welcome to EXIR API! You can use our API to access EXIR API REST endpoints and fetch real-time updates through websocket.
+HollaEx provides a complete RESTful API for developers which allows full access to all the functionalities on the exchange. HollaEx also support websocket for real-time updates.
 
 These endpoints are categorized into public and private. Public endpoints allow you to access public information such as price ticker, orderbook etc while private endpoints require authentication and allow you to get your balance, active orders as well as placing orders.
 
-We have language bindings in Shell with CURL and you can view code examples in the dark area to the right.
-
-We also provide a sandbox environment for developers where you can test everything with testnet coins on our <a href="https://testnet.exir.tech">Testnet Website</a>.
+We have language bindings in Shell with CURL and you can view code examples in the dark area on the right.
 
 # Authentication
 
@@ -38,9 +36,9 @@ curl -X POST
 
 > Make sure to replace `$ACCESS_TOKEN` with your API key.
 
-EXIR uses API tokens to allow private access to the API for an authenticated user. You can register a new EXIR API key in our [developer portal](http://pro.exir.io/developers).
+HollaEx uses API tokens to allow private access to the API for an authenticated user. You can register a new HollaEx API key in our [developer portal](https://hollaex.com/developers).
 
-EXIR expects the API key to be included in all Private API requests to the server in the request header with the following format:
+HollaEx expects the API key to be included in all Private API requests to the server in the request header with the following format:
 
 `Authorization: Bearer <ACCESS_TOKEN>`
 
@@ -55,7 +53,7 @@ You must replace <code>ACCESS_TOKEN</code> with your own API Token.
 > Request
 
 ```shell
-curl -X GET "https://api.exir.tech/v0/ticker?symbol=btc"
+curl -X GET "https://api.hollaex.com/v0/ticker?symbol=btc-eur"
 ```
 
 > Response
@@ -70,20 +68,20 @@ This endpoint retrieves the last price traded.
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/ticker`
+`GET https://api.hollaex.com/v0/ticker`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | ------- 
-symbol | the currency pair symbol (btc)
+symbol | the currency pair symbol (btc-eur, eth-eur)
 
 ## Orderbook
 
 > Request
 
 ```shell
-curl -X GET "https://api.exir.tech/v0/orderbooks?symbol=btc"
+curl -X GET "https://api.hollaex.com/v0/orderbooks?symbol=btc-eur"
 ```
 
 > Response
@@ -125,20 +123,20 @@ This endpoint retrieves 10 leve bids and 10 level asks of the orderbook.
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/orderbooks`
+`GET https://api.hollaex.com/v0/orderbooks`
 
 ### PARAMETERS
 
 Parameter | Default | Description
 --------- | ----------- | -----------
-Symbol | btc | The currency pair symbol
+Symbol | btc-eur | The currency pair symbol
 
 ## Trades
 
 > Request
 
 ```shell
-curl -X GET "https://api.exir.tech/v0/trades?symbol=btc"
+curl -X GET "https://api.hollaex.com/v0/trades?symbol=btc-eur"
 ```
 
 > Response
@@ -172,13 +170,13 @@ This endpoint retrieves the last 30 trades.
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/trades`
+`GET https://api.hollaex.com/v0/trades`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | ------- 
-symbol | the currency pair symbol (btc)
+symbol | the currency pair symbol (btc-eur)
 
 # Private
 
@@ -192,7 +190,7 @@ You must replace <code>ACCESS_TOKEN</code> based on the docs on Authentication i
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.exir.tech/v0/user" 
+  "https://api.hollaex.com/v0/user" 
 ```
 
 > Response
@@ -250,7 +248,7 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user`
+`GET https://api.hollaex.com/v0/user`
 
 ## Get Balance
 
@@ -258,7 +256,7 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.exir.tech/v0/user/balance" 
+  "https://api.hollaex.com/v0/user/balance" 
 ```
 
 > Response
@@ -279,7 +277,7 @@ This endpoint gets user's balance
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/balance`
+`GET https://api.hollaex.com/v0/user/balance`
 
 
 ## Get Deposits
@@ -288,7 +286,7 @@ This endpoint gets user's balance
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.exir.tech/v0/user/deposits
+  "https://api.hollaex.com/v0/user/deposits
   ?currency=btc&limit=50&page=1&order=asc"
 ```
 
@@ -318,13 +316,13 @@ This endpoint displays user's deposits
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/deposits`
+`GET https://api.hollaex.com/v0/user/deposits`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (btc)
+currency | The currency pair symbol (btc-eur)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 orderBy | Field to order data
@@ -337,7 +335,7 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.exir.tech/v0/user/withdrawals
+  "https://api.hollaex.com/v0/user/withdrawals
   ?currency=btc&limit=50&page=1&order=asc"
 ```
 
@@ -367,13 +365,13 @@ This endpoint displays user's withdrawals
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/withdrawals`
+`GET https://api.hollaex.com/v0/user/withdrawals`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (btc)
+currency | The currency pair symbol (btc-eur)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 orderBy | Field to order data
@@ -385,8 +383,8 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.exir.tech/v0/user/trades
-  ?symbol=btc&limit=50&page=1"
+  "https://api.hollaex.com/v0/user/trades
+  ?symbol=btc-eur&limit=50&page=1"
 ```
 
 > Response
@@ -411,13 +409,13 @@ This endpoint displays user's trades
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/trades`
+`GET https://api.hollaex.com/v0/user/trades`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (btc)
+symbol | The currency pair symbol (btc-eur)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 
@@ -428,7 +426,7 @@ page | Page of data to retrieve
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.exir.tech/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -452,13 +450,13 @@ This endpoint gets all active orders placed by the users
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/orders`
+`GET https://api.hollaex.com/v0/user/orders`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc)
+Symbol | The currency pair symbol (btc-eur)
 
 ## Get Order
 
@@ -466,7 +464,7 @@ Symbol | The currency pair symbol (btc)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.exir.tech/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v0/user/orders/$orderId" 
 ```
 
 > Response
@@ -490,22 +488,22 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/order/{orderId}`
+`GET https://api.hollaex.com/v0/user/orders/{orderId}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc)
+orderId | Order unique Id
 
-## Place Order
+## Create Order
 
 > Request
 
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
-  "https://api.exir.tech/v0/order" 
+  "https://api.hollaex.com/v0/order" 
 ```
 
 > Response
@@ -527,13 +525,13 @@ This endpoint places an order for the user
 
 ### HTTP Request
 
-`POST https://api.exir.tech/v0/order`
+`POST https://api.hollaex.com/v0/order`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc)
+Symbol | The currency pair symbol (btc-eur)
 side | buy or sell order
 size | the amount of the order. For example in btc the unit is BTC
 type | limit or market order type
@@ -546,7 +544,7 @@ price | Only should be used when type is limit. In case of market price should n
 
 ```shell
 curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.exir.tech/v0/user/orders/$orderId?symbol=$symbol" 
+  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -572,14 +570,13 @@ This endpoint cancels all orders placed by the user.
 
 ### HTTP Request
 
-`DELETE https://api.exir.tech/v0/user/order/{orderId}`
+`DELETE https://api.hollaex.com/v0/user/orders`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc)
-orderId | specific order unique Id
+Symbol | The currency pair symbol (btc-eur)
 
 ## Cancel Order
 
@@ -587,7 +584,7 @@ orderId | specific order unique Id
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.exir.tech/v0/user/orders/$orderId?symbol=$symbol" 
+  "https://api.hollaex.com/v0/user/orders/$orderId" 
 ```
 
 > Response
@@ -611,13 +608,12 @@ This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`GET https://api.exir.tech/v0/user/order/{orderId}`
+`DELETE https://api.hollaex.com/v0/user/orders/{orderId}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc)
 orderId | specific order unique Id
 
 
@@ -631,25 +627,25 @@ For receiving real-time public data updates such as trades, orderbook etc you ca
 
 ### Path
 
-`https://api.exir.tech/v0/realtime`
+`https://api.hollaex.com/v0/realtime`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
 query | You can provide the symbol to subscribe to a specific channel, or subscribe to all the channels (no providing the symbol)
-symbol | The currency pair symbol (btc)
+symbol | The currency pair symbol (btc-eur)
 
 ### EVENTS
 You have to subscribe to socket.io events as follows:
 
 #### orderbook
-Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=btc`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update happens.
+Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=btc-eur`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update happens.
 
 #### trades
 
-Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=btc`. When the user connects, will receive the last trades (Max number: 50).
+Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=btc-eur`. When the user connects, will receive the last trades (Max number: 50).
 
 ## Private
 
-Contact us at `support@exir.io` for more information about private websockets.
+Contact us at `support@bitholla.com` for more information about private websockets.
