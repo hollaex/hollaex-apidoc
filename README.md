@@ -1,3 +1,6 @@
+# HollaEx API Documentation
+
+HollaEx API allows users to interact with HollaEx through RESTful API using any programming language.
 
 ### Prerequisites
 
