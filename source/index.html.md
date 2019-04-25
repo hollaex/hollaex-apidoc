@@ -329,7 +329,7 @@ orderBy | Field to order data
 order | asc or desc
 
 
-## Get Withdrwals
+## Get Withdrawals
 
 > Request
 
@@ -376,6 +376,67 @@ limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 orderBy | Field to order data
 order | asc or desc
+
+## Get Withdrawal Fee
+
+> Request
+
+```shell
+curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
+  "https://api.hollaex.com/v0/user/withdraw/$currency/fee"
+```
+
+> Response
+
+```json
+{
+  "fee": 0.0005
+}
+```
+
+This endpoint gets the withdrawal fee for a certain currency
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v0/user/withdraw/{currency}/fee`
+
+### PARAMETERS
+
+Parameter | Description
+--------- | -----------
+currency | The desired currency e.g. btc
+
+## Create Withdrawal Request
+
+> Request
+
+```shell
+curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
+	-d '{"currency":$currency,"amount":$amount,"address":$address}'
+	"https://api.hollaex.com/v0/user/request-withdrawal"
+```
+
+> Response
+
+```json
+{
+  "message": "Success"
+}
+```
+
+This endpoint creates a withdrawal request for the user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v0/user/request-withdrawal`
+
+### PARAMETERS
+
+Parameter | Description
+--------- | -----------
+currency | The desired currency e.g. btc
+amount | The amount to withdrawal e.g. 0.0001
+address | The recipient wallet's address
 
 ## Get Trades
 
