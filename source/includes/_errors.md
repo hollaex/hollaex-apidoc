@@ -1,10 +1,10 @@
 # Errors
 
 <aside class="dangers">
-List of http request errors you might get from EXIR.
+List of http request errors you might get from HollaEx.
 </aside>
 
-The EXIR API uses the following error codes:
+The HollaEx API uses the following error codes:
 
 
 Error Code | Meaning
