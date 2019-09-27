@@ -79,7 +79,7 @@ This endpoint retrieves ticker information for a pair or all pairs.
 ### PARAMETERS
 
 Parameter | Description
---------- | ------- 
+--------- | -------
 symbol | the currency pair symbol (btc-eur, eth-eur, etc.)
 
 ## Orderbook
@@ -94,8 +94,7 @@ curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=btc-eur"
 
 ```json
 {
-  "timestamp":"2018-03-02T21:36:52.345Z",
-  "btc":{
+  "btc-eur":{
     "bids":[
       [52110000,0.0007],
       [51950000,0.0024],
@@ -125,7 +124,7 @@ curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=btc-eur"
 }
 ```
 
-This endpoint retrieves 10 leve bids and 10 level asks of the orderbook.
+This endpoint retrieves 10 level bids and 10 level asks of the orderbook.
 
 ### HTTP Request
 
@@ -133,9 +132,9 @@ This endpoint retrieves 10 leve bids and 10 level asks of the orderbook.
 
 ### PARAMETERS
 
-Parameter | Default | Description
---------- | ----------- | -----------
-Symbol | btc-eur | The currency pair symbol
+Parameter | Description
+--------- | -----------
+Symbol | The currency pair symbol (btc-eur, eth-eur, etc.)
 
 ## Trades
 
