@@ -60,11 +60,17 @@ curl -X GET "https://api.hollaex.com/v1/ticker?symbol=btc-eur"
 
 ```json
 {
-  "ticker": 50000000
+  "open": 5000,
+  "close": 5000,
+  "high": 5000,
+  "low": 5000,
+  "last": 5000,
+  "volume": 10,
+  "timestamp": "2019-09-27T03:33:11.667Z"
 }
 ```
 
-This endpoint retrieves the last price traded.
+This endpoint retrieves ticker information for a pair or all pairs.
 
 ### HTTP Request
 
@@ -74,7 +80,7 @@ This endpoint retrieves the last price traded.
 
 Parameter | Description
 --------- | ------- 
-symbol | the currency pair symbol (btc-eur, eth-eur)
+symbol | the currency pair symbol (btc-eur, eth-eur, etc.)
 
 ## Orderbook
 
