@@ -556,7 +556,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v1/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
 > Response
@@ -564,14 +564,16 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "created_at": "2018-03-23T04:14:08.663Z",
+	"title": "string",
+	"side": "sell",
+	"type": "limit",
+	"price": 0,
+	"size": 0,
+	"symbol": "btc-eur",
+	"id": "string",
+	"created_by": 1,
+	"filled": 0
 }
 
 ```
@@ -580,13 +582,13 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v1/user/orders/{orderId}`
+`GET https://api.hollaex.com/v1/user/orders/{order_id}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-orderId | Order unique Id
+order_id | Order unique Id
 
 ## Create Order
 
