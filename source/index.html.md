@@ -604,14 +604,15 @@ curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
 
 ```json
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "symbol": "btc-eur",
+    "side": "sell",
+    "size": 1,
+    "type": "limit",
+    "price": 0.1,
+    "id": "string",
+    "created_by": 34,
+    "filled": 0,
+    "status": "pending"
 }
 ```
 
@@ -625,7 +626,7 @@ This endpoint places an order for the user
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (btc-eur)
 side | buy or sell order
 size | the amount of the order. For example in btc the unit is BTC
 type | limit or market order type
