@@ -205,9 +205,11 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   "id": "integer",
   "email": "string",
   "full_name": "string",
+  "name_verified": true,
   "gender": true,
   "nationality": "string",
   "dob": "2018-03-23T04:14:08.593Z",
+  "phone_number": "string",
   "address": {
     "country": "string",
     "address": "string",
@@ -215,7 +217,6 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
     "city": "string",
     "verified": true
   },
-  "phone_number": "string",
   "id_data": {
     "type": "string",
     "number": "string",
@@ -233,7 +234,11 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   },
   "crypto_wallet": {},
   "verification_level": 0,
-  "access_token": "string",
+  "otp_enabled": false,
+  "activated": true,
+  "note": "",
+  "username": "string",
+  "affiliation_code": "string",
   "balance": {
     "btc_balance": 0,
     "btc_available": 0,
@@ -245,6 +250,16 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   },
   "settings": {
     "language": "en"
+  },
+  "flagged": false,
+  "created_at": "2018-03-23T04:14:08.593Z",
+  "updated_at": "2018-03-23T04:14:08.593Z",
+  "images": [],
+  "fees": {
+	  "btc-eur": {
+		  "maker_fee": 0,
+		  "taker_fee": 0
+	  }
   }
 }
 ```
