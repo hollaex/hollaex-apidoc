@@ -53,7 +53,7 @@ You must replace <code>ACCESS_TOKEN</code> with your own API Token.
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/ticker?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/ticker?symbol=btc-eur"
 ```
 
 > Response
@@ -68,7 +68,7 @@ This endpoint retrieves the last price traded.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/ticker`
+`GET https://api.hollaex.com/v1/ticker`
 
 ### PARAMETERS
 
@@ -81,7 +81,7 @@ symbol | the currency pair symbol (btc-eur, eth-eur)
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/orderbooks?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=btc-eur"
 ```
 
 > Response
@@ -123,7 +123,7 @@ This endpoint retrieves 10 leve bids and 10 level asks of the orderbook.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/orderbooks`
+`GET https://api.hollaex.com/v1/orderbooks`
 
 ### PARAMETERS
 
@@ -136,7 +136,7 @@ Symbol | btc-eur | The currency pair symbol
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/trades?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/trades?symbol=btc-eur"
 ```
 
 > Response
@@ -170,7 +170,7 @@ This endpoint retrieves the last 30 trades.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/trades`
+`GET https://api.hollaex.com/v1/trades`
 
 ### PARAMETERS
 
@@ -190,7 +190,7 @@ You must replace <code>ACCESS_TOKEN</code> based on the docs on Authentication i
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user" 
+  "https://api.hollaex.com/v1/user" 
 ```
 
 > Response
@@ -248,7 +248,7 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user`
+`GET https://api.hollaex.com/v1/user`
 
 ## Get Balance
 
@@ -256,7 +256,7 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/balance" 
+  "https://api.hollaex.com/v1/user/balance" 
 ```
 
 > Response
@@ -277,7 +277,7 @@ This endpoint gets user's balance
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/balance`
+`GET https://api.hollaex.com/v1/user/balance`
 
 
 ## Get Deposits
@@ -286,7 +286,7 @@ This endpoint gets user's balance
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/deposits
+  "https://api.hollaex.com/v1/user/deposits
   ?currency=btc&limit=50&page=1&order=asc"
 ```
 
@@ -316,7 +316,7 @@ This endpoint displays user's deposits
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/deposits`
+`GET https://api.hollaex.com/v1/user/deposits`
 
 ### PARAMETERS
 
@@ -335,7 +335,7 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/withdrawals
+  "https://api.hollaex.com/v1/user/withdrawals
   ?currency=btc&limit=50&page=1&order=asc"
 ```
 
@@ -365,7 +365,7 @@ This endpoint displays user's withdrawals
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/withdrawals`
+`GET https://api.hollaex.com/v1/user/withdrawals`
 
 ### PARAMETERS
 
@@ -383,7 +383,7 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/withdraw/$currency/fee"
+  "https://api.hollaex.com/v1/user/withdraw/$currency/fee"
 ```
 
 > Response
@@ -398,7 +398,7 @@ This endpoint gets the withdrawal fee for a certain currency
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/withdraw/{currency}/fee`
+`GET https://api.hollaex.com/v1/user/withdraw/{currency}/fee`
 
 ### PARAMETERS
 
@@ -413,7 +413,7 @@ currency | The desired currency e.g. btc
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
 	-d '{"currency":$currency,"amount":$amount,"address":$address}'
-	"https://api.hollaex.com/v0/user/request-withdrawal"
+	"https://api.hollaex.com/v1/user/request-withdrawal"
 ```
 
 > Response
@@ -428,7 +428,7 @@ This endpoint creates a withdrawal request for the user
 
 ### HTTP Request
 
-`POST https://api.hollaex.com/v0/user/request-withdrawal`
+`POST https://api.hollaex.com/v1/user/request-withdrawal`
 
 ### PARAMETERS
 
@@ -444,7 +444,7 @@ address | The recipient wallet's address
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/trades
+  "https://api.hollaex.com/v1/user/trades
   ?symbol=btc-eur&limit=50&page=1"
 ```
 
@@ -470,7 +470,7 @@ This endpoint displays user's trades
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/trades`
+`GET https://api.hollaex.com/v1/user/trades`
 
 ### PARAMETERS
 
@@ -487,7 +487,7 @@ page | Page of data to retrieve
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -511,7 +511,7 @@ This endpoint gets all active orders placed by the user
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/orders`
+`GET https://api.hollaex.com/v1/user/orders`
 
 ### PARAMETERS
 
@@ -525,7 +525,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$orderId" 
 ```
 
 > Response
@@ -549,7 +549,7 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/orders/{orderId}`
+`GET https://api.hollaex.com/v1/user/orders/{orderId}`
 
 ### PARAMETERS
 
@@ -564,7 +564,7 @@ orderId | Order unique Id
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
-  "https://api.hollaex.com/v0/order" 
+  "https://api.hollaex.com/v1/order" 
 ```
 
 > Response
@@ -586,7 +586,7 @@ This endpoint places an order for the user
 
 ### HTTP Request
 
-`POST https://api.hollaex.com/v0/order`
+`POST https://api.hollaex.com/v1/order`
 
 ### PARAMETERS
 
@@ -605,7 +605,7 @@ price | Only should be used when type is limit. In case of market price should n
 
 ```shell
 curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -631,7 +631,7 @@ This endpoint cancels all orders placed by the user.
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v0/user/orders`
+`DELETE https://api.hollaex.com/v1/user/orders`
 
 ### PARAMETERS
 
@@ -645,7 +645,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$orderId" 
 ```
 
 > Response
@@ -669,7 +669,7 @@ This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v0/user/orders/{orderId}`
+`DELETE https://api.hollaex.com/v1/user/orders/{orderId}`
 
 ### PARAMETERS
 
