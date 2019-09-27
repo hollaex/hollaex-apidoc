@@ -524,14 +524,16 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 [
   {
-    "id": "string",
-    "side": "buy",
-    "symbol": "string",
-    "size": 0,
-    "filled": 0,
-    "type": "market",
-    "price": 0,
-    "status": "string"
+    "created_at": "2018-03-23T04:14:08.663Z",
+	"title": "string",
+	"side": "sell",
+	"type": "limit",
+	"price": 0,
+	"size": 0,
+	"symbol": "btc-eur",
+	"id": "string",
+	"created_by": 1,
+	"filled": 0
   }
 ]
 ```
