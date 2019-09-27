@@ -647,16 +647,17 @@ curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 [
-  {
-    "id": "string",
-    "side": "buy",
-    "symbol": "string",
-    "size": 0,
-    "filled": 0,
-    "type": "market",
-    "price": 0,
-    "status": "string"
-  }
+  	{
+		"title": "string",
+		"symbol": "btc-eur",
+		"side": "sell",
+		"size": 1,
+		"type": "limit",
+		"price": 0.1,
+		"id": "string",
+		"created_by": 34,
+		"filled": 0
+	}
 ]
 
 ```
@@ -671,7 +672,7 @@ This endpoint cancels all orders placed by the user.
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (btc-eur)
 
 ## Cancel Order
 
@@ -679,7 +680,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v1/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
 > Response
@@ -687,29 +688,29 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "title": "string",
+    "symbol": "btc-eur",
+    "side": "sell",
+    "size": 1,
+    "type": "limit",
+    "price": 0.1,
+    "id": "string",
+    "created_by": 34,
+    "filled": 0
 }
-
 ```
 
 This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v1/user/orders/{orderId}`
+`DELETE https://api.hollaex.com/v1/user/orders/{order_id}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-orderId | specific order unique Id
+order_id | specific order unique Id
 
 
 # Websocket
