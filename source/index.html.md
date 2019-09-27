@@ -476,7 +476,7 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 
 ```json
 {
-  "count": 0,
+  "count": 1,
   "data": [
     {
       "fee": 0,
@@ -503,6 +503,11 @@ Parameter | Description
 symbol | The currency pair symbol (btc-eur)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
+order_by | Field to order data
+order | asc or desc
+start_date | Starting date of queried data
+end_date | Ending date of queried data
+
 
 
 ## Get All Orders
