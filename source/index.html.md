@@ -148,7 +148,7 @@ curl -X GET "https://api.hollaex.com/v1/trades?symbol=btc-eur"
 
 ```json
 {
-  "btc": [
+  "btc-eur": [
     {
       "size": 0.0008,
       "price": 45500000,
@@ -180,7 +180,7 @@ This endpoint retrieves the last 30 trades.
 ### PARAMETERS
 
 Parameter | Description
---------- | ------- 
+--------- | -------
 symbol | the currency pair symbol (btc-eur)
 
 # Private
