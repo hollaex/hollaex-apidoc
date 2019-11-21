@@ -60,12 +60,12 @@ curl -X GET "https://api.hollaex.com/v1/ticker?symbol=hex-usdt"
 
 ```json
 {
-  "open": 5000,
-  "close": 5000,
-  "high": 5000,
-  "low": 5000,
-  "last": 5000,
-  "volume": 10,
+  "open": .2,
+  "close": .23,
+  "high": .25,
+  "low": .2,
+  "last": .254,
+  "volume": 100,
   "timestamp": "2019-09-27T03:33:11.667Z"
 }
 ```
@@ -233,12 +233,12 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   "username": "string",
   "affiliation_code": "string",
   "balance": {
-    "btc_balance": 0,
-    "btc_available": 0,
-    "btc_pending": 0,
-    "fiat_balance": 0,
-    "fiat_available": 0,
-    "fiat_pending": 0,
+    "hex_balance": 0,
+    "hex_available": 0,
+    "hex_pending": 0,
+    "usdt_balance": 0,
+    "usdt_available": 0,
+    "usdt_pending": 0,
     "updated_at": "2018-03-23T04:14:08.593Z"
   },
   "settings": {
@@ -276,12 +276,12 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 
 ```json
 {
-  "btc_balance": 0,
-  "btc_available": 0,
-  "btc_pending": 0,
-  "fiat_balance": 0,
-  "fiat_available": 0,
-  "fiat_pending": 0,
+  "hex_balance": 0,
+  "hex_available": 0,
+  "hex_pending": 0,
+  "usdt_balance": 0,
+  "usdt_available": 0,
+  "usdt_pending": 0,
   "updated_at": "2018-03-23T04:14:08.705Z"
 }
 ```
@@ -300,7 +300,7 @@ This endpoint gets user's balance
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
   "https://api.hollaex.com/v1/user/deposits
-  ?currency=btc&limit=50&page=1&order=asc"
+  ?currency=hex&limit=50&page=1&order=asc"
 ```
 
 > Response
@@ -351,7 +351,7 @@ end_date | Ending date of queried data
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
   "https://api.hollaex.com/v1/user/withdrawals
-  ?currency=btc&limit=50&page=1&order=asc"
+  ?currency=hex&limit=50&page=1&order=asc"
 ```
 
 > Response
@@ -421,7 +421,7 @@ This endpoint gets the withdrawal fee for a certain currency
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. btc
+currency | The desired currency e.g. hex
 
 ## Create Withdrawal Request
 
@@ -451,8 +451,8 @@ This endpoint creates a withdrawal request for the user
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. btc
-amount | The amount to withdrawal e.g. 0.0001
+currency | The desired currency e.g. hex
+amount | The amount to withdrawal e.g. 5
 address | The recipient wallet's address
 
 ## Get Trades
@@ -621,7 +621,7 @@ Parameter | Description
 --------- | -----------
 symbol | The currency pair symbol (hex-usdt)
 side | buy or sell order
-size | The amount of the order. For example in btc the unit is BTC
+size | The amount of the order
 type | limit or market order type
 price | Only should be used when type is limit. In case of market price should not be used
 
@@ -817,9 +817,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"side": "sell",
 		"type": "limit",
-		"price": 1001,
-		"size": 2,
-		"symbol": "bch-btc",
+		"price": .23,
+		"size": 5,
+		"symbol": "hex-usdt",
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
 		"filled": 0
@@ -865,9 +865,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"side": "sell",
 		"type": "limit",
-		"price": 1001,
+		"price": .23,
 		"size": 2,
-		"symbol": "bch-btc",
+		"symbol": "hex-usdt",
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
 		"filled": 0
@@ -885,13 +885,13 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "order_partialy_filled",
 	"data": {
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"filled": 0.0001,
+		"filled": 0.1,
 		"created_by": 79,
 		"side": "sell",
 		"type": "limit",
-		"size": 2,
-		"price": 1001,
-		"symbol": "bch-btc"
+		"size": 5,
+		"price": 0.32,
+		"symbol": "hex-usdt"
 	}
 }
 
@@ -926,7 +926,7 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
-		"price": 1001,
+		"price": 0.23,
 		"side": "sell",
 		"size": 2,
 		"type": "limit"
@@ -966,9 +966,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
     {
       "id": "1efd30b6-fcb5-44da-82c1-82d9def2ddbd",
       "side": "sell",
-      "symbol": "bch-btc",
-      "size": 0.2,
-      "price": 999,
+      "symbol": "hex-usdt",
+      "size": 5,
+      "price": .32,
       "timestamp": "2017-07-26T13:20:40.464Z",
       "fee": 0,
     },
@@ -987,12 +987,12 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "deposit",
 	"data": {
 		"amount": 3000,
-		"currency": "fiat",
+		"currency": "usdt",
 		"status": false
 	},
 	"balance": {
-		"fiat_balance": 0,
-		"btc_balance": 300000,
+		"usdt_balance": 0,
+		"hex_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
@@ -1008,12 +1008,12 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "withdrawal",
 	"data": {
 		"amount": 5000,
-		"currency": "btc",
+		"currency": "hex",
 		"status": true
 	},
 	"balance": {
-		"fiat_balance": 0,
-		"btc_balance": 300000,
+		"usdt_balance": 0,
+		"hex_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
