@@ -53,112 +53,110 @@ You must replace <code>ACCESS_TOKEN</code> with your own API Token.
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/ticker?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/ticker?symbol=hex-usdt"
 ```
 
 > Response
 
 ```json
 {
-  "ticker": 50000000
+  "open": .2,
+  "close": .23,
+  "high": .25,
+  "low": .2,
+  "last": .254,
+  "volume": 100,
+  "timestamp": "2019-09-27T03:33:11.667Z"
 }
 ```
 
-This endpoint retrieves the last price traded.
+This endpoint retrieves ticker information for a pair or all pairs.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/ticker`
+`GET https://api.hollaex.com/v1/ticker`
 
 ### PARAMETERS
 
 Parameter | Description
---------- | ------- 
-symbol | the currency pair symbol (btc-eur, eth-eur)
+--------- | -------
+symbol | The currency pair symbol (hex-usdt)
 
 ## Orderbook
 
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/orderbooks?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=hex-usdt"
 ```
 
 > Response
 
 ```json
 {
-  "timestamp":"2018-03-02T21:36:52.345Z",
-  "btc":{
+  "hex-usdt":{
     "bids":[
-      [52110000,0.0007],
-      [51950000,0.0024],
-      [51450000,0.03],
-      [51020000,0.0805],
-      [51010000,0.0606],
-      [51005000,0.01],
-      [51000000,0.0746],
-      [50770000,0.0024],
-      [50000000,0.0004],
-      [49500000,0.01]
+      [0.212,8],
+      [0.21,5],
+      [0.208,15],
+      [0.206,583],
+      [0.205,1000],
+      [0.204,1000],
+      [0.203,1000],
+      [0.202,1000],
+      [0.201,1000],
+      [0.2,1000]
     ],
     "asks":[
-      [52985000,0.0002],
-      [52995000,0.0376],
-      [53000000,0.11],
-      [53190000,0.0051],
-      [53400000,0.0006],
-      [53700000,0.01],
-      [53940000,0.0005],
-      [53955000,0.0001],
-      [54000000,0.2],
-      [55000000,0.0948]
+      [0.23,45],
+      [0.24,824],
+      [0.248,10]
     ],
     "timestamp":"2018-03-02T21:36:29.395Z"
   }
 }
 ```
 
-This endpoint retrieves 10 leve bids and 10 level asks of the orderbook.
+This endpoint retrieves 10 level bids and 10 level asks of the orderbook.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/orderbooks`
+`GET https://api.hollaex.com/v1/orderbooks`
 
 ### PARAMETERS
 
-Parameter | Default | Description
---------- | ----------- | -----------
-Symbol | btc-eur | The currency pair symbol
+Parameter | Description
+--------- | -----------
+symbol | The currency pair symbol (hex-usdt, etc.)
 
 ## Trades
 
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v0/trades?symbol=btc-eur"
+curl -X GET "https://api.hollaex.com/v1/trades?symbol=hex-usdt"
 ```
 
 > Response
 
 ```json
 {
-  "btc": [
+  "hex-usdt": [
     {
-      "size": 0.0008,
-      "price": 45500000,
+      "size": 10,
+      "price": 0.2,
       "side": "buy",
       "timestamp": "2018-03-23T04:00:20.744Z"
     },
     {
-      "size": 0.0005,
-      "price": 45500000,
+      "size": 5,
+      "price": 0.21,
       "side": "buy",
       "timestamp": "2018-03-23T03:32:38.927Z"
     },
     {
-      "size": 0.0031,
-      "price": 44490000,
+      "size": 5,
+      "price": 0.23,
       "side": "sell",
       "timestamp": "2018-03-23T03:13:42.361Z"
     }
@@ -170,13 +168,13 @@ This endpoint retrieves the last 30 trades.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/trades`
+`GET https://api.hollaex.com/v1/trades`
 
 ### PARAMETERS
 
 Parameter | Description
---------- | ------- 
-symbol | the currency pair symbol (btc-eur)
+--------- | -------
+symbol | The currency pair symbol (hex-usdt, etc.)
 
 # Private
 
@@ -190,7 +188,7 @@ You must replace <code>ACCESS_TOKEN</code> based on the docs on Authentication i
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user" 
+  "https://api.hollaex.com/v1/user" 
 ```
 
 > Response
@@ -200,9 +198,11 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   "id": "integer",
   "email": "string",
   "full_name": "string",
+  "name_verified": true,
   "gender": true,
   "nationality": "string",
   "dob": "2018-03-23T04:14:08.593Z",
+  "phone_number": "string",
   "address": {
     "country": "string",
     "address": "string",
@@ -210,7 +210,6 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
     "city": "string",
     "verified": true
   },
-  "phone_number": "string",
   "id_data": {
     "type": "string",
     "number": "string",
@@ -228,18 +227,32 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
   },
   "crypto_wallet": {},
   "verification_level": 0,
-  "access_token": "string",
+  "otp_enabled": false,
+  "activated": true,
+  "note": "",
+  "username": "string",
+  "affiliation_code": "string",
   "balance": {
-    "btc_balance": 0,
-    "btc_available": 0,
-    "btc_pending": 0,
-    "fiat_balance": 0,
-    "fiat_available": 0,
-    "fiat_pending": 0,
+    "hex_balance": 0,
+    "hex_available": 0,
+    "hex_pending": 0,
+    "usdt_balance": 0,
+    "usdt_available": 0,
+    "usdt_pending": 0,
     "updated_at": "2018-03-23T04:14:08.593Z"
   },
   "settings": {
     "language": "en"
+  },
+  "flagged": false,
+  "created_at": "2018-03-23T04:14:08.593Z",
+  "updated_at": "2018-03-23T04:14:08.593Z",
+  "images": [],
+  "fees": {
+	  "hex-usdt": {
+		  "maker_fee": 0,
+		  "taker_fee": 0
+	  }
   }
 }
 ```
@@ -248,7 +261,7 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user`
+`GET https://api.hollaex.com/v1/user`
 
 ## Get Balance
 
@@ -256,19 +269,19 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/balance" 
+  "https://api.hollaex.com/v1/user/balance" 
 ```
 
 > Response
 
 ```json
 {
-  "btc_balance": 0,
-  "btc_available": 0,
-  "btc_pending": 0,
-  "fiat_balance": 0,
-  "fiat_available": 0,
-  "fiat_pending": 0,
+  "hex_balance": 0,
+  "hex_available": 0,
+  "hex_pending": 0,
+  "usdt_balance": 0,
+  "usdt_available": 0,
+  "usdt_pending": 0,
   "updated_at": "2018-03-23T04:14:08.705Z"
 }
 ```
@@ -277,7 +290,7 @@ This endpoint gets user's balance
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/balance`
+`GET https://api.hollaex.com/v1/user/balance`
 
 
 ## Get Deposits
@@ -286,15 +299,15 @@ This endpoint gets user's balance
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/deposits
-  ?currency=btc&limit=50&page=1&order=asc"
+  "https://api.hollaex.com/v1/user/deposits
+  ?currency=hex&limit=50&page=1&order=asc"
 ```
 
 > Response
 
 ```json
 {
-  "count": 0,
+  "count": 1,
   "data": [
     {
       "currency": "string",
@@ -316,17 +329,19 @@ This endpoint displays user's deposits
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/deposits`
+`GET https://api.hollaex.com/v1/user/deposits`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (btc-eur)
+currency | The currency pair symbol (hex-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
-orderBy | Field to order data
+order_by | Field to order data
 order | asc or desc
+start_date | Starting date of queried data
+end_date | Ending date of queried data
 
 
 ## Get Withdrawals
@@ -335,15 +350,15 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/withdrawals
-  ?currency=btc&limit=50&page=1&order=asc"
+  "https://api.hollaex.com/v1/user/withdrawals
+  ?currency=hex&limit=50&page=1&order=asc"
 ```
 
 > Response
 
 ```json
 {
-  "count": 0,
+  "count": 1,
   "data": [
     {
       "currency": "string",
@@ -365,17 +380,19 @@ This endpoint displays user's withdrawals
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/withdrawals`
+`GET https://api.hollaex.com/v1/user/withdrawals`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (btc-eur)
+currency | The currency pair symbol (hex-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
-orderBy | Field to order data
+order_by | Field to order data
 order | asc or desc
+start_date | Starting date of queried data
+end_date | Ending date of queried data
 
 ## Get Withdrawal Fee
 
@@ -383,7 +400,7 @@ order | asc or desc
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/withdraw/$currency/fee"
+  "https://api.hollaex.com/v1/user/withdraw/$currency/fee"
 ```
 
 > Response
@@ -398,13 +415,13 @@ This endpoint gets the withdrawal fee for a certain currency
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/withdraw/{currency}/fee`
+`GET https://api.hollaex.com/v1/user/withdraw/{currency}/fee`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. btc
+currency | The desired currency e.g. hex
 
 ## Create Withdrawal Request
 
@@ -413,7 +430,7 @@ currency | The desired currency e.g. btc
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
 	-d '{"currency":$currency,"amount":$amount,"address":$address}'
-	"https://api.hollaex.com/v0/user/request-withdrawal"
+	"https://api.hollaex.com/v1/user/request-withdrawal"
 ```
 
 > Response
@@ -428,14 +445,14 @@ This endpoint creates a withdrawal request for the user
 
 ### HTTP Request
 
-`POST https://api.hollaex.com/v0/user/request-withdrawal`
+`POST https://api.hollaex.com/v1/user/request-withdrawal`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. btc
-amount | The amount to withdrawal e.g. 0.0001
+currency | The desired currency e.g. hex
+amount | The amount to withdrawal e.g. 5
 address | The recipient wallet's address
 
 ## Get Trades
@@ -444,15 +461,15 @@ address | The recipient wallet's address
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/trades
-  ?symbol=btc-eur&limit=50&page=1"
+  "https://api.hollaex.com/v1/user/trades
+  ?symbol=hex-usdt&limit=50&page=1"
 ```
 
 > Response
 
 ```json
 {
-  "count": 0,
+  "count": 1,
   "data": [
     {
       "fee": 0,
@@ -470,15 +487,20 @@ This endpoint displays user's trades
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/trades`
+`GET https://api.hollaex.com/v1/user/trades`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (hex-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
+order_by | Field to order data
+order | asc or desc
+start_date | Starting date of queried data
+end_date | Ending date of queried data
+
 
 
 ## Get All Orders
@@ -487,7 +509,7 @@ page | Page of data to retrieve
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -495,14 +517,16 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 [
   {
-    "id": "string",
-    "side": "buy",
-    "symbol": "string",
-    "size": 0,
-    "filled": 0,
-    "type": "market",
-    "price": 0,
-    "status": "string"
+    "created_at": "2018-03-23T04:14:08.663Z",
+	"title": "string",
+	"side": "sell",
+	"type": "limit",
+	"price": 0,
+	"size": 0,
+	"symbol": "hex-usdt",
+	"id": "string",
+	"created_by": 1,
+	"filled": 0
   }
 ]
 ```
@@ -511,13 +535,13 @@ This endpoint gets all active orders placed by the user
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/orders`
+`GET https://api.hollaex.com/v1/user/orders`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (hex-usdt)
 
 ## Get Order
 
@@ -525,7 +549,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v0/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
 > Response
@@ -533,14 +557,16 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "created_at": "2018-03-23T04:14:08.663Z",
+	"title": "string",
+	"side": "sell",
+	"type": "limit",
+	"price": 0,
+	"size": 0,
+	"symbol": "hex-usdt",
+	"id": "string",
+	"created_by": 1,
+	"filled": 0
 }
 
 ```
@@ -549,13 +575,13 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v0/user/orders/{orderId}`
+`GET https://api.hollaex.com/v1/user/orders/{order_id}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-orderId | Order unique Id
+order_id | Order unique Id
 
 ## Create Order
 
@@ -564,21 +590,22 @@ orderId | Order unique Id
 ```shell
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
-  "https://api.hollaex.com/v0/order" 
+  "https://api.hollaex.com/v1/order" 
 ```
 
 > Response
 
 ```json
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "symbol": "hex-usdt",
+    "side": "sell",
+    "size": 1,
+    "type": "limit",
+    "price": 0.1,
+    "id": "string",
+    "created_by": 34,
+    "filled": 0,
+    "status": "pending"
 }
 ```
 
@@ -586,15 +613,15 @@ This endpoint places an order for the user
 
 ### HTTP Request
 
-`POST https://api.hollaex.com/v0/order`
+`POST https://api.hollaex.com/v1/order`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (hex-usdt)
 side | buy or sell order
-size | the amount of the order. For example in btc the unit is BTC
+size | The amount of the order
 type | limit or market order type
 price | Only should be used when type is limit. In case of market price should not be used
 
@@ -605,7 +632,7 @@ price | Only should be used when type is limit. In case of market price should n
 
 ```shell
 curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
 > Response
@@ -613,16 +640,17 @@ curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 [
-  {
-    "id": "string",
-    "side": "buy",
-    "symbol": "string",
-    "size": 0,
-    "filled": 0,
-    "type": "market",
-    "price": 0,
-    "status": "string"
-  }
+  	{
+		"title": "string",
+		"symbol": "hex-usdt",
+		"side": "sell",
+		"size": 1,
+		"type": "limit",
+		"price": 0.1,
+		"id": "string",
+		"created_by": 34,
+		"filled": 0
+	}
 ]
 
 ```
@@ -631,13 +659,13 @@ This endpoint cancels all orders placed by the user.
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v0/user/orders`
+`DELETE https://api.hollaex.com/v1/user/orders`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-Symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (hex-usdt)
 
 ## Cancel Order
 
@@ -645,7 +673,7 @@ Symbol | The currency pair symbol (btc-eur)
 
 ```shell
 curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
-  "https://api.hollaex.com/v0/user/orders/$orderId" 
+  "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
 > Response
@@ -653,29 +681,29 @@ curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
 ```json
 
 {
-  "id": "string",
-  "side": "buy",
-  "symbol": "string",
-  "size": 0,
-  "filled": 0,
-  "type": "market",
-  "price": 0,
-  "status": "string"
+    "title": "string",
+    "symbol": "hex-usdt",
+    "side": "sell",
+    "size": 1,
+    "type": "limit",
+    "price": 0.1,
+    "id": "string",
+    "created_by": 34,
+    "filled": 0
 }
-
 ```
 
 This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v0/user/orders/{orderId}`
+`DELETE https://api.hollaex.com/v1/user/orders/{order_id}`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-orderId | specific order unique Id
+order_id | Specific order unique Id
 
 
 # Websocket
@@ -711,7 +739,7 @@ For receiving real-time public data updates such as trades, orderbook etc you ca
 Parameter | Description
 --------- | -----------
 query (*optional*) | You can provide the symbol to subscribe to a specific channel, or subscribe to all the channels (no providing the symbol)
-symbol | The currency pair symbol (btc-eur)
+symbol | The currency pair symbol (hex-usdt)
 
 ### EVENTS
 
@@ -719,8 +747,8 @@ The public socket.io events you can subscribe to are:
 
 Event | Description
 --------- | -----------
-orderbook | Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=btc-eur`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update on the orderbook happens.
-trades | Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=btc-eur`. When the user connects, will receive the last trades (Max number: 50). Also will receive the same type of object when a trade happens.
+orderbook | Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=hex-usdt`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update on the orderbook happens.
+trades | Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=hex-usdt`. When the user connects, will receive the last trades (Max number: 50). Also will receive the same type of object when a trade happens.
 
 ## Private
 
@@ -789,9 +817,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"side": "sell",
 		"type": "limit",
-		"price": 1001,
-		"size": 2,
-		"symbol": "bch-btc",
+		"price": .23,
+		"size": 5,
+		"symbol": "hex-usdt",
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
 		"filled": 0
@@ -837,9 +865,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"side": "sell",
 		"type": "limit",
-		"price": 1001,
+		"price": .23,
 		"size": 2,
-		"symbol": "bch-btc",
+		"symbol": "hex-usdt",
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
 		"filled": 0
@@ -857,13 +885,13 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "order_partialy_filled",
 	"data": {
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"filled": 0.0001,
+		"filled": 0.1,
 		"created_by": 79,
 		"side": "sell",
 		"type": "limit",
-		"size": 2,
-		"price": 1001,
-		"symbol": "bch-btc"
+		"size": 5,
+		"price": 0.32,
+		"symbol": "hex-usdt"
 	}
 }
 
@@ -898,7 +926,7 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
-		"price": 1001,
+		"price": 0.23,
 		"side": "sell",
 		"size": 2,
 		"type": "limit"
@@ -938,9 +966,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
     {
       "id": "1efd30b6-fcb5-44da-82c1-82d9def2ddbd",
       "side": "sell",
-      "symbol": "bch-btc",
-      "size": 0.2,
-      "price": 999,
+      "symbol": "hex-usdt",
+      "size": 5,
+      "price": .32,
       "timestamp": "2017-07-26T13:20:40.464Z",
       "fee": 0,
     },
@@ -959,12 +987,12 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "deposit",
 	"data": {
 		"amount": 3000,
-		"currency": "fiat",
+		"currency": "usdt",
 		"status": false
 	},
 	"balance": {
-		"fiat_balance": 0,
-		"btc_balance": 300000,
+		"usdt_balance": 0,
+		"hex_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
@@ -980,12 +1008,12 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "withdrawal",
 	"data": {
 		"amount": 5000,
-		"currency": "btc",
+		"currency": "hex",
 		"status": true
 	},
 	"balance": {
-		"fiat_balance": 0,
-		"btc_balance": 300000,
+		"usdt_balance": 0,
+		"hex_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
