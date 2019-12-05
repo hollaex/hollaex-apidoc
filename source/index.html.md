@@ -30,20 +30,28 @@ We have language bindings in Shell with CURL and you can view code examples in t
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X POST
-  -H "Authorization: Bearer $ACCESS_TOKEN"
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "api_endpoint_here"
 ```
 
-> Make sure to replace `$ACCESS_TOKEN` with your API key.
+> Make sure to replace `$API_KEY`, `$API_SIGNATURE`, and `$API_EXPIRES` with your own key, signature, and expires values.
 
-HollaEx uses API tokens to allow private access to the API for an authenticated user. You can register a new HollaEx API key in our [developer portal](https://hollaex.com/developers).
+HollaEx uses HMAC-SHA256 authentication for private access to the API for an authenticated user. HMAC-SHA256 takes a string and secret key (your `api-secret`) and outputs an encoded signature (your `api-signature`). The string being encoded should follow the format `${METHOD}${PATH}${api-expires}`, where `METHOD` is the HTTP method of the request, `PATH` is the path of the request, and `api-expires` is a unix timestamp indicating when the request expires. For example, if you're making a `GET` request to `https://hollaex.com/v1/user/balance` that expires at `1575516146`, the string being encoded should be `GET/v1/user/balance1575516146`. You can use an online [HMAC generator](https://www.freeformatter.com/hmac-generator.html) to generate the signature.
 
-HollaEx expects the API key to be included in all Private API requests to the server in the request header with the following format:
+You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://hollaex.com/security) of hollaex.com.
 
-`Authorization: Bearer <ACCESS_TOKEN>`
+HollaEx expects `api-key`, `api-signature`, and `api-expires` to be included in all Private API requests to the server in the request header with the following format:
+
+```
+api-key: <API_KEY>
+api-signature: <API_SIGNATURE>
+api-expires: <API_EXPIRES>
+```
 
 <aside class="notice">
-You must replace <code>ACCESS_TOKEN</code> with your own API Token.
+You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values.
 </aside>
 
 # Public
@@ -179,7 +187,7 @@ symbol | The currency pair symbol (hex-usdt, etc.)
 # Private
 
 <aside class="notice">
-You must replace <code>ACCESS_TOKEN</code> based on the docs on Authentication in the header of all private http requests.
+You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values in the header of all private http requests.
 </aside>
 
 ## Get User
@@ -187,8 +195,11 @@ You must replace <code>ACCESS_TOKEN</code> based on the docs on Authentication i
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
-  "https://api.hollaex.com/v1/user" 
+curl -X GET 
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  "https://api.hollaex.com/v1/user"
 ```
 
 > Response
@@ -268,7 +279,10 @@ This endpoint gets user's information, crypto wallet address as well as his bala
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/balance" 
 ```
 
@@ -298,7 +312,10 @@ This endpoint gets user's balance
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/deposits
   ?currency=hex&limit=50&page=1&order=asc"
 ```
@@ -349,7 +366,10 @@ end_date | Ending date of queried data
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/withdrawals
   ?currency=hex&limit=50&page=1&order=asc"
 ```
@@ -399,7 +419,10 @@ end_date | Ending date of queried data
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/withdraw/$currency/fee"
 ```
 
@@ -428,9 +451,12 @@ currency | The desired currency e.g. hex
 > Request
 
 ```shell
-curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
-	-d '{"currency":$currency,"amount":$amount,"address":$address}'
-	"https://api.hollaex.com/v1/user/request-withdrawal"
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -d '{"currency":$currency,"amount":$amount,"address":$address}'
+  "https://api.hollaex.com/v1/user/request-withdrawal"
 ```
 
 > Response
@@ -460,7 +486,10 @@ address | The recipient wallet's address
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/trades
   ?symbol=hex-usdt&limit=50&page=1"
 ```
@@ -508,7 +537,10 @@ end_date | Ending date of queried data
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
@@ -548,7 +580,10 @@ symbol | The currency pair symbol (hex-usdt)
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN"
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
@@ -588,7 +623,10 @@ order_id | Order unique Id
 > Request
 
 ```shell
-curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
   "https://api.hollaex.com/v1/order" 
 ```
@@ -631,7 +669,10 @@ price | Only should be used when type is limit. In case of market price should n
 > Request
 
 ```shell
-curl -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN" 
+curl -X DELETE
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/orders?symbol=$symbol" 
 ```
 
@@ -672,7 +713,10 @@ symbol | The currency pair symbol (hex-usdt)
 > Request
 
 ```shell
-curl -X GET -H "Authorization: Bearer $ACCESS_TOKEN" 
+curl -X GET
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/orders/$order_id" 
 ```
 
@@ -759,7 +803,11 @@ trades | Object with the last trades of the symbol subscribed. Same data as `GET
   const io = require('socket.io-client');
 
   const socket = io('https://api.hollaex.com/user', {
-    query: { token: `Bearer ${ACCESS_TOKEN}` }
+    query: {
+		api-key: `${API_KEY}`,
+		api-signature: `${API_SIGNATURE}`,
+		api-expires: `${API_EXPIRES}`
+	}
   });
 
   socket.on('userInfo', (data) => { ... }) // userInfo event
@@ -782,11 +830,13 @@ trades | Object with the last trades of the symbol subscribed. Same data as `GET
 
 Parameter | Description
 --------- | -----------
-query | You must provide your HollaEx API token (`token`)
-token | Preceded by `Bearer` e.g.  `` `Bearer ${ACCESS_TOKEN}` ``
+query | You must provide a HollaEx `api-key`, `api-signature`, and `api-expires`
+api-key | Your API key.
+api-signature | HMAC-SHA256 signature using API secret. The `METHOD` is `CONNECT` and the `PATH` is `/socket`.
+api-expires | UNIX timestamp of when the request expires.
 
 <aside class="notice">
-You must replace <code>ACCESS_TOKEN</code> with your own API Token.
+You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values. Refer to the <a href='#authentication'>authentication section</a> above to learn more.
 </aside>
 
 ### EVENTS
