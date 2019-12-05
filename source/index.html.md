@@ -187,7 +187,7 @@ symbol | The currency pair symbol (hex-usdt, etc.)
 # Private
 
 <aside class="notice">
-You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values in the header of all private http requests.
+You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values in the header of all private http requests. Refer to the <a href='#authentication'>authentication section</a> above to learn more.
 </aside>
 
 ## Get User
