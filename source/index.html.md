@@ -61,7 +61,7 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v1/ticker?symbol=hex-usdt"
+curl -X GET "https://api.hollaex.com/v1/ticker?symbol=xht-usdt"
 ```
 
 > Response
@@ -88,21 +88,21 @@ This endpoint retrieves ticker information for a pair or all pairs.
 
 Parameter | Description
 --------- | -------
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 
 ## Orderbook
 
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=hex-usdt"
+curl -X GET "https://api.hollaex.com/v1/orderbooks?symbol=xht-usdt"
 ```
 
 > Response
 
 ```json
 {
-  "hex-usdt":{
+  "xht-usdt":{
     "bids":[
       [0.212,8],
       [0.21,5],
@@ -135,21 +135,21 @@ This endpoint retrieves 10 level bids and 10 level asks of the orderbook.
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (hex-usdt, etc.)
+symbol | The currency pair symbol (xht-usdt, etc.)
 
 ## Trades
 
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v1/trades?symbol=hex-usdt"
+curl -X GET "https://api.hollaex.com/v1/trades?symbol=xht-usdt"
 ```
 
 > Response
 
 ```json
 {
-  "hex-usdt": [
+  "xht-usdt": [
     {
       "size": 10,
       "price": 0.2,
@@ -182,7 +182,7 @@ This endpoint retrieves the last 30 trades.
 
 Parameter | Description
 --------- | -------
-symbol | The currency pair symbol (hex-usdt, etc.)
+symbol | The currency pair symbol (xht-usdt, etc.)
 
 # Private
 
@@ -244,9 +244,9 @@ curl -X GET
   "username": "string",
   "affiliation_code": "string",
   "balance": {
-    "hex_balance": 0,
-    "hex_available": 0,
-    "hex_pending": 0,
+    "xht_balance": 0,
+    "xht_available": 0,
+    "xht_pending": 0,
     "usdt_balance": 0,
     "usdt_available": 0,
     "usdt_pending": 0,
@@ -260,7 +260,7 @@ curl -X GET
   "updated_at": "2018-03-23T04:14:08.593Z",
   "images": [],
   "fees": {
-	  "hex-usdt": {
+	  "xht-usdt": {
 		  "maker_fee": 0,
 		  "taker_fee": 0
 	  }
@@ -290,9 +290,9 @@ curl -X GET
 
 ```json
 {
-  "hex_balance": 0,
-  "hex_available": 0,
-  "hex_pending": 0,
+  "xht_balance": 0,
+  "xht_available": 0,
+  "xht_pending": 0,
   "usdt_balance": 0,
   "usdt_available": 0,
   "usdt_pending": 0,
@@ -317,7 +317,7 @@ curl -X GET
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/deposits
-  ?currency=hex&limit=50&page=1&order=asc"
+  ?currency=xht&limit=50&page=1&order=asc"
 ```
 
 > Response
@@ -352,7 +352,7 @@ This endpoint displays user's deposits
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (hex-usdt)
+currency | The currency pair symbol (xht-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 order_by | Field to order data
@@ -371,7 +371,7 @@ curl -X GET
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/withdrawals
-  ?currency=hex&limit=50&page=1&order=asc"
+  ?currency=xht&limit=50&page=1&order=asc"
 ```
 
 > Response
@@ -406,7 +406,7 @@ This endpoint displays user's withdrawals
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (hex-usdt)
+currency | The currency pair symbol (xht-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 order_by | Field to order data
@@ -444,7 +444,7 @@ This endpoint gets the withdrawal fee for a certain currency
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. hex
+currency | The desired currency e.g. xht
 
 ## Create Withdrawal Request
 
@@ -477,7 +477,7 @@ This endpoint creates a withdrawal request for the user
 
 Parameter | Description
 --------- | -----------
-currency | The desired currency e.g. hex
+currency | The desired currency e.g. xht
 amount | The amount to withdrawal e.g. 5
 address | The recipient wallet's address
 
@@ -491,7 +491,7 @@ curl -X GET
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
   "https://api.hollaex.com/v1/user/trades
-  ?symbol=hex-usdt&limit=50&page=1"
+  ?symbol=xht-usdt&limit=50&page=1"
 ```
 
 > Response
@@ -522,7 +522,7 @@ This endpoint displays user's trades
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 order_by | Field to order data
@@ -555,7 +555,7 @@ curl -X GET
 	"type": "limit",
 	"price": 0,
 	"size": 0,
-	"symbol": "hex-usdt",
+	"symbol": "xht-usdt",
 	"id": "string",
 	"created_by": 1,
 	"filled": 0
@@ -573,7 +573,7 @@ This endpoint gets all active orders placed by the user
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 
 ## Get Order
 
@@ -598,7 +598,7 @@ curl -X GET
 	"type": "limit",
 	"price": 0,
 	"size": 0,
-	"symbol": "hex-usdt",
+	"symbol": "xht-usdt",
 	"id": "string",
 	"created_by": 1,
 	"filled": 0
@@ -635,7 +635,7 @@ curl -X POST
 
 ```json
 {
-    "symbol": "hex-usdt",
+    "symbol": "xht-usdt",
     "side": "sell",
     "size": 1,
     "type": "limit",
@@ -657,7 +657,7 @@ This endpoint places an order for the user
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 side | buy or sell order
 size | The amount of the order
 type | limit or market order type
@@ -683,7 +683,7 @@ curl -X DELETE
 [
   	{
 		"title": "string",
-		"symbol": "hex-usdt",
+		"symbol": "xht-usdt",
 		"side": "sell",
 		"size": 1,
 		"type": "limit",
@@ -706,7 +706,7 @@ This endpoint cancels all orders placed by the user.
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 
 ## Cancel Order
 
@@ -726,7 +726,7 @@ curl -X GET
 
 {
     "title": "string",
-    "symbol": "hex-usdt",
+    "symbol": "xht-usdt",
     "side": "sell",
     "size": 1,
     "type": "limit",
@@ -783,7 +783,7 @@ For receiving real-time public data updates such as trades, orderbook etc you ca
 Parameter | Description
 --------- | -----------
 query (*optional*) | You can provide the symbol to subscribe to a specific channel, or subscribe to all the channels (no providing the symbol)
-symbol | The currency pair symbol (hex-usdt)
+symbol | The currency pair symbol (xht-usdt)
 
 ### EVENTS
 
@@ -791,8 +791,8 @@ The public socket.io events you can subscribe to are:
 
 Event | Description
 --------- | -----------
-orderbook | Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=hex-usdt`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update on the orderbook happens.
-trades | Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=hex-usdt`. When the user connects, will receive the last trades (Max number: 50). Also will receive the same type of object when a trade happens.
+orderbook | Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=xht-usdt`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update on the orderbook happens.
+trades | Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=xht-usdt`. When the user connects, will receive the last trades (Max number: 50). Also will receive the same type of object when a trade happens.
 
 ## Private
 
@@ -857,27 +857,6 @@ userUpdate | The socket will listen for any updates related to the user's privat
 
 ## Private Updates
 
-> order_queued
-
-```json
-
-{
-	"action": "update",
-	"type": "order_queued",
-	"data": {
-		"side": "sell",
-		"type": "limit",
-		"price": .23,
-		"size": 5,
-		"symbol": "hex-usdt",
-		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"created_by": 79,
-		"filled": 0
-	}
-}
-
-```
-
 > order_processed
 
 ```json
@@ -915,9 +894,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"data": {
 		"side": "sell",
 		"type": "limit",
-		"price": .23,
+		"price": 0.23,
 		"size": 2,
-		"symbol": "hex-usdt",
+		"symbol": "xht-usdt",
 		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
 		"created_by": 79,
 		"filled": 0
@@ -941,7 +920,7 @@ userUpdate | The socket will listen for any updates related to the user's privat
 		"type": "limit",
 		"size": 5,
 		"price": 0.32,
-		"symbol": "hex-usdt"
+		"symbol": "xht-usdt"
 	}
 }
 
@@ -1016,9 +995,9 @@ userUpdate | The socket will listen for any updates related to the user's privat
     {
       "id": "1efd30b6-fcb5-44da-82c1-82d9def2ddbd",
       "side": "sell",
-      "symbol": "hex-usdt",
+      "symbol": "xht-usdt",
       "size": 5,
-      "price": .32,
+      "price": 0.32,
       "timestamp": "2017-07-26T13:20:40.464Z",
       "fee": 0,
     },
@@ -1042,7 +1021,7 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	},
 	"balance": {
 		"usdt_balance": 0,
-		"hex_balance": 300000,
+		"xht_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
@@ -1058,12 +1037,12 @@ userUpdate | The socket will listen for any updates related to the user's privat
 	"type": "withdrawal",
 	"data": {
 		"amount": 5000,
-		"currency": "hex",
+		"currency": "xht",
 		"status": true
 	},
 	"balance": {
 		"usdt_balance": 0,
-		"hex_balance": 300000,
+		"xht_balance": 300000,
 		"updated_at": "2017-07-26T13:20:40.464Z"
 	}
 }
