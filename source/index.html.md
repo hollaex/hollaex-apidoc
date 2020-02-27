@@ -326,7 +326,7 @@ symbol | The currency pair symbol (hex-usdt, etc.)
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v1/chart?symbol=xht-usdt&resolution=D&from=1551663947&to=1582768007"
+curl -X GET "https://api.hollaex.com/v1/chart?symbol=xht-usdt&resolution=1D&from=1551663947&to=1582768007"
 ```
 
 > Response
@@ -375,7 +375,7 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 Parameter | Description
 --------- | -------
 symbol | The currency pair symbol (xht-usdt, etc.)
-resolution | Time interval resolution (D, 60, etc.)
+resolution | Time interval resolution (1D, 60, etc.)
 from | Beginning UNIX timestamp
 to | Ending UNIX timestamp
 
@@ -981,7 +981,7 @@ This endpoint retrieves the TradingView UDF config.
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v1/udf/history?symbol=xht-usdt&resolution=D&from=1551663947&to=1582768007"
+curl -X GET "https://api.hollaex.com/v1/udf/history?symbol=xht-usdt&resolution=1D&from=1551663947&to=1582768007"
 ```
 
 > Response
@@ -1005,7 +1005,7 @@ This endpoint retrieves the TradigView UDF history HOLCV.
 Parameter | Description
 --------- | -------
 symbol | The currency pair symbol (xht-usdt, etc.)
-resolution | Time interval resolution (D, 60, etc.)
+resolution | Time interval resolution (1D, 60, etc.)
 from | Beginning UNIX timestamp
 to | Ending UNIX timestamp
 
