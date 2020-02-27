@@ -90,6 +90,143 @@ Parameter | Description
 --------- | -------
 symbol | The currency pair symbol (hex-usdt)
 
+## Constant
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/constant"
+```
+
+> Response
+
+```json
+{
+    "coins": {
+        "xht": {
+            "id": 1,
+            "fullname": "HollaEx Token",
+            "symbol": "xht",
+            "active": true,
+            "allow_deposit": true,
+            "allow_withdrawal": true,
+            "withdrawal_fee": 0,
+            "min": 0.1,
+            "max": 1000000,
+            "increment_unit": 0.1,
+            "deposit_limits": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+            },
+            "withdrawal_limits": {
+                "1": 20000,
+                "2": 30000,
+                "3": 100000,
+                "4": 200000,
+                "5": 500000,
+                "6": 1000000,
+                "7": 2000000,
+                "8": 3000000,
+                "9": 5000000,
+                "10": -1
+            },
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2019-12-31T08:26:35.536Z"
+        },
+        "usdt": {
+            "id": 6,
+            "fullname": "USD Tether",
+            "symbol": "usdt",
+            "active": true,
+            "allow_deposit": true,
+            "allow_withdrawal": true,
+            "withdrawal_fee": 1,
+            "min": 0.1,
+            "max": 100000,
+            "increment_unit": 0.1,
+            "deposit_limits": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+            },
+            "withdrawal_limits": {
+                "1": 1000,
+                "2": 1500,
+                "3": 10000,
+                "4": 10000,
+                "5": 20000,
+                "6": 30000,
+                "7": 35000,
+                "8": 40000,
+                "9": 50000,
+                "10": -1
+            },
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2020-01-16T12:12:21.084Z"
+        },
+        ...
+    },
+    "pairs": {
+        "xht-usdt": {
+            "id": 1,
+            "name": "xht-usdt",
+            "pair_base": "xht",
+            "pair_2": "usdt",
+            "taker_fees": {
+                "1": 0.3,
+                "2": 0.25,
+                "3": 0.2,
+                "4": 0.18,
+                "5": 0.1,
+                "6": 0.09,
+                "7": 0.08,
+                "8": 0.06,
+                "9": 0.04,
+                "10": 0
+            },
+            "maker_fees": {
+                "1": 0.1,
+                "2": 0.08,
+                "3": 0.05,
+                "4": 0.03,
+                "5": 0,
+                "6": 0,
+                "7": 0,
+                "8": 0,
+                "9": 0,
+                "10": 0
+            },
+            "min_size": 1,
+            "max_size": 10000000,
+            "min_price": 0.2,
+            "max_price": 10000,
+            "increment_size": 1,
+            "increment_price": 0.001,
+            "active": true,
+            "created_at": "2019-08-09T10:45:43.353Z",
+            "updated_at": "2019-08-09T10:45:43.353Z"
+        },
+        ...
+    },
+    "config": {
+        "tiers": 10
+    },
+    "status": true
+}
+```
+This endpoint retrieves system information such as coins and pairs.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/constant`
+
 ## Orderbook
 
 > Request
@@ -183,6 +320,64 @@ This endpoint retrieves the last 30 trades.
 Parameter | Description
 --------- | -------
 symbol | The currency pair symbol (hex-usdt, etc.)
+
+## Chart
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/chart?symbol=xht-usdt&resolution=D&from=1551663947&to=1582768007"
+```
+
+> Response
+
+```json
+[
+	{
+		"time": "2020-01-01T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.23,
+		"low": 0.2,
+		"open": 0.23,
+		"symbol": "xht-usdt",
+		"volume": 13538
+	},
+	{
+		"time": "2020-01-02T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.2,
+		"low": 0.2,
+		"open": 0.2,
+		"symbol": "xht-usdt",
+		"volume": 54
+	},
+  	{
+		"time": "2020-01-03T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.201,
+		"low": 0.2,
+		"open": 0.2,
+		"symbol": "xht-usdt",
+		"volume": 25982
+	}
+	...
+]
+```
+
+This endpoint retrieves a trading pair's trade history HOLCV.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/chart`
+
+### PARAMETERS
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
+resolution | Time interval resolution (D, 60, etc.)
+from | Beginning UNIX timestamp
+to | Ending UNIX timestamp
 
 # Private
 
