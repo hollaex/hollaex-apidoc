@@ -75,7 +75,7 @@ curl -X GET "https://api.hollaex.com/v1/health"
 	"status": true
 }
 ```
-This endpoint retrieves the exchange health.
+This endpoint retrieves the exchange's basic information and checks its health.
 
 ### HTTP Request
 
