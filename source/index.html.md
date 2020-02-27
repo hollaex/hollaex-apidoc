@@ -56,6 +56,166 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 
 # Public
 
+## Health
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/health"
+```
+
+> Response
+
+```json
+{
+    "name": "HollaEx",
+    "version": "1.21.1",
+    "host": "api.hollaex.com",
+    "basePath": "/v1",
+	"status": true
+}
+```
+This endpoint retrieves the exchange's basic information and checks its health.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/health`
+
+## Constant
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/constant"
+```
+
+> Response
+
+```json
+{
+    "coins": {
+        "xht": {
+            "id": 1,
+            "fullname": "HollaEx Token",
+            "symbol": "xht",
+            "active": true,
+            "allow_deposit": true,
+            "allow_withdrawal": true,
+            "withdrawal_fee": 0,
+            "min": 0.1,
+            "max": 1000000,
+            "increment_unit": 0.1,
+            "deposit_limits": {
+                "1": 0,
+                "2": 0,
+               ...
+            },
+            "withdrawal_limits": {
+                "1": 20000,
+                "2": 30000,
+                ...
+            },
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2019-12-31T08:26:35.536Z"
+        },
+        "usdt": {
+            "id": 6,
+            "fullname": "USD Tether",
+            "symbol": "usdt",
+            "active": true,
+            "allow_deposit": true,
+            "allow_withdrawal": true,
+            "withdrawal_fee": 1,
+            "min": 0.1,
+            "max": 100000,
+            "increment_unit": 0.1,
+            "deposit_limits": {
+                "1": 0,
+                "2": 0,
+                ...
+            },
+            "withdrawal_limits": {
+                "1": 1000,
+                "2": 1500,
+                ...
+            },
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2020-01-16T12:12:21.084Z"
+        },
+        ...
+    },
+    "pairs": {
+        "xht-usdt": {
+            "id": 1,
+            "name": "xht-usdt",
+            "pair_base": "xht",
+            "pair_2": "usdt",
+            "taker_fees": {
+                "1": 0.3,
+                "2": 0.25,
+                ...
+            },
+            "maker_fees": {
+                "1": 0.1,
+                "2": 0.08,
+                ...
+            },
+            "min_size": 1,
+            "max_size": 10000000,
+            "min_price": 0.2,
+            "max_price": 10000,
+            "increment_size": 1,
+            "increment_price": 0.001,
+            "active": true,
+            "created_at": "2019-08-09T10:45:43.353Z",
+            "updated_at": "2019-08-09T10:45:43.353Z"
+        },
+        ...
+    },
+    "info": {
+        "name": "HollaEx",
+        "active": true,
+        "url": "https://pro.hollaex.com",
+        "is_trial": false,
+        "created_at": "2019-10-01T11:19:06.901Z"
+    },
+    "constants": {
+        "emails": {
+            "sender": "support@example.com",
+            "timezone": "Asia/Seoul",
+            "send_email_to_support": true
+        },
+        "captcha": {},
+        "plugins": {
+            "enabled": "bank,kyc,sms,vault",
+            "configuration": {...},
+        "accounts": {
+            "kyc": "kyc@example.com",
+            "admin": "admin@example.com",
+            "support": "support@example.com",
+            "supervisor": "supervisor@example.com"
+        },
+        "api_name": "HollaEx",
+        "defaults": {
+            "theme": "dark",
+            "language": "en"
+        },
+        "logo_path": "string",
+        "allowed_domains": [...],
+        "logo_black_path": "string",
+        "valid_languages": "en",
+        "user_level_number": "7",
+        "new_user_is_activated": "true"
+    },
+    "status": true
+}
+```
+This endpoint retrieves system information such as coins, pairs, constants, etc.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/constant`
+
 ## Ticker
 
 > Request
@@ -183,6 +343,64 @@ This endpoint retrieves the last 30 trades.
 Parameter | Description
 --------- | -------
 symbol | The currency pair symbol (xht-usdt, etc.)
+
+## Chart
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/chart?symbol=xht-usdt&resolution=1D&from=1551663947&to=1582768007"
+```
+
+> Response
+
+```json
+[
+	{
+		"time": "2020-01-01T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.23,
+		"low": 0.2,
+		"open": 0.23,
+		"symbol": "xht-usdt",
+		"volume": 13538
+	},
+	{
+		"time": "2020-01-02T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.2,
+		"low": 0.2,
+		"open": 0.2,
+		"symbol": "xht-usdt",
+		"volume": 54
+	},
+  	{
+		"time": "2020-01-03T00:00:00.000Z",
+		"close": 0.2,
+		"high": 0.201,
+		"low": 0.2,
+		"open": 0.2,
+		"symbol": "xht-usdt",
+		"volume": 25982
+	}
+	...
+]
+```
+
+This endpoint retrieves a trading pair's trade history HOLCV.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/chart`
+
+### PARAMETERS
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
+resolution | Time interval resolution (1D, 60, etc.)
+from | Beginning UNIX timestamp
+to | Ending UNIX timestamp
 
 # Private
 
@@ -749,6 +967,105 @@ Parameter | Description
 --------- | -----------
 order_id | Specific order unique Id
 
+# TradingView
+
+HollaEx fully supports the TradingView UDF API.
+
+## Config
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/config"
+```
+
+> Response
+
+```json
+{
+    "supported_resolutions": [
+        "60",
+        "1D"
+    ],
+    "supports_group_request": false,
+    "supports_marks": false,
+    "supports_search": true,
+    "supports_timescale_marks": false
+}
+```
+This endpoint retrieves the TradingView UDF config.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/config`
+
+## History
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/history?symbol=xht-usdt&resolution=1D&from=1551663947&to=1582768007"
+```
+
+> Response
+
+```json
+{
+    "c": [...],
+    "h": [...],
+    "l": [...],
+    "o": [...],
+    "v": [...],
+    "s": "ok"
+}
+```
+This endpoint retrieves the TradigView UDF history HOLCV.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/history`
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
+resolution | Time interval resolution (1D, 60, etc.)
+from | Beginning UNIX timestamp
+to | Ending UNIX timestamp
+
+## Symbols
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/symbols?symbol=xht-usdt"
+```
+
+> Response
+
+```json
+{
+    "name": "bitHolla",
+    "ticker": "xht-usdt",
+    "exchange": "HollaEx",
+    "has_intraday": true,
+    "has_daily": true,
+    "has_weekly_and_monthly": true,
+    "session": "24x7",
+    "regular_session": "24x7",
+    "pricescale": 1,
+    "volume_precision": 2,
+    "has_empty_bars": true
+}
+```
+This endpoint retrieves system a TradingView UDF symbol.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/symbols`
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
 
 # Websocket
 
