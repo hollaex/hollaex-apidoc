@@ -61,6 +61,31 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 > Request
 
 ```shell
+curl -X GET "https://api.hollaex.com/v1/health"
+```
+
+> Response
+
+```json
+{
+    "name": "HollaEx",
+    "version": "1.21.1",
+    "host": "api.hollaex.com",
+    "basePath": "/v1",
+	"status": true
+}
+```
+This endpoint retrieves the exchange health.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/health`
+
+## Constant
+
+> Request
+
+```shell
 curl -X GET "https://api.hollaex.com/v1/constant"
 ```
 
