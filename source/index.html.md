@@ -83,22 +83,12 @@ curl -X GET "https://api.hollaex.com/v1/constant"
             "deposit_limits": {
                 "1": 0,
                 "2": 0,
-                "3": 0,
-                "4": 0,
-                "5": 0,
-                "6": 0
+               ...
             },
             "withdrawal_limits": {
                 "1": 20000,
                 "2": 30000,
-                "3": 100000,
-                "4": 200000,
-                "5": 500000,
-                "6": 1000000,
-                "7": 2000000,
-                "8": 3000000,
-                "9": 5000000,
-                "10": -1
+                ...
             },
             "created_at": "2019-08-09T10:45:43.367Z",
             "updated_at": "2019-12-31T08:26:35.536Z"
@@ -117,22 +107,12 @@ curl -X GET "https://api.hollaex.com/v1/constant"
             "deposit_limits": {
                 "1": 0,
                 "2": 0,
-                "3": 0,
-                "4": 0,
-                "5": 0,
-                "6": 0
+                ...
             },
             "withdrawal_limits": {
                 "1": 1000,
                 "2": 1500,
-                "3": 10000,
-                "4": 10000,
-                "5": 20000,
-                "6": 30000,
-                "7": 35000,
-                "8": 40000,
-                "9": 50000,
-                "10": -1
+                ...
             },
             "created_at": "2019-08-09T10:45:43.367Z",
             "updated_at": "2020-01-16T12:12:21.084Z"
@@ -148,26 +128,12 @@ curl -X GET "https://api.hollaex.com/v1/constant"
             "taker_fees": {
                 "1": 0.3,
                 "2": 0.25,
-                "3": 0.2,
-                "4": 0.18,
-                "5": 0.1,
-                "6": 0.09,
-                "7": 0.08,
-                "8": 0.06,
-                "9": 0.04,
-                "10": 0
+                ...
             },
             "maker_fees": {
                 "1": 0.1,
                 "2": 0.08,
-                "3": 0.05,
-                "4": 0.03,
-                "5": 0,
-                "6": 0,
-                "7": 0,
-                "8": 0,
-                "9": 0,
-                "10": 0
+                ...
             },
             "min_size": 1,
             "max_size": 10000000,
@@ -181,13 +147,45 @@ curl -X GET "https://api.hollaex.com/v1/constant"
         },
         ...
     },
-    "config": {
-        "tiers": 10
+    "info": {
+        "name": "HollaEx",
+        "active": true,
+        "url": "https://pro.hollaex.com",
+        "is_trial": false,
+        "created_at": "2019-10-01T11:19:06.901Z"
+    },
+    "constants": {
+        "emails": {
+            "sender": "support@example.com",
+            "timezone": "Asia/Seoul",
+            "send_email_to_support": true
+        },
+        "captcha": {},
+        "plugins": {
+            "enabled": "bank,kyc,sms,vault",
+            "configuration": {...},
+        "accounts": {
+            "kyc": "kyc@example.com",
+            "admin": "admin@example.com",
+            "support": "support@example.com",
+            "supervisor": "supervisor@example.com"
+        },
+        "api_name": "HollaEx",
+        "defaults": {
+            "theme": "dark",
+            "language": "en"
+        },
+        "logo_path": "string",
+        "allowed_domains": [...],
+        "logo_black_path": "string",
+        "valid_languages": "en",
+        "user_level_number": "7",
+        "new_user_is_activated": "true"
     },
     "status": true
 }
 ```
-This endpoint retrieves system information such as coins and pairs.
+This endpoint retrieves system information such as coins, pairs, constants, etc.
 
 ### HTTP Request
 
