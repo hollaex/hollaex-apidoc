@@ -56,7 +56,7 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 
 # Public
 
-## Constant
+## Health
 
 > Request
 
