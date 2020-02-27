@@ -56,40 +56,6 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 
 # Public
 
-## Ticker
-
-> Request
-
-```shell
-curl -X GET "https://api.hollaex.com/v1/ticker?symbol=hex-usdt"
-```
-
-> Response
-
-```json
-{
-  "open": .2,
-  "close": .23,
-  "high": .25,
-  "low": .2,
-  "last": .254,
-  "volume": 100,
-  "timestamp": "2019-09-27T03:33:11.667Z"
-}
-```
-
-This endpoint retrieves ticker information for a pair or all pairs.
-
-### HTTP Request
-
-`GET https://api.hollaex.com/v1/ticker`
-
-### PARAMETERS
-
-Parameter | Description
---------- | -------
-symbol | The currency pair symbol (hex-usdt)
-
 ## Constant
 
 > Request
@@ -226,6 +192,40 @@ This endpoint retrieves system information such as coins and pairs.
 ### HTTP Request
 
 `GET https://api.hollaex.com/v1/constant`
+
+## Ticker
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/ticker?symbol=hex-usdt"
+```
+
+> Response
+
+```json
+{
+  "open": .2,
+  "close": .23,
+  "high": .25,
+  "low": .2,
+  "last": .254,
+  "volume": 100,
+  "timestamp": "2019-09-27T03:33:11.667Z"
+}
+```
+
+This endpoint retrieves ticker information for a pair or all pairs.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/ticker`
+
+### PARAMETERS
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (hex-usdt)
 
 ## Orderbook
 
@@ -944,6 +944,105 @@ Parameter | Description
 --------- | -----------
 order_id | Specific order unique Id
 
+# TradingView
+
+HollaEx fully supports the TradingView UDF API.
+
+## Config
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/config"
+```
+
+> Response
+
+```json
+{
+    "supported_resolutions": [
+        "60",
+        "1D"
+    ],
+    "supports_group_request": false,
+    "supports_marks": false,
+    "supports_search": true,
+    "supports_timescale_marks": false
+}
+```
+This endpoint retrieves the TradingView UDF config.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/config`
+
+## History
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/history?symbol=xht-usdt&resolution=D&from=1551663947&to=1582768007"
+```
+
+> Response
+
+```json
+{
+    "c": [...],
+    "h": [...],
+    "l": [...],
+    "o": [...],
+    "v": [...],
+    "s": "ok"
+}
+```
+This endpoint retrieves the TradigView UDF history HOLCV.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/history`
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
+resolution | Time interval resolution (D, 60, etc.)
+from | Beginning UNIX timestamp
+to | Ending UNIX timestamp
+
+## Symbols
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v1/udf/symbols?symbol=xht-usdt"
+```
+
+> Response
+
+```json
+{
+    "name": "bitHolla",
+    "ticker": "xht-usdt",
+    "exchange": "HollaEx",
+    "has_intraday": true,
+    "has_daily": true,
+    "has_weekly_and_monthly": true,
+    "session": "24x7",
+    "regular_session": "24x7",
+    "pricescale": 1,
+    "volume_precision": 2,
+    "has_empty_bars": true
+}
+```
+This endpoint retrieves system a TradingView UDF symbol.
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v1/udf/symbols`
+
+Parameter | Description
+--------- | -------
+symbol | The currency pair symbol (xht-usdt, etc.)
 
 # Websocket
 
