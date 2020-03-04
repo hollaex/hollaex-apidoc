@@ -38,9 +38,17 @@ curl -X POST
 
 > Make sure to replace `$API_KEY`, `$API_SIGNATURE`, and `$API_EXPIRES` with your own key, signature, and expires values.
 
-HollaEx uses HMAC-SHA256 authentication for private access to the API for an authenticated user. HMAC-SHA256 takes a string and secret key (your `api-secret`) and outputs an encoded signature (your `api-signature`). The string being encoded should follow the format `${METHOD}${PATH}${api-expires}`, where `METHOD` is the HTTP method of the request, `PATH` is the path of the request, and `api-expires` is a unix timestamp indicating when the request expires. For example, if you're making a `GET` request to `https://hollaex.com/v1/user/balance` that expires at `1575516146`, the string being encoded should be `GET/v1/user/balance1575516146`. You can use an online [HMAC generator](https://www.freeformatter.com/hmac-generator.html) to generate the signature.
+HollaEx uses HMAC-SHA256 authentication for private user access to the API. HMAC-SHA256 takes a string and secret key (your `api-secret`) and outputs an encoded signature (your `api-signature`). The string being encoded should follow the format `${METHOD}${PATH}${api-expires}`, where `METHOD` is the HTTP method of the request, `PATH` is the path of the request, and `api-expires` is a unix timestamp indicating when the request expires. If the request includes a body, the JSON body object should be appended to the string being encoded e.g. `${METHOD}${PATH}${api-expires}${JSON_BODY}`. You can use an online [HMAC generator](https://www.freeformatter.com/hmac-generator.html) to generate the signature.
 
-You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://hollaex.com/security) of hollaex.com.
+
+Examples of strings being encoded:
+
+- `GET` request to `https://api.hollaex.com/v1/user/balance` that expires at `1575516146`
+  - `GET/v1/user/balance1575516146`
+- `POST` request to `https://api.hollaex.com/v1/order` that expires at `1575516146` with body `{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
+  - `POST/v1/order1583284849{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
+
+You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://pro.hollaex.com/security) of hollaex.com.
 
 HollaEx expects `api-key`, `api-signature`, and `api-expires` to be included in all Private API requests to the server in the request header with the following format:
 
