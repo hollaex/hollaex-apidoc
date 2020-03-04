@@ -48,7 +48,7 @@ Examples of strings being encoded:
 - `POST` request to `https://api.hollaex.com/v1/order` that expires at `1575516146` with body `{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
   - `POST/v1/order1583284849{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
 
-You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://hollaex.com/security) of hollaex.com.
+You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://pro.hollaex.com/security) of hollaex.com.
 
 HollaEx expects `api-key`, `api-signature`, and `api-expires` to be included in all Private API requests to the server in the request header with the following format:
 
