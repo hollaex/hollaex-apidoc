@@ -67,7 +67,7 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 Client libraries make it simple to utilize our API. Currently, there are two libraries for HollaEx that support three languages:
 
 - [HollaEx Node Library](https://github.com/bitholla/hollaex-node-lib) - Our official library that supports Node.js. Connects to both our API and websocket.
-- [CCXT](https://github.com/ccxt/ccxt) - An authorized library that supports Node.js, PHP, and Python. Connects to our API.
+- [CCXT](https://ccxt.trade) - An authorized library that supports Node.js, PHP, and Python. Connects to our API.
 
 # Public
 
