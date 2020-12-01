@@ -688,6 +688,7 @@ curl -X POST
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
   -d '{"currency":$currency,"amount":$amount,"address":$address}'
   "https://api.hollaex.com/v1/user/request-withdrawal"
 ```
@@ -860,6 +861,7 @@ curl -X POST
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
   "https://api.hollaex.com/v1/order" 
 ```
