@@ -640,65 +640,80 @@ curl -X GET
 
 ```json
 {
-  "id": "integer",
-  "email": "string",
-  "full_name": "string",
-  "name_verified": true,
-  "gender": true,
-  "nationality": "string",
-  "dob": "2018-03-23T04:14:08.593Z",
-  "phone_number": "string",
-  "address": {
-    "country": "string",
-    "address": "string",
-    "postal_code": "string",
-    "city": "string",
-    "verified": true
-  },
-  "id_data": {
-    "type": "string",
-    "number": "string",
-    "issued_date": "string",
-    "expiration_date": "string",
-    "verified": true
-  },
-  "bank_account": {
-    "bank_name": "string",
-    "account_number": "string",
-    "account_owner": "string",
-    "shaba_number": "string",
-    "card_number": "string",
-    "verified": true
-  },
-  "crypto_wallet": {},
-  "verification_level": 0,
-  "otp_enabled": false,
-  "activated": true,
-  "note": "",
-  "username": "string",
-  "affiliation_code": "string",
-  "balance": {
-    "xht_balance": 0,
-    "xht_available": 0,
-    "xht_pending": 0,
-    "usdt_balance": 0,
-    "usdt_available": 0,
-    "usdt_pending": 0,
-    "updated_at": "2018-03-23T04:14:08.593Z"
-  },
-  "settings": {
-    "language": "en"
-  },
-  "flagged": false,
-  "created_at": "2018-03-23T04:14:08.593Z",
-  "updated_at": "2018-03-23T04:14:08.593Z",
-  "images": [],
-  "fees": {
-	  "xht-usdt": {
-		  "maker_fee": 0,
-		  "taker_fee": 0
-	  }
-  }
+    "id": 1,
+    "email": "fight@club.com",
+    "full_name": "Tyler Durden",
+    "gender": true,
+    "nationality": "USA",
+    "dob": "2017-07-21T17:32:28.000Z",
+    "phone_number": "",
+    "address": {
+        "city": "Bradford",
+        "address": "537 Paper Street",
+        "country": "USA",
+        "postal_code": "19808"
+    },
+    "id_data": {
+        "type": "passport",
+        "number": "999",
+        "issued_date": "2017-07-21T17:32:28.000Z",
+        "expiration_date": "2017-07-21T17:32:28.000Z"
+    },
+    "bank_account": [],
+    "crypto_wallet": {
+        "xht": "string",
+        "usdt": "string",
+		...
+    },
+    "verification_level": 2,
+    "email_verified": true,
+    "otp_enabled": false,
+    "activated": true,
+    "username": "narrator",
+    "affiliation_code": "STRING",
+    "settings": {
+        "chat": {
+            "set_username": true
+        },
+        "risk": {
+            "popup_warning": true,
+            "order_portfolio_percentage": 90
+        },
+        "audio": {
+            "all": true,
+            "order_placed": true,
+            "public_trade": true,
+            "click_amounts": true,
+            "order_canceled": true,
+            "order_completed": true,
+            "quick_trade_success": true,
+            "quick_trade_timeout": true,
+            "get_quote_quick_trade": true,
+            "order_partially_completed": true
+        },
+        "language": "en",
+        "interface": {
+            "theme": "dark",
+            "order_book_levels": 20
+        },
+        "notification": {
+            "popup_order_completed": false,
+            "popup_order_confirmation": false,
+            "popup_order_partially_filled": false
+        }
+    },
+    "affiliation_rate": 0,
+    "network_id": 90,
+    "created_at": "2020-10-06T11:01:46.715Z",
+    "updated_at": "2021-02-16T07:48:03.108Z",
+    "balance": {
+        "usdt_balance": 0,
+        "usdt_available": 0,
+        "xht_balance": 0,
+        "xht_available": 0,
+		...,
+        "updated_at": "2021-02-16T05:48:28.014Z"
+    }
 }
 ```
 
@@ -717,24 +732,23 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/balance" 
+  "https://api.hollaex.com/v2/user/balance"
 ```
 
 > Response
 
 ```json
 {
-  "xht_balance": 0,
-  "xht_available": 0,
-  "xht_pending": 0,
-  "usdt_balance": 0,
-  "usdt_available": 0,
-  "usdt_pending": 0,
-  "updated_at": "2018-03-23T04:14:08.705Z"
+	"xht_balance": 0,
+	"xht_available": 0,
+	"usdt_balance": 0,
+	"usdt_available": 0,
+	...
+	"updated_at": "2018-03-23T04:14:08.705Z"
 }
 ```
 
-This endpoint gets user's balance
+This endpoint gets a user's balance.
 
 ### HTTP Request
 
@@ -750,29 +764,34 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/deposits
-  ?currency=xht&limit=50&page=1&order=asc"
+  "https://api.hollaex.com/v2/user/deposits"
 ```
 
 > Response
 
 ```json
 {
-  "count": 1,
-  "data": [
-    {
-      "currency": "string",
-      "transaction_id": "string",
-      "amount": 0,
-      "created_at": "2018-03-23T04:14:08.755Z",
-      "type": "deposit",
-      "fee": 0,
-      "status": true,
-      "dissmissed": true,
-      "rejected": true,
-      "description": "string"
-    }
-  ]
+	"count": 1,
+	"data": [
+		{
+            "id": 229,
+            "amount": 1,
+            "fee": 0,
+            "address": "string",
+            "transaction_id": "string",
+            "status": true,
+            "dismissed": false,
+            "rejected": false,
+            "processing": false,
+            "waiting": false,
+            "description": "",
+            "type": "deposit",
+            "currency": "usdt",
+            "created_at": "2021-02-16T05:48:28.011Z",
+            "updated_at": "2021-02-16T05:48:28.011Z",
+            "user_id": 90
+        }
+	]
 }
 ```
 
@@ -786,14 +805,14 @@ This endpoint displays user's deposits
 
 Parameter | Description
 --------- | -----------
-currency | The currency pair symbol (xht-usdt)
+currency | The currency pair symbol
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 order_by | Field to order data
 order | asc or desc
 start_date | Starting date of queried data
 end_date | Ending date of queried data
-
+format | Pass value csv to download csv file
 
 ## Get Withdrawals
 
@@ -804,29 +823,34 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/withdrawals
-  ?currency=xht&limit=50&page=1&order=asc"
+  "https://api.hollaex.com/v2/user/withdrawals"
 ```
 
 > Response
 
 ```json
 {
-  "count": 1,
-  "data": [
-    {
-      "currency": "string",
-      "transaction_id": "string",
-      "amount": 0,
-      "created_at": "2018-03-23T04:14:08.755Z",
-      "type": "withdrawal",
-      "fee": 0,
-      "status": true,
-      "dissmissed": true,
-      "rejected": true,
-      "description": "string"
-    }
-  ]
+	"count": 1,
+	"data": [
+		{
+            "id": 224,
+            "amount": 1,
+            "fee": 0,
+            "address": "string",
+            "transaction_id": "string",
+            "status": true,
+            "dismissed": false,
+            "rejected": false,
+            "processing": false,
+            "waiting": false,
+            "description": "",
+            "type": "withdrawal",
+            "currency": "usdt",
+            "created_at": "2021-02-15T02:36:47.167Z",
+            "updated_at": "2021-02-15T02:36:47.167Z",
+            "user_id": 90
+        }
+	]
 }
 ```
 
@@ -847,6 +871,7 @@ order_by | Field to order data
 order | asc or desc
 start_date | Starting date of queried data
 end_date | Ending date of queried data
+format | Pass value csv to download csv file
 
 ## Get Withdrawal Fee
 
@@ -857,14 +882,14 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/withdraw/$currency/fee"
+  "https://api.hollaex.com/v2/user/withdrawal/fee?symbol=$symbol"
 ```
 
 > Response
 
 ```json
 {
-  "fee": 0.0005
+	"fee": 0.001
 }
 ```
 
@@ -872,7 +897,7 @@ This endpoint gets the withdrawal fee for a certain currency
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/user/withdraw/{currency}/fee`
+`GET https://api.hollaex.com/v2/user/withdrawal/fee`
 
 ### PARAMETERS
 
@@ -898,7 +923,7 @@ curl -X POST
 
 ```json
 {
-  "message": "Success"
+	"message": "Success"
 }
 ```
 
@@ -925,25 +950,26 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/trades
-  ?symbol=xht-usdt&limit=50&page=1"
+  "https://api.hollaex.com/v2/user/trades"
 ```
 
 > Response
 
 ```json
 {
-  "count": 1,
-  "data": [
-    {
-      "fee": 0,
-      "side": "buy",
-      "symbol": "string",
-      "size": 0,
-      "price": 0,
-      "timestamp": "2018-03-23T04:14:08.663Z"
-    }
-  ]
+	"count": 1,
+	"data": [
+		{
+            "side": "sell",
+            "symbol": "xht-usdt",
+            "size": 0.1,
+            "price": 0.15,
+            "timestamp": "2021-02-15T07:34:34.203Z",
+            "order_id": "string",
+            "fee": 0.2,
+            "fee_coin": "usdt"
+        }
+	]
 }
 ```
 
@@ -957,15 +983,14 @@ This endpoint displays user's trades
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (xht-usdt)
+symbol | The currency pair symbol
 limit | Number of elements to return. Default: 50. Maximun: 100
 page | Page of data to retrieve
 order_by | Field to order data
 order | asc or desc
 start_date | Starting date of queried data
 end_date | Ending date of queried data
-
-
+format | Pass value csv to download csv file
 
 ## Get All Orders
 
@@ -976,39 +1001,61 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v2/orders"
 ```
 
 > Response
 
 ```json
-[
-  {
-    "created_at": "2018-03-23T04:14:08.663Z",
-	"title": "string",
-	"side": "sell",
-	"type": "limit",
-	"price": 0,
-	"size": 0,
-	"symbol": "xht-usdt",
-	"id": "string",
-	"created_by": 1,
-	"filled": 0
-  }
-]
+{
+    "count": 1,
+    "data": [
+        {
+            "id": "string",
+            "side": "sell",
+            "symbol": "xht-usdt",
+            "size": 0.1,
+            "filled": 0,
+            "stop": null,
+            "fee": 0,
+            "fee_coin": "usdt",
+            "type": "limit",
+            "price": 1.09,
+            "status": "new",
+            "created_by": 116,
+            "created_at": "2021-02-17T02:32:38.910Z",
+            "updated_at": "2021-02-17T02:32:38.910Z",
+            "User": {
+                "id": 116,
+                "email": "fight@club.com",
+                "username": "narrator",
+                "exchange_id": 176
+            }
+        }
+	]
+}
 ```
 
 This endpoint gets all active orders placed by the user
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/user/orders`
+`GET https://api.hollaex.com/v2/orders`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (xht-usdt)
+symbol | The currency pair symbol
+side | Side of orders to query (buy, sell)
+status | Status of order (filled, pfilled, canceled, new)
+open | Open status of order
+limit | Number of elements to return. Default: 50. Maximun: 100
+page | Page of data to retrieve
+order_by | Field to order data
+order | asc or desc
+start_date | Starting date of queried data
+end_date | Ending date of queried data
 
 ## Get Order
 
@@ -1019,33 +1066,41 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/orders/$order_id" 
+  "https://api.hollaex.com/v2/user/orders/$order_id"
 ```
 
 > Response
 
 ```json
-
 {
-    "created_at": "2018-03-23T04:14:08.663Z",
-	"title": "string",
-	"side": "sell",
-	"type": "limit",
-	"price": 0,
-	"size": 0,
-	"symbol": "xht-usdt",
 	"id": "string",
-	"created_by": 1,
-	"filled": 0
+	"side": "sell",
+	"symbol": "xht-usdt",
+	"size": 0.1,
+	"filled": 0,
+	"stop": null,
+	"fee": 0,
+	"fee_coin": "usdt",
+	"type": "limit",
+	"price": 1.09,
+	"status": "new",
+	"created_by": 116,
+	"created_at": "2021-02-17T02:32:38.910Z",
+	"updated_at": "2021-02-17T02:32:38.910Z",
+	"User": {
+		"id": 116,
+		"email": "fight@club.com",
+		"username": "narrator",
+		"exchange_id": 176
+	}
 }
-
 ```
 
 This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/user/orders/{order_id}`
+`GET https://api.hollaex.com/v2/orders`
 
 ### PARAMETERS
 
@@ -1064,22 +1119,32 @@ curl -X POST
   -H "api-expires: $API_EXPIRES"
   -H "Content-Type: application/json"
   -d '{"symbol":$symbol,"side":$side,"size":$size,"type":$type,"price":$price}'
-  "https://api.hollaex.com/v2/order" 
+  "https://api.hollaex.com/v2/order"
 ```
 
 > Response
 
 ```json
 {
+    "fee": 0,
+    "meta": {},
     "symbol": "xht-usdt",
     "side": "sell",
-    "size": 1,
+    "size": 0.1,
     "type": "limit",
-    "price": 0.1,
+    "price": 1,
+    "fee_structure": {
+        "maker": 0.2,
+        "taker": 0.2
+    },
+    "fee_coin": "usdt",
     "id": "string",
-    "created_by": 34,
+    "created_by": 116,
     "filled": 0,
-    "status": "pending"
+    "status": "new",
+    "updated_at": "2021-02-17T03:03:19.231Z",
+    "created_at": "2021-02-17T03:03:19.231Z",
+    "stop": null
 }
 ```
 
@@ -1098,6 +1163,8 @@ side | buy or sell order
 size | The amount of the order
 type | limit or market order type
 price | Only should be used when type is limit. In case of market price should not be used
+stop | Stop price of order
+meta | Object with other options such as post_only
 
 
 ## Cancel All Orders
@@ -1109,40 +1176,49 @@ curl -X DELETE
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/orders?symbol=$symbol" 
+  "https://api.hollaex.com/v2/order/all"
 ```
 
 > Response
 
 ```json
-
 [
-  	{
-		"title": "string",
-		"symbol": "xht-usdt",
-		"side": "sell",
-		"size": 1,
-		"type": "limit",
-		"price": 0.1,
-		"id": "string",
-		"created_by": 34,
-		"filled": 0
-	}
+    {
+        "created_by": 116,
+        "side": "sell",
+        "type": "limit",
+        "size": 0.1,
+        "price": 1,
+        "created_at": "2021-02-17T03:04:59.607Z",
+        "updated_at": "2021-02-17T03:05:02.945Z",
+        "symbol": "xht-usdt",
+        "filled": 0,
+        "stop": null,
+        "status": "canceled",
+        "fee": 0,
+        "fee_coin": "usdt",
+        "meta": {},
+        "id": "string",
+        "fee_structure": {
+            "maker": 0.2,
+            "taker": 0.2
+        }
+    },
+    ...
 ]
-
 ```
 
 This endpoint cancels all orders placed by the user.
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v2/user/orders`
+`DELETE https://api.hollaex.com/v2/order/all`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-symbol | The currency pair symbol (xht-usdt)
+symbol | The currency pair symbol
 
 ## Cancel Order
 
@@ -1153,23 +1229,32 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/orders/$order_id" 
+  "https://api.hollaex.com/v2/order?order_id=$order_id"
 ```
 
 > Response
 
 ```json
-
 {
-    "title": "string",
-    "symbol": "xht-usdt",
-    "side": "sell",
-    "size": 1,
+    "created_by": 116,
+    "side": "buy",
     "type": "limit",
-    "price": 0.1,
+    "size": 2,
+    "price": 1,
+    "created_at": "2021-02-17T03:07:36.244Z",
+    "updated_at": "2021-02-17T03:07:52.683Z",
+    "symbol": "xht-usdt",
+    "filled": 0,
+    "stop": null,
+    "status": "canceled",
+    "fee": 0,
+    "fee_coin": "xht",
+    "meta": {},
     "id": "string",
-    "created_by": 34,
-    "filled": 0
+    "fee_structure": {
+        "maker": 0.2,
+        "taker": 0.2
+    }
 }
 ```
 
@@ -1177,7 +1262,7 @@ This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v2/user/orders/{order_id}`
+`DELETE https://api.hollaex.com/v2/order`
 
 ### PARAMETERS
 
@@ -1289,7 +1374,7 @@ symbol | The currency pair symbol (xht-usdt, etc.)
 
 To connect to the websocket, you have to use the <a href="https://socket.io/">socket.io</a> client. Connection to public and private channels are available through two different path as follow.
 
-For receiving real-time public data updates such as trades, orderbook etc you can connect to the `realtime` path. For real-time private data, connect to the `user` path. 
+For receiving real-time public data updates such as trades, orderbook etc you can connect to the `realtime` path. For real-time private data, connect to the `user` path.
 
 ## Public
 
