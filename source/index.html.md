@@ -1372,315 +1372,360 @@ symbol | The currency pair symbol (xht-usdt, etc.)
 
 # Websocket
 
-To connect to the websocket, you have to use the <a href="https://socket.io/">socket.io</a> client. Connection to public and private channels are available through two different path as follow.
+Connection to public and private channels are available through the path `https://api.hollaex.com/stream`. HollaEx Exchanges can be connected to using any websocket libraries. For this documentation, we will use the library [`ws`]('https://github.com/websockets/ws').
 
-For receiving real-time public data updates such as trades, orderbook etc you can connect to the `realtime` path. For real-time private data, connect to the `user` path.
-
-## Public
+## Connecting
 
 > Connection
 
 ```javascript
 
-  const io = require('socket.io-client');
+	const WebSocket = require('ws');
 
-  const socket = io('https://api.hollaex.com/realtime', {
-    query: { symbol }
-  });
+	// Public
+	const client = new WebSocket('https://api.hollaex.com/stream');
 
-  socket.on('orderbook', (data) => { ... }) // orderbook event
+	// Private Bearer
+	const client = new WebSocket(`https://api.hollaex.com/stream?authorization=Bearer%20${TOKEN}`);
 
-  socket.on('trades', (data) => { ... }) // trades event
+	// Private HMAC
+	const client = new WebSocket(`https://api.hollaex.com/stream?api-key=${API-KEY}&api-signature=${API-SIGNATURE}&api-expires=${API-EXPIRES}`);
+
+	client.on('open', () => {
+		// Ping message to keep connection alive
+		setInterval(() => {
+			client.send(
+				JSON.stringify({
+					op: 'ping'
+				})
+			)
+		})
+	}, 30000);
 
 ```
 
+Connection for public events does not require authentication while private events do. Users can use Bearer or HMAC authentication.
+For HMAC, the method is `CONNECT` and the path is `/stream`. Refer to the [Authentication]('#Authentication') section for more information on HMAC-SHA256.
+
+Websocket connections will disconnect if a message is not sent within one minute. To keep a connection alive, you can sent a `ping` message every ~30 seconds.
+
 ### PATH
 
-`https://api.hollaex.com/realtime`
+`https://api.hollaex.com/stream`
 
 ### PARAMETERS
 
 Parameter | Description
 --------- | -----------
-query (*optional*) | You can provide the symbol to subscribe to a specific channel, or subscribe to all the channels (no providing the symbol)
-symbol | The currency pair symbol (xht-usdt)
+authorization (*Bearer*) | A bearer token required to subscribe to private events.
+api-key (*HMAC*) | Your exchange api-key
+api-signature (*HMAC*) | An api-signature created using HMAC SHA256
+api-expires (*HMAC*) | Expiry time of request
 
-### EVENTS
-
-The public socket.io events you can subscribe to are:
-
-Event | Description
---------- | -----------
-orderbook | Object with the symbols(currencies) and its top 10 orderbook. Same data as `GET /orderbook?symbol=xht-usdt`. When the user connects, receives the complete object with the symbols' top 10 orderbooks. Also will receive the same type of object when an update on the orderbook happens.
-trades | Object with the last trades of the symbol subscribed. Same data as `GET /trade?symbol=xht-usdt`. When the user connects, will receive the last trades (Max number: 50). Also will receive the same type of object when a trade happens.
-
-## Private
+## Sending/Receiving Messages
 
 > Connection
 
 ```javascript
 
-  const io = require('socket.io-client');
+	client.send(
+		JSON.stringify({
+			op: OPERATION,
+			args: [EVENTS]
+		})
+	);
 
-  const socket = io('https://api.hollaex.com/user', {
-    query: {
-		api-key: `${API_KEY}`,
-		api-signature: `${API_SIGNATURE}`,
-		api-expires: `${API_EXPIRES}`
-	}
-  });
-
-  socket.on('userInfo', (data) => { ... }) // userInfo event
-
-  socket.on('userOrder', (data) => { ... }) // userOrder event
-
-  socket.on('userTrades', (data) => { ... }) // userTrades event
-
-  socket.on('userWallet', (data) => { ... }) // userWallet event
-
-  socket.on('userUpdate', (data) => { ... }) // userUpdate event
+	client.on('message', (data) => {
+		data = JSON.parse(data);
+		console.log(data);
+	})
 
 ```
-### PATH
 
-`https://api.hollaex.com/user`
+### Operations
 
-
-### PARAMETERS
-
-Parameter | Description
+Operation | Description
 --------- | -----------
-query | You must provide a HollaEx `api-key`, `api-signature`, and `api-expires`
-api-key | Your API key.
-api-signature | HMAC-SHA256 signature using API secret. The `METHOD` is `CONNECT` and the `PATH` is `/socket`.
-api-expires | UNIX timestamp of when the request expires.
+subscribe | Subscribe to events.
+unsubscribe | Unsubscribe to events.
+ping | Ping-pong message for keeping connections alive.
 
-<aside class="notice">
-You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API_EXPIRES</code> with your own values. Refer to the <a href='#authentication'>authentication section</a> above to learn more.
-</aside>
+### Events
+
+Events | Description
+--------- | -----------
+orderbook | Public event for orderbook updates.
+trades | Public event for trade updates.
+order | Private event for user order updates.
+wallet | Private even for wallet balance updates.
+
+## Public Events
+
+> Connection
+
+```javascript
+
+	client.on('open', () => {
+
+		// Subscribe
+		client.send(
+			JSON.stringify({
+				op: 'subscribe',
+				args: ['orderbook', 'trades']
+			})
+		);
+
+		// On message
+		client.on('message', (data) => {
+			console.log(JSON.parse(data));
+		});
+
+		// Unsubscribe
+		client.send(
+			JSON.stringify({
+				op: 'unsubscribe',
+				args: ['orderbook', 'trades']
+			})
+		);
+	})
+
+```
 
 ### EVENTS
 
-The private socket.io events you can subscribe to are:
+The public events you can subscribe to are:
 
 Event | Description
 --------- | -----------
-userInfo | Object with user's id, email, name, balance, etc. Same data as `GET /user`. When the user connects, the socket will send the current user's information. Will not send any other information.
-userOrder | Object with the user's active orders. Same data as `GET /user/orders`. When the user connects, the socket will send all the user's active orders. Will not send any other information.
-userTrades | Object with the user's last trades (Max number: 50). Same data as `GET /user/trades`. When the user connects, the socket will immediately send the user's last trades (Max number: 50). Will no send any other information.
-userWallet | Object with the user's balance. Same data as `GET /user/balance`. When the user connects, the socket will not send any information immediately. Instead, it will wait for any updates to the user's balance and send them in real-time.
-userUpdate | The socket will listen for any updates related to the user's private information and send them in real-time.
+orderbook | Notification with orderbook symbol and data update. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `orderbook:xht-usdt`.
+trades | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trades:xht-usdt`.
 
-<aside class="notice">
-<code>userInfo</code> , <code>userOrder</code>, <code>userTrade</code>, are similar to GET requests and you should not expect any updates after you receive the first set of data. However, <code>userWallet</code> and <code>userUpdate</code> send all real-time updates.
-</aside>
+## Public Updates
+
+> orderbook
+
+```json
+
+{
+	"topic": "orderbook",
+	"action": "partial",
+	"symbol": "xht-usdt",
+	"data": {
+		"bids": [
+			[0.1, 0.1],
+			...
+		],
+		"asks": [
+			[1, 1],
+			...
+		],
+		"timestamp": "2020-12-15T06:45:27.766Z"
+	},
+	"time": 1608015328
+}
+
+```
+
+> trades
+
+```json
+
+{
+	"topic": "trade",
+	"action": "partial",
+	"symbol": "xht-usdt",
+	"data": [
+		{
+			"size": 0.012,
+			"price": 300,
+			"side": "buy",
+			"timestamp": "2020-12-15T07:25:28.887Z"
+		},
+		...
+	],
+	"time": 1608015328
+}
+
+```
+
+## Private Events
+
+> Connection
+
+```javascript
+
+	client.on('open', () => {
+
+		// Subscribe
+		client.send(
+			JSON.stringify({
+				op: 'subscribe',
+				args: ['order', 'wallet']
+			})
+		);
+
+		// On message
+		client.on('message', (data) => {
+			console.log(JSON.parse(data));
+		});
+
+		// Unsubscribe
+		client.send(
+			JSON.stringify({
+				op: 'unsubscribe',
+				args: ['order', 'wallet']
+			})
+		);
+	})
+
+```
+
+### EVENTS
+
+The private events you can subscribe to are:
+
+Event | Description
+--------- | -----------
+order | Notifications for newly created orders and order updates.
+wallet | Notifications for balance updates.
 
 ## Private Updates
 
-> order_processed
+> order
 
 ```json
 
 {
-	"action": "update",
-	"type": "order_processed",
-	"data": { "id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd" }
+	"topic": "order",
+	"action": "partial",
+	"user_id": 1,
+	"data": [
+		{
+			"id": "7d3d9545-b7e6-4e7f-84a0-a39efa4cb173",
+			"side": "buy",
+			"symbol": "xht-usdt",
+			"type": "limit",
+			"size": 0.1,
+			"filled": 0,
+			"price": 1,
+			"stop": null,
+			"status": "new",
+			"fee": 0,
+			"fee_coin": "xht",
+			"meta": {},
+			"fee_structure": {
+				"maker": 0.1,
+				"taker": 0.1
+			},
+			"created_at": "2020-11-30T07:45:43.819Z",
+			"created_by": 1
+		},
+		...
+	],
+	"time": 1608022610
 }
-
-```
-
-> order_canceled
-
-```json
 
 {
-	"action": "update",
-	"type": "order_canceled",
-	"data": {
-		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"message": "Insufficient balance to perform the order."
-	}
+	"topic": "order",
+	"action": "insert",
+	"user_id": 1,
+	"symbol": "xht-usdt",
+	"data": [
+		{
+			"id": "7d3d9545-b7e6-4e7f-84a0-a39efa4cb173",
+			"side": "buy",
+			"symbol": "xht-usdt",
+			"type": "limit",
+			"size": 0.1,
+			"filled": 0,
+			"price": 1,
+			"stop": null,
+			"status": "new",
+			"fee": 0,
+			"fee_coin": "xht",
+			"meta": {},
+			"fee_structure": {
+				"maker": 0.1,
+				"taker": 0.1
+			},
+			"created_at": "2020-11-30T07:45:43.819Z",
+			"updated_at": "2020-12-15T08:56:45.066Z",
+			"created_by": 1
+		},
+		...
+	],
+	"time": 1608022610
 }
-
-```
-
-> order_added
-
-```json
 
 {
-	"action": "update",
-	"type": "order_added",
-	"data": {
-		"side": "sell",
-		"type": "limit",
-		"price": 0.23,
-		"size": 2,
-		"symbol": "xht-usdt",
-		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"created_by": 79,
-		"filled": 0
-	}
+	"topic": "order",
+	"action": "insert",
+	"user_id": 1,
+	"symbol": "xht-usdt",
+	"data": [
+		{
+			"id": "7d3d9545-b7e6-4e7f-84a0-a39efa4cb173",
+			"side": "buy",
+			"symbol": "xht-usdt",
+			"type": "limit",
+			"size": 0.1,
+			"filled": 0,
+			"price": 1,
+			"stop": null,
+			"status": "new",
+			"fee": 0,
+			"fee_coin": "xht",
+			"meta": {},
+			"fee_structure": {
+				"maker": 0.1,
+				"taker": 0.1
+			},
+			"created_at": "2020-11-30T07:45:43.819Z",
+			"updated_at": "2020-12-15T08:56:45.066Z",
+			"created_by": 1
+		},
+		...
+	],
+	"time": 1608022610
 }
 
 ```
 
-> order_partialy_filled
+### Order status and action
 
-```json
+The `status` of the order can be `new`, `pfilled`, `filled`, and `canceled`.
 
-{
-	"action": "update",
-	"type": "order_partialy_filled",
-	"data": {
-		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"filled": 0.1,
-		"created_by": 79,
-		"side": "sell",
-		"type": "limit",
-		"size": 5,
-		"price": 0.32,
-		"symbol": "xht-usdt"
-	}
-}
+The `action` of the data determines what caused it to happen. All three are explained below:
 
-```
->order_filled
-
-```json
-
-{
-  "action": "update",
-  "type": "order_filled",
-  "data": [
-    {
-      "id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd"
-    },
-    {
-      "id": "bc7717d4-04e9-4430-a21b-08d32b2c34cd"
-    },
-    ...
-  ]
-}
-
-```
-
-> order_updated
-
-```json
-
-{
-  "action": "update",
-	"type": "order_updated",
-	"data": {
-		"id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd",
-		"created_by": 79,
-		"price": 0.23,
-		"side": "sell",
-		"size": 2,
-		"type": "limit"
-	}
-}
-
-```
-
-> order_removed
-
-```json
-
-{
-  "action": "update",
-  "type": "order_removed",
-  "data": [
-    {
-      "id": "ac7717d4-04e9-4430-a21b-08d32b2c34cd"
-    },
-    {
-      "id": "bc7717d4-04e9-4430-a21b-08d32b2c34cd"
-    },
-    ...
-  ]
-}
-
-```
-
-> trade
-
-```json
-
-{
-  "action": "update",
-  "type": "trade",
-  "data": [
-    {
-      "id": "1efd30b6-fcb5-44da-82c1-82d9def2ddbd",
-      "side": "sell",
-      "symbol": "xht-usdt",
-      "size": 5,
-      "price": 0.32,
-      "timestamp": "2017-07-26T13:20:40.464Z",
-      "fee": 0,
-    },
-    ...
-  ]
-}
-
-```
-
-> deposit
-
-```json
-
-{
-	"action": "update",
-	"type": "deposit",
-	"data": {
-		"amount": 3000,
-		"currency": "usdt",
-		"status": false
-	},
-	"balance": {
-		"usdt_balance": 0,
-		"xht_balance": 300000,
-		"updated_at": "2017-07-26T13:20:40.464Z"
-	}
-}
-
-```
-
-> withdrawal
-
-```json
-
-{
-	"action": "update",
-	"type": "withdrawal",
-	"data": {
-		"amount": 5000,
-		"currency": "xht",
-		"status": true
-	},
-	"balance": {
-		"usdt_balance": 0,
-		"xht_balance": 300000,
-		"updated_at": "2017-07-26T13:20:40.464Z"
-	}
-}
-
-```
-
-The types of updates from the event `userUpdate` are as follows:
-
-Update | Description
+Action | Description
 --------- | -----------
-order_queued | When a user's order is added to the queue.
-order_processed | When a user's order has been processed in the queue.
-order_canceled | When a user's order has been canceled while in the queue.
-order_added | When a user's order has been added to the orderbook.
-order_partialy_filled | When a user's order has been partially filled.
-order_filled | When a user's order has been completely filled.
-order_updated | When a user's order has been updated.
-order_removed | When a user's order in the orderbook has been removed/canceled.
-trade | When a user's trade happened.
-deposit | When a user's account gets a deposit. *Status = pending or completed*
-withdrawal | When a user performs a withdrawal from the account. *Status = pending or completed*
+partial | All previous and current orders. Is the first order data received when connecting. Max: 50. Descending order.
+insert | When user's order is added. The status of the order can be either new, pfilled, or filled.
+update | When user's order status is updated. Status can be pfilled, filled, and canceled.
+
+> wallet
+
+```json
+
+{
+	"topic": "wallet",
+	"action": "partial",
+	"user_id": 1,
+	"data": {
+		"usdt_balance": 1,
+		"usdt_available": 1,
+		"xht_balance": 1,
+		"xht_available": 1,
+		"xmr_balance": 1,
+		"xmr_available": 1,
+		"btc_balance": 1,
+		"btc_available": 1,
+		"eth_balance": 1,
+		"eth_available": 1,
+		...,
+		"updated_at": "2020-12-15T08:41:24.048Z"
+	},
+	"time": 1608021684
+}
+
+```
