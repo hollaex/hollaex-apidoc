@@ -348,9 +348,9 @@ This endpoint retrieves ticker information for a pair.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -------
-symbol | The currency pair symbol (xht-usdt)
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol (xht-usdt)
 
 ## Tickers
 
@@ -425,9 +425,9 @@ This endpoint retrieves 10 level bids and 10 level asks of the orderbook for a s
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-symbol | The currency pair symbol (xht-usdt, etc.)
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol (xht-usdt, etc.)
 
 ## Orderbooks
 
@@ -504,9 +504,9 @@ This endpoint retrieves the last 30 trades.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -------
-symbol | The currency pair symbol (xht-usdt, etc.)
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol (xht-usdt, etc.)
 
 ## Chart
 
@@ -559,12 +559,12 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -------
-symbol | Symbol to get
-resolution | Time interval resolution (1D, 60, etc.)
-from | Beginning UNIX timestamp
-to | Ending UNIX timestamp
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Required | Symbol to get
+resolution | Required | Time interval resolution (1D, 60, etc.)
+from | Required | Beginning UNIX timestamp
+to | Required | Ending UNIX timestamp
 
 ## Charts
 
@@ -621,11 +621,11 @@ This endpoint retrieves trade history HOLCV for all pairs.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -------
-resolution | Time interval resolution (1D, 60, etc.)
-from | Beginning UNIX timestamp
-to | Ending UNIX timestamp
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+resolution | Required | Time interval resolution (1D, 60, etc.)
+from | Required | Beginning UNIX timestamp
+to | Required | Ending UNIX timestamp
 
 # Private
 
@@ -812,16 +812,16 @@ This endpoint displays user's deposits
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-currency | The currency pair symbol
-limit | Number of elements to return. Default: 50. Maximun: 100
-page | Page of data to retrieve
-order_by | Field to order data
-order | asc or desc
-start_date | Starting date of queried data
-end_date | Ending date of queried data
-format | Pass value csv to download csv file
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+currency | Optional | The currency pair symbol
+limit | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | Optional | Page of data to retrieve
+order_by | Optional | Field to order data
+order | Optional | asc or desc
+start_date | Optional | Starting date of queried data
+end_date | Optional | Ending date of queried data
+format | Optional | Pass value csv to download csv file
 
 ## Get Withdrawals
 
@@ -871,16 +871,16 @@ This endpoint displays user's withdrawals
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-currency | The currency pair symbol (xht-usdt)
-limit | Number of elements to return. Default: 50. Maximun: 100
-page | Page of data to retrieve
-order_by | Field to order data
-order | asc or desc
-start_date | Starting date of queried data
-end_date | Ending date of queried data
-format | Pass value csv to download csv file
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+currency | Optional | The currency pair symbol (xht-usdt)
+limit | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | Optional | Page of data to retrieve
+order_by | Optional | Field to order data
+order | Optional | asc or desc
+start_date | Optional | Starting date of queried data
+end_date | Optional | Ending date of queried data
+format | Optional | Pass value csv to download csv file
 
 ## Get Withdrawal Fee
 
@@ -910,9 +910,9 @@ This endpoint gets the withdrawal fee for a certain currency
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-currency | The desired currency e.g. xht
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+currency | Required | The desired currency e.g. xht
 
 ## Create Withdrawal Request
 
@@ -944,11 +944,11 @@ This endpoint creates a withdrawal request for the user
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-currency | The desired currency e.g. xht
-amount | The amount to withdrawal e.g. 5
-address | The recipient wallet's address
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+currency | Required | The desired currency e.g. xht
+amount | Required | The amount to withdrawal e.g. 5
+address | Required | The recipient wallet's address
 
 ## Get Trades
 
@@ -990,16 +990,16 @@ This endpoint displays user's trades
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-symbol | The currency pair symbol
-limit | Number of elements to return. Default: 50. Maximun: 100
-page | Page of data to retrieve
-order_by | Field to order data
-order | asc or desc
-start_date | Starting date of queried data
-end_date | Ending date of queried data
-format | Pass value csv to download csv file
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol
+limit | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | Optional | Page of data to retrieve
+order_by | Optional | Field to order data
+order | Optional | asc or desc
+start_date | Optional | Starting date of queried data
+end_date | Optional | Ending date of queried data
+format | Optional | Pass value csv to download csv file
 
 ## Get All Orders
 
@@ -1053,18 +1053,18 @@ This endpoint gets all active orders placed by the user
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-symbol | The currency pair symbol
-side | Side of orders to query (buy, sell)
-status | Status of order (filled, pfilled, canceled, new)
-open | Open status of order
-limit | Number of elements to return. Default: 50. Maximun: 100
-page | Page of data to retrieve
-order_by | Field to order data
-order | asc or desc
-start_date | Starting date of queried data
-end_date | Ending date of queried data
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol
+side | Optional | Side of orders to query (buy, sell)
+status | Optional | Status of order (filled, pfilled, canceled, new)
+open | Optional | Open status of order
+limit | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | Optional | Page of data to retrieve
+order_by | Optional | Field to order data
+order | Optional | asc or desc
+start_date | Optional | Starting date of queried data
+end_date | Optional | Ending date of queried data
 
 ## Get Order
 
@@ -1113,9 +1113,9 @@ This endpoint gets an order by its id.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-order_id | Order unique Id
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+order_id | Required | Order unique Id
 
 ## Create Order
 
@@ -1165,15 +1165,15 @@ This endpoint places an order for the user
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-symbol | The currency pair symbol (xht-usdt)
-side | buy or sell order
-size | The amount of the order
-type | limit or market order type
-price | Only should be used when type is limit. In case of market price should not be used
-stop | Stop price of order
-meta | Object with other options such as post_only
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Required | The currency pair symbol (xht-usdt)
+side | Required | buy or sell order
+size | Required | The amount of the order
+type | Required | limit or market order type
+price | Required if limit order | Only should be used when type is limit.
+stop | Optional | Stop price of order
+meta | Optional | Object with other options such as post_only
 
 
 ## Cancel All Orders
@@ -1225,9 +1225,9 @@ This endpoint cancels all orders placed by the user.
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-symbol | The currency pair symbol
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Optional | The currency pair symbol
 
 ## Cancel Order
 
@@ -1275,9 +1275,9 @@ This endpoint cancels an order by getting its id
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
-order_id | Specific order unique Id
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+order_id | Required | Specific order unique Id
 
 # TradingView
 
@@ -1337,12 +1337,14 @@ This endpoint retrieves the TradigView UDF history HOLCV.
 
 `GET https://api.hollaex.com/v2/udf/history`
 
-Parameter | Description
---------- | -------
-symbol | The currency pair symbol (xht-usdt, etc.)
-resolution | Time interval resolution (1D, 60, etc.)
-from | Beginning UNIX timestamp
-to | Ending UNIX timestamp
+### PARAMETERS
+
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Required | The currency pair symbol (xht-usdt, etc.)
+resolution | Required | Time interval resolution (1D, 60, etc.)
+from | Required | Beginning UNIX timestamp
+to | Required | Ending UNIX timestamp
 
 ## Symbols
 
@@ -1375,9 +1377,11 @@ This endpoint retrieves system a TradingView UDF symbol.
 
 `GET https://api.hollaex.com/v2/udf/symbols`
 
-Parameter | Description
---------- | -------
-symbol | The currency pair symbol (xht-usdt, etc.)
+### PARAMETERS
+
+Parameter | Required/Optional | Description
+--------- | ------- | -------
+symbol | Required | The currency pair symbol (xht-usdt, etc.)
 
 # Websocket
 
@@ -1424,8 +1428,8 @@ Websocket connections will disconnect if a message is not sent within one minute
 
 ### PARAMETERS
 
-Parameter | Description
---------- | -----------
+Parameter | Required/Optional | Description
+--------- | ------- | -------
 authorization (*Bearer*) | A bearer token required to subscribe to private events.
 api-key (*HMAC*) | Your exchange api-key
 api-signature (*HMAC*) | An api-signature created using HMAC SHA256
