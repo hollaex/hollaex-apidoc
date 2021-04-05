@@ -557,6 +557,15 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 
 `GET https://api.hollaex.com/v2/chart`
 
+### PARAMETERS
+
+Parameter | Description
+--------- | -------
+symbol | Symbol to get
+resolution | Time interval resolution (1D, 60, etc.)
+from | Beginning UNIX timestamp
+to | Ending UNIX timestamp
+
 ## Charts
 
 > Request
@@ -1066,7 +1075,7 @@ curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/user/orders/$order_id"
+  "https://api.hollaex.com/v2/order?$order_id"
 ```
 
 > Response
@@ -1100,7 +1109,7 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/orders`
+`GET https://api.hollaex.com/v2/order?order_id`
 
 ### PARAMETERS
 
