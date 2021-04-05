@@ -344,13 +344,13 @@ This endpoint retrieves ticker information for a pair.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/ticker`
+`GET https://api.hollaex.com/v2/ticker?symbol=${symbol}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol (xht-usdt)
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | The currency pair symbol (xht-usdt)
 
 ## Tickers
 
@@ -421,13 +421,13 @@ This endpoint retrieves 10 level bids and 10 level asks of the orderbook for a s
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/orderbook`
+`GET https://api.hollaex.com/v2/orderbook?symbol=${symbol}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol (xht-usdt, etc.)
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | The currency pair symbol (xht-usdt, etc.)
 
 ## Orderbooks
 
@@ -504,9 +504,9 @@ This endpoint retrieves the last 30 trades.
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol (xht-usdt, etc.)
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Optional | The currency pair symbol (xht-usdt, etc.)
 
 ## Chart
 
@@ -555,16 +555,16 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/chart`
+`GET https://api.hollaex.com/v2/chart?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Required | Symbol to get
-resolution | Required | Time interval resolution (1D, 60, etc.)
-from | Required | Beginning UNIX timestamp
-to | Required | Ending UNIX timestamp
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | Symbol to get
+resolution | string | Required | Time interval resolution (1D, 60, etc.)
+from | string | Required | Beginning UNIX timestamp
+to | string | Required | Ending UNIX timestamp
 
 ## Charts
 
@@ -617,15 +617,15 @@ This endpoint retrieves trade history HOLCV for all pairs.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/charts`
+`GET https://api.hollaex.com/v2/charts?resolution=${resolution}&from=${from}to=${to}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-resolution | Required | Time interval resolution (1D, 60, etc.)
-from | Required | Beginning UNIX timestamp
-to | Required | Ending UNIX timestamp
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+resolution | string | Required | Time interval resolution (1D, 60, etc.)
+from | string | Required | Beginning UNIX timestamp
+to | string | Required | Ending UNIX timestamp
 
 # Private
 
@@ -812,16 +812,16 @@ This endpoint displays user's deposits
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-currency | Optional | The currency pair symbol
-limit | Optional | Number of elements to return. Default: 50. Maximun: 100
-page | Optional | Page of data to retrieve
-order_by | Optional | Field to order data
-order | Optional | asc or desc
-start_date | Optional | Starting date of queried data
-end_date | Optional | Ending date of queried data
-format | Optional | Pass value csv to download csv file
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Optional | The currency pair symbol
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
+format | string | Optional | Pass value csv to download csv file
 
 ## Get Withdrawals
 
@@ -871,16 +871,16 @@ This endpoint displays user's withdrawals
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-currency | Optional | The currency pair symbol (xht-usdt)
-limit | Optional | Number of elements to return. Default: 50. Maximun: 100
-page | Optional | Page of data to retrieve
-order_by | Optional | Field to order data
-order | Optional | asc or desc
-start_date | Optional | Starting date of queried data
-end_date | Optional | Ending date of queried data
-format | Optional | Pass value csv to download csv file
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Optional | The currency pair symbol (xht-usdt)
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data i ISO 8601 format
+format | string | Optional | Pass value csv to download csv file
 
 ## Get Withdrawal Fee
 
@@ -906,13 +906,13 @@ This endpoint gets the withdrawal fee for a certain currency
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/user/withdrawal/fee`
+`GET https://api.hollaex.com/v2/user/withdrawal/fee?currency=${currency}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-currency | Required | The desired currency e.g. xht
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Required | The desired currency e.g. xht
 
 ## Create Withdrawal Request
 
@@ -944,11 +944,11 @@ This endpoint creates a withdrawal request for the user
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-currency | Required | The desired currency e.g. xht
-amount | Required | The amount to withdrawal e.g. 5
-address | Required | The recipient wallet's address
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Required | The desired currency e.g. xht
+amount | number | Required | The amount to withdrawal e.g. 5
+address | string | Required | The recipient wallet's address
 
 ## Get Trades
 
@@ -990,16 +990,16 @@ This endpoint displays user's trades
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol
-limit | Optional | Number of elements to return. Default: 50. Maximun: 100
-page | Optional | Page of data to retrieve
-order_by | Optional | Field to order data
-order | Optional | asc or desc
-start_date | Optional | Starting date of queried data
-end_date | Optional | Ending date of queried data
-format | Optional | Pass value csv to download csv file
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Optional | The currency pair symbol
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
+format | string | Optional | Pass value csv to download csv file
 
 ## Get All Orders
 
@@ -1053,18 +1053,18 @@ This endpoint gets all active orders placed by the user
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol
-side | Optional | Side of orders to query (buy, sell)
-status | Optional | Status of order (filled, pfilled, canceled, new)
-open | Optional | Open status of order
-limit | Optional | Number of elements to return. Default: 50. Maximun: 100
-page | Optional | Page of data to retrieve
-order_by | Optional | Field to order data
-order | Optional | asc or desc
-start_date | Optional | Starting date of queried data
-end_date | Optional | Ending date of queried data
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Optional | The currency pair symbol
+side | string | Optional | Side of orders to query (buy, sell)
+status | string | Optional | Status of order (filled, pfilled, canceled, new)
+open | boolean | Optional | Open status of order
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 
 ## Get Order
 
@@ -1109,13 +1109,13 @@ This endpoint gets an order by its id.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/order?order_id`
+`GET https://api.hollaex.com/v2/order?order_id=${order_id}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-order_id | Required | Order unique Id
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+order_id | string | Required | Order unique Id
 
 ## Create Order
 
@@ -1165,15 +1165,15 @@ This endpoint places an order for the user
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Required | The currency pair symbol (xht-usdt)
-side | Required | buy or sell order
-size | Required | The amount of the order
-type | Required | limit or market order type
-price | Required if limit order | Only should be used when type is limit.
-stop | Optional | Stop price of order
-meta | Optional | Object with other options such as post_only
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | The currency pair symbol (xht-usdt)
+side | string | Required | buy or sell order
+size | number | Required | The amount of the order
+type | string | Required | limit or market order type
+price | number | Required if limit order | Only should be used when type is limit.
+stop | number | Optional | Stop price of order
+meta | object | Optional | Object with other options such as post_only
 
 
 ## Cancel All Orders
@@ -1225,9 +1225,9 @@ This endpoint cancels all orders placed by the user.
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Optional | The currency pair symbol
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Optional | The currency pair symbol
 
 ## Cancel Order
 
@@ -1271,13 +1271,13 @@ This endpoint cancels an order by getting its id
 
 ### HTTP Request
 
-`DELETE https://api.hollaex.com/v2/order`
+`DELETE https://api.hollaex.com/v2/order?order_id=${order_id}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-order_id | Required | Specific order unique Id
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+order_id | string | Required | Specific order unique Id
 
 # TradingView
 
@@ -1335,16 +1335,16 @@ This endpoint retrieves the TradigView UDF history HOLCV.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/udf/history`
+`GET https://api.hollaex.com/v2/udf/history?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Required | The currency pair symbol (xht-usdt, etc.)
-resolution | Required | Time interval resolution (1D, 60, etc.)
-from | Required | Beginning UNIX timestamp
-to | Required | Ending UNIX timestamp
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | The currency pair symbol (xht-usdt, etc.)
+resolution | string | Required | Time interval resolution (1D, 60, etc.)
+from | string | Required | Beginning UNIX timestamp
+to | string | Required | Ending UNIX timestamp
 
 ## Symbols
 
@@ -1375,13 +1375,13 @@ This endpoint retrieves system a TradingView UDF symbol.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/udf/symbols`
+`GET https://api.hollaex.com/v2/udf/symbols?symbol=${symbol}`
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-symbol | Required | The currency pair symbol (xht-usdt, etc.)
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+symbol | string | Required | The currency pair symbol (xht-usdt, etc.)
 
 # Websocket
 
@@ -1428,12 +1428,12 @@ Websocket connections will disconnect if a message is not sent within one minute
 
 ### PARAMETERS
 
-Parameter | Required/Optional | Description
---------- | ------- | -------
-authorization (*Bearer*) | A bearer token required to subscribe to private events.
-api-key (*HMAC*) | Your exchange api-key
-api-signature (*HMAC*) | An api-signature created using HMAC SHA256
-api-expires (*HMAC*) | Expiry time of request
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+authorization (*Bearer*) | string | Optional | A bearer token required to subscribe to private events.
+api-key (*HMAC*) | string | Optional | Your exchange api-key
+api-signature (*HMAC*) | string | Optional | An api-signature created using HMAC SHA256
+api-expires (*HMAC*) | string | Optional | Expiry time of request
 
 ## Sending/Receiving Messages
 
