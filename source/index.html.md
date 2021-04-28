@@ -129,7 +129,7 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "estimated_price": null,
             "description": null,
             "type": "blockchain",
-            "network": "ethereum",
+            "network": "eth",
             "standard": "erc-20",
             "issuer": "HollaEx",
             "withdrawal_fees": {
@@ -159,7 +159,7 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "estimated_price": 1,
             "description": null,
             "type": "blockchain",
-            "network": "ethereum",
+            "network": "eth,trx",
             "standard": "erc-20",
             "issuer": "HollaEx",
             "withdrawal_fees": null,
@@ -678,12 +678,8 @@ curl -X GET
         "issued_date": "2017-07-21T17:32:28.000Z",
         "expiration_date": "2017-07-21T17:32:28.000Z"
     },
-    "bank_account": [],
-    "crypto_wallet": {
-        "xht": "string",
-        "usdt": "string",
-		...
-    },
+    "bank_account": [...],
+    "crypto_wallet": {},
     "verification_level": 2,
     "email_verified": true,
     "otp_enabled": false,
@@ -732,11 +728,30 @@ curl -X GET
         "xht_available": 0,
 		...,
         "updated_at": "2021-02-16T05:48:28.014Z"
-    }
+    },
+    "wallet": [
+        {
+            "currency": "xht",
+            "address": "0xb9b424250b1d5025f69d5c099b7a90f0a0a9c275",
+            "network": "eth",
+            "standard": null,
+            "is_valid": true,
+            "created_at": "2021-04-07T07:23:33.212Z"
+        },
+        {
+            "currency": "usdt",
+            "address": "0xb9b424250b1d5025f69d5c099b7a90f0a0a9c275",
+            "network": "eth",
+            "standard": null,
+            "is_valid": true,
+            "created_at": "2021-04-22T13:46:54.014Z"
+        },
+        ...
+    ]
 }
 ```
 
-This endpoint gets user's information, crypto wallet address as well as his balance.
+This endpoint gets user's information, wallet address as well as his balance.
 
 ### HTTP Request
 
@@ -806,6 +821,7 @@ curl -X GET
             "description": "",
             "type": "deposit",
             "currency": "usdt",
+            "network": "eth",
             "created_at": "2021-02-16T05:48:28.011Z",
             "updated_at": "2021-02-16T05:48:28.011Z",
             "user_id": 90
@@ -865,6 +881,7 @@ curl -X GET
             "description": "",
             "type": "withdrawal",
             "currency": "usdt",
+            "network": "eth",
             "created_at": "2021-02-15T02:36:47.167Z",
             "updated_at": "2021-02-15T02:36:47.167Z",
             "user_id": 90
@@ -959,6 +976,8 @@ Parameter | Type | Required/Optional | Description
 currency | string | Required | The desired currency e.g. xht
 amount | number | Required | The amount to withdrawal e.g. 5
 address | string | Required | The recipient wallet's address
+network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
+otp_code | string | Optional | OTP for user if user has OTP enabled
 
 ## Get Trades
 
@@ -1105,13 +1124,7 @@ curl -X GET
 	"status": "new",
 	"created_by": 116,
 	"created_at": "2021-02-17T02:32:38.910Z",
-	"updated_at": "2021-02-17T02:32:38.910Z",
-	"User": {
-		"id": 116,
-		"email": "fight@club.com",
-		"username": "narrator",
-		"exchange_id": 176
-	}
+	"updated_at": "2021-02-17T02:32:38.910Z"
 }
 ```
 
