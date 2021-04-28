@@ -845,6 +845,13 @@ limit | number | Optional | Number of elements to return. Default: 50. Maximun: 
 page | number | Optional | Page of data to retrieve
 order_by | string | Optional | Field to order data
 order | string | Optional | asc or desc
+transaction_id | string | Optional | Get deposits with this transaction ID
+address | string | Optional | Get deposits made to this address
+status | boolean | Optional | Completed status of deposits to get
+dismissed | boolean | Optional | Dismissed status of deposits to get
+rejected | boolean | Optional | Rejected status of deposits to get
+processing | boolean | Optional | Processing status of deposits to get
+waiting | boolean | Optional | Waiting status of deposits to get
 start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
 end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
@@ -905,6 +912,13 @@ limit | number | Optional | Number of elements to return. Default: 50. Maximun: 
 page | number | Optional | Page of data to retrieve
 order_by | string | Optional | Field to order data
 order | string | Optional | asc or desc
+transaction_id | string | Optional | Get withdrawals with this transaction ID
+address | string | Optional | Get withdrawals made to this address
+status | boolean | Optional | Completed status of withdrawals to get
+dismissed | boolean | Optional | Dismissed status of withdrawals to get
+rejected | boolean | Optional | Rejected status of withdrawals to get
+processing | boolean | Optional | Processing status of withdrawals to get
+waiting | boolean | Optional | Waiting status of withdrawals to get
 start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
 end_date | date-time | Optional | Ending date of queried data i ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
