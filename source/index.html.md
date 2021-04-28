@@ -532,7 +532,7 @@ symbol | string | Optional | The currency pair symbol (xht-usdt, etc.)
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v2/chart?symbol=xht-usdt&resolution=D&from=1616987453&to=1619579513"
+curl -X GET "https://api.hollaex.com/v2/chart?symbol=xht-usdt&resolution=1D&from=1616987453&to=1619579513"
 ```
 
 > Response
@@ -572,7 +572,7 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 symbol | string | Required | Symbol to get
-resolution | string | Required | Time interval resolution (D, H, etc.)
+resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
@@ -581,7 +581,7 @@ to | string | Required | Ending UNIX timestamp
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v2/charts?resolution=D&from=1551663947&to=1582768007"
+curl -X GET "https://api.hollaex.com/v2/charts?resolution=1D&from=1551663947&to=1582768007"
 ```
 
 > Response
@@ -633,7 +633,7 @@ This endpoint retrieves trade history HOLCV for all pairs.
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
-resolution | string | Required | Time interval resolution (D, H, etc.)
+resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
