@@ -84,8 +84,8 @@ curl -X GET "https://api.hollaex.com/v2/health"
 ```json
 {
     "name": "HollaEx",
-    "version": "2.0.0",
-    "host": "api.hollaex.com",
+    "version": "2.1.0",
+    "host": "https://api.hollaex.com",
     "basePath": "/v2"
 }
 ```
@@ -108,6 +108,36 @@ curl -X GET "https://api.hollaex.com/v2/constants"
 ```json
 {
     "coins": {
+        "xht": {
+            "id": 1,
+            "fullname": "HollaEx Token",
+            "symbol": "xht",
+            "active": true,
+            "verified": true,
+            "allow_deposit": true,
+            "allow_withdrawal": true,
+            "withdrawal_fee": 20,
+            "min": 1,
+            "max": 1000000,
+            "increment_unit": 1,
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2019-10-31T05:08:18.907Z",
+            "logo": "https://bitholla.s3.ap-northeast-2.amazonaws.com/icon/XHT-hollaex-asset-01.svg",
+            "code": "xht",
+            "is_public": true,
+            "meta": {},
+            "estimated_price": null,
+            "description": null,
+            "type": "blockchain",
+            "network": "eth",
+            "standard": "erc-20",
+            "issuer": "HollaEx",
+            "withdrawal_fees": {
+                "eth": 20,
+                "trx": 1
+            },
+            "created_by": 1
+        },
         "usdt": {
             "id": 6,
             "fullname": "USD Tether",
@@ -116,45 +146,24 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "verified": true,
             "allow_deposit": true,
             "allow_withdrawal": true,
-            "withdrawal_fee": 0,
-            "min": 0.0001,
-            "max": 100000,
-            "increment_unit": 0.0001,
-            "created_at": "2020-02-03T10:19:10.857Z",
-            "updated_at": "2020-02-03T10:19:10.857Z",
-            "logo": null,
+            "withdrawal_fee": 20,
+            "min": 0.1,
+            "max": 10000000,
+            "increment_unit": 0.1,
+            "created_at": "2019-08-09T10:45:43.367Z",
+            "updated_at": "2021-04-20T03:02:48.635Z",
+            "logo": "https://bitholla.s3.ap-northeast-2.amazonaws.com/exchange/icons/usdt.",
             "code": "usdt",
             "is_public": true,
             "meta": {},
-            "estimated_price": null,
+            "estimated_price": 1,
             "description": null,
             "type": "blockchain",
-            "network": null,
-            "standard": null
-        },
-        "xht": {
-            "id": 1,
-            "fullname": "HollaEx",
-            "symbol": "xht",
-            "active": true,
-            "verified": true,
-            "allow_deposit": true,
-            "allow_withdrawal": true,
-            "withdrawal_fee": 0,
-            "min": 0.0001,
-            "max": 100000,
-            "increment_unit": 0.0001,
-            "created_at": "2020-02-03T10:19:10.857Z",
-            "updated_at": "2020-02-03T10:19:10.857Z",
-            "logo": null,
-            "code": "xht",
-            "is_public": true,
-            "meta": {},
-            "estimated_price": null,
-            "description": null,
-            "type": "blockchain",
-            "network": null,
-            "standard": null
+            "network": "eth,trx",
+            "standard": "erc-20",
+            "issuer": "HollaEx",
+            "withdrawal_fees": null,
+            "created_by": 1
         },
 		...
     },
@@ -165,18 +174,19 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "pair_base": "xht",
             "pair_2": "usdt",
             "min_size": 0.1,
-            "max_size": 100000,
-            "min_price": 0.001,
-            "max_price": 1000000,
-            "increment_size": 0.001,
-            "increment_price": 0.01,
+            "max_size": 10000000,
+            "min_price": 0.01,
+            "max_price": 10000,
+            "increment_size": 0.1,
+            "increment_price": 0.0001,
             "active": true,
             "verified": true,
             "code": "xht-usdt",
             "is_public": true,
-            "estimated_price": null,
-            "created_at": "2020-02-03T10:19:10.846Z",
-            "updated_at": "2020-02-03T10:19:10.846Z"
+            "estimated_price": 0.1,
+            "created_at": "2019-08-09T10:45:43.353Z",
+            "updated_at": "2019-08-09T10:45:43.353Z",
+            "created_by": 1
         },
         ...
     }
@@ -219,8 +229,10 @@ curl -X GET "https://api.hollaex.com/v2/kit"
         "type": "full"
     },
     "logo_image": "https://bitholla-sandbox.s3.ap-northeast-2.amazonaws.com/exchange/Sandbox_HollaEx/EXCHANGE_LOGO__dark.png",
-    "description": "This exchange is the first exchange to be customized on the fly, ever. 2020-Nov-9th",
-    "native_currency": "xht",
+    "description": "HollaEx is a global cryptocurrency exchange for professional trading built based on HollaEx Kit technology developed and managed by bitHolla. Not only it is open for trading but it also allows businesses and individuals to branch out and create their own exchange based on it in the HollaEx Network. HollaEx Token (XHT) is the native token of HollaEx Network used as a collateral among exchanges.",
+    "injected_html": {...},
+    "injected_values": [...],
+    "native_currency": "usdt",
     "setup_completed": true,
     "valid_languages": "en,fa,ko,ar,pt,ja,ru",
     "new_user_is_activated": true,
@@ -233,6 +245,9 @@ curl -X GET "https://api.hollaex.com/v2/kit"
         "created_at": "2020-10-05T06:46:27.272Z",
         "expiry": "2021-02-04T06:46:27.000Z",
         "collateral_level": "member",
+        "type": "Cloud",
+        "plan": "crypto",
+        "period": "year",
         "status": true,
         "initialized": true
     }
@@ -336,7 +351,8 @@ curl -X GET "https://api.hollaex.com/v2/ticker?symbol=xht-usdt"
     "high": 0.54,
     "low": 0.54,
     "last": 0.54,
-    "volume": 0
+    "volume": 18653.3,
+    "timestamp": "2021-04-28T03:05:24.996Z"
 }
 ```
 
@@ -365,12 +381,14 @@ curl -X GET "https://api.hollaex.com/v2/tickers"
 ```json
 {
     "xht-usdt": {
+        "time": "2021-04-27T03:05:41.012Z",
         "open": 0.54,
         "close": 0.54,
         "high": 0.54,
         "low": 0.54,
         "last": 0.54,
-        "volume": 0
+        "volume": 18653.3,
+        "symbol": "xht-usdt"
     },
     ...
 }
@@ -473,26 +491,27 @@ curl -X GET "https://api.hollaex.com/v2/trades?symbol=xht-usdt"
 
 ```json
 {
-  "xht-usdt": [
-    {
-      "size": 10,
-      "price": 0.2,
-      "side": "buy",
-      "timestamp": "2018-03-23T04:00:20.744Z"
-    },
-    {
-      "size": 5,
-      "price": 0.21,
-      "side": "buy",
-      "timestamp": "2018-03-23T03:32:38.927Z"
-    },
-    {
-      "size": 5,
-      "price": 0.23,
-      "side": "sell",
-      "timestamp": "2018-03-23T03:13:42.361Z"
-    }
-  ]
+    "xht-usdt": [
+        {
+            "size": 10,
+            "price": 0.2,
+            "side": "buy",
+            "timestamp": "2018-03-23T04:00:20.744Z"
+        },
+        {
+            "size": 5,
+            "price": 0.21,
+            "side": "buy",
+            "timestamp": "2018-03-23T03:32:38.927Z"
+        },
+        {
+            "size": 5,
+            "price": 0.23,
+            "side": "sell",
+            "timestamp": "2018-03-23T03:13:42.361Z"
+        }
+    ],
+    ...
 }
 ```
 
@@ -513,7 +532,7 @@ symbol | string | Optional | The currency pair symbol (xht-usdt, etc.)
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v2/chart?symbol=xht-usdt&resolution=1D&from=1551663947&to=1582768007"
+curl -X GET "https://api.hollaex.com/v2/chart?symbol=xht-usdt&resolution=1D&from=1616987453&to=1619579513"
 ```
 
 > Response
@@ -521,32 +540,23 @@ curl -X GET "https://api.hollaex.com/v2/chart?symbol=xht-usdt&resolution=1D&from
 ```json
 [
 	{
-		"time": "2020-01-01T00:00:00.000Z",
-		"close": 0.2,
-		"high": 0.23,
-		"low": 0.2,
-		"open": 0.23,
-		"symbol": "xht-usdt",
-		"volume": 13538
-	},
-	{
-		"time": "2020-01-02T00:00:00.000Z",
-		"close": 0.2,
-		"high": 0.2,
-		"low": 0.2,
-		"open": 0.2,
-		"symbol": "xht-usdt",
-		"volume": 54
-	},
-  	{
-		"time": "2020-01-03T00:00:00.000Z",
-		"close": 0.2,
-		"high": 0.201,
-		"low": 0.2,
-		"open": 0.2,
-		"symbol": "xht-usdt",
-		"volume": 25982
-	}
+        "time": "2021-04-14T00:00:00.000Z",
+        "close": 0.25,
+        "high": 0.21,
+        "low": 0.25,
+        "open": 0.21,
+        "symbol": "xht-usdt",
+        "volume": 204.2
+    },
+    {
+        "time": "2021-04-19T00:00:00.000Z",
+        "close": 0.25,
+        "high": 0.25,
+        "low": 0.25,
+        "open": 0.25,
+        "symbol": "xht-usdt",
+        "volume": 437.8
+    },
 	...
 ]
 ```
@@ -562,7 +572,7 @@ This endpoint retrieves a trading pair's trade history HOLCV.
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 symbol | string | Required | Symbol to get
-resolution | string | Required | Time interval resolution (1D, 60, etc.)
+resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
@@ -623,7 +633,7 @@ This endpoint retrieves trade history HOLCV for all pairs.
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
-resolution | string | Required | Time interval resolution (1D, 60, etc.)
+resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
@@ -668,12 +678,8 @@ curl -X GET
         "issued_date": "2017-07-21T17:32:28.000Z",
         "expiration_date": "2017-07-21T17:32:28.000Z"
     },
-    "bank_account": [],
-    "crypto_wallet": {
-        "xht": "string",
-        "usdt": "string",
-		...
-    },
+    "bank_account": [...],
+    "crypto_wallet": {},
     "verification_level": 2,
     "email_verified": true,
     "otp_enabled": false,
@@ -722,11 +728,30 @@ curl -X GET
         "xht_available": 0,
 		...,
         "updated_at": "2021-02-16T05:48:28.014Z"
-    }
+    },
+    "wallet": [
+        {
+            "currency": "xht",
+            "address": "0xb9b424250b1d5025f69d5c099b7a90f0a0a9c275",
+            "network": "eth",
+            "standard": null,
+            "is_valid": true,
+            "created_at": "2021-04-07T07:23:33.212Z"
+        },
+        {
+            "currency": "usdt",
+            "address": "0xb9b424250b1d5025f69d5c099b7a90f0a0a9c275",
+            "network": "eth",
+            "standard": null,
+            "is_valid": true,
+            "created_at": "2021-04-22T13:46:54.014Z"
+        },
+        ...
+    ]
 }
 ```
 
-This endpoint gets user's information, crypto wallet address as well as his balance.
+This endpoint gets user's information, wallet address as well as his balance.
 
 ### HTTP Request
 
@@ -796,6 +821,7 @@ curl -X GET
             "description": "",
             "type": "deposit",
             "currency": "usdt",
+            "network": "eth",
             "created_at": "2021-02-16T05:48:28.011Z",
             "updated_at": "2021-02-16T05:48:28.011Z",
             "user_id": 90
@@ -819,6 +845,13 @@ limit | number | Optional | Number of elements to return. Default: 50. Maximun: 
 page | number | Optional | Page of data to retrieve
 order_by | string | Optional | Field to order data
 order | string | Optional | asc or desc
+transaction_id | string | Optional | Get deposits with this transaction ID
+address | string | Optional | Get deposits made to this address
+status | boolean | Optional | Completed status of deposits to get
+dismissed | boolean | Optional | Dismissed status of deposits to get
+rejected | boolean | Optional | Rejected status of deposits to get
+processing | boolean | Optional | Processing status of deposits to get
+waiting | boolean | Optional | Waiting status of deposits to get
 start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
 end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
@@ -855,6 +888,7 @@ curl -X GET
             "description": "",
             "type": "withdrawal",
             "currency": "usdt",
+            "network": "eth",
             "created_at": "2021-02-15T02:36:47.167Z",
             "updated_at": "2021-02-15T02:36:47.167Z",
             "user_id": 90
@@ -878,6 +912,13 @@ limit | number | Optional | Number of elements to return. Default: 50. Maximun: 
 page | number | Optional | Page of data to retrieve
 order_by | string | Optional | Field to order data
 order | string | Optional | asc or desc
+transaction_id | string | Optional | Get withdrawals with this transaction ID
+address | string | Optional | Get withdrawals made to this address
+status | boolean | Optional | Completed status of withdrawals to get
+dismissed | boolean | Optional | Dismissed status of withdrawals to get
+rejected | boolean | Optional | Rejected status of withdrawals to get
+processing | boolean | Optional | Processing status of withdrawals to get
+waiting | boolean | Optional | Waiting status of withdrawals to get
 start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
 end_date | date-time | Optional | Ending date of queried data i ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
@@ -949,6 +990,8 @@ Parameter | Type | Required/Optional | Description
 currency | string | Required | The desired currency e.g. xht
 amount | number | Required | The amount to withdrawal e.g. 5
 address | string | Required | The recipient wallet's address
+network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
+otp_code | string | Optional | OTP for user if user has OTP enabled
 
 ## Get Trades
 
@@ -1095,13 +1138,7 @@ curl -X GET
 	"status": "new",
 	"created_by": 116,
 	"created_at": "2021-02-17T02:32:38.910Z",
-	"updated_at": "2021-02-17T02:32:38.910Z",
-	"User": {
-		"id": 116,
-		"email": "fight@club.com",
-		"username": "narrator",
-		"exchange_id": 176
-	}
+	"updated_at": "2021-02-17T02:32:38.910Z"
 }
 ```
 
