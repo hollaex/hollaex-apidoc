@@ -627,7 +627,7 @@ This endpoint retrieves trade history HOLCV for all pairs.
 
 ### HTTP Request
 
-`GET https://api.hollaex.com/v2/charts?resolution=${resolution}&from=${from}to=${to}`
+`GET https://api.hollaex.com/v2/charts?resolution=${resolution}&from=${from}&to=${to}`
 
 ### PARAMETERS
 
