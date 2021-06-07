@@ -228,6 +228,7 @@ curl -X GET "https://api.hollaex.com/v2/kit"
     "interface": {
         "type": "full"
     },
+    "user_meta": {...},
     "logo_image": "https://bitholla-sandbox.s3.ap-northeast-2.amazonaws.com/exchange/Sandbox_HollaEx/EXCHANGE_LOGO__dark.png",
     "description": "HollaEx is a global cryptocurrency exchange for professional trading built based on HollaEx Kit technology developed and managed by bitHolla. Not only it is open for trading but it also allows businesses and individuals to branch out and create their own exchange based on it in the HollaEx Network. HollaEx Token (XHT) is the native token of HollaEx Network used as a collateral among exchanges.",
     "injected_html": {...},
@@ -1208,9 +1209,11 @@ symbol | string | Required | The currency pair symbol (xht-usdt)
 side | string | Required | buy or sell order
 size | number | Required | The amount of the order
 type | string | Required | limit or market order type
-price | number | Required if limit order | Only should be used when type is limit.
+price | number | Required if limit order | Only should be used when type is limit
 stop | number | Optional | Stop price of order
-meta | object | Optional | Object with other options such as post_only
+meta | object | Optional | Object with other options
+meta.post_only | boolean | Optional | Set to true if order should only be made if market maker
+meta.note | string | Optional | Additional note to add to order data
 
 
 ## Cancel All Orders
