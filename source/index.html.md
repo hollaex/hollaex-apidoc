@@ -649,7 +649,7 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 > Request
 
 ```shell
-curl -X GET 
+curl -X GET
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
@@ -1225,7 +1225,7 @@ curl -X DELETE
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
-  "https://api.hollaex.com/v2/order/all"
+  "https://api.hollaex.com/v2/order/all?symbol=xht-usdt"
 ```
 
 > Response
@@ -1257,7 +1257,7 @@ curl -X DELETE
 ]
 ```
 
-This endpoint cancels all orders placed by the user.
+This endpoint cancels all orders of the same currency pair symbol, placed by the user.
 
 ### HTTP Request
 
@@ -1267,7 +1267,7 @@ This endpoint cancels all orders placed by the user.
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
-symbol | string | Optional | The currency pair symbol
+symbol | string | Required | The currency pair symbol
 
 ## Cancel Order
 
