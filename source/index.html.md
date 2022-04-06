@@ -1012,7 +1012,13 @@ curl -X POST
 
 ```json
 {
-	"message": "Success"
+    "message": "Withdrawal request is in the queue and will be processed.",
+    "id": 1000,
+    "transaction_id": "d696dd5d-3226-4662-8d86-3da3d8eb68ff",
+    "amount": 1,
+    "currency": "xht",
+    "fee": 20,
+    "fee_coin": "xht"
 }
 ```
 
@@ -1139,7 +1145,6 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 symbol | string | Optional | The currency pair symbol
 side | string | Optional | Side of orders to query (buy, sell)
-status | string | Optional | Status of order (filled, pfilled, canceled, new)
 open | boolean | Optional | Open status of order
 limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
 page | number | Optional | Page of data to retrieve
