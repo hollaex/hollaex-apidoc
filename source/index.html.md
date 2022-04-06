@@ -994,6 +994,50 @@ address | string | Required | The recipient wallet's address
 network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
 otp_code | string | Optional | OTP for user if user has OTP enabled
 
+## Make Direct Withdrawal
+
+> Request
+
+```shell
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
+  -d '{"currency":$currency,"amount":$amount,"address":$address}'
+  "https://api.hollaex.com/v2/user/withdrawal"
+```
+
+> Response
+
+```json
+{
+    "message": "Withdrawal request is in the queue and will be processed.",
+    "id": 1000,
+    "transaction_id": "d696dd5d-3226-4662-8d86-3da3d8eb68ff",
+    "amount": 1,
+    "currency": "xht",
+    "fee": 20,
+    "fee_coin": "xht"
+}
+```
+
+This endpoint directly creates a withdrawal for the user, only available via
+HMAC tokens with the withdrawal permission.
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/user/withdrawal`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Required | The desired currency e.g. xht
+amount | number | Required | The amount to withdrawal e.g. 5
+address | string | Required | The recipient wallet's address
+network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
+
 ## Get Trades
 
 > Request
@@ -1101,7 +1145,6 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 symbol | string | Optional | The currency pair symbol
 side | string | Optional | Side of orders to query (buy, sell)
-status | string | Optional | Status of order (filled, pfilled, canceled, new)
 open | boolean | Optional | Open status of order
 limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
 page | number | Optional | Page of data to retrieve
