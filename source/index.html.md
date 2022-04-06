@@ -956,45 +956,7 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 currency | string | Required | The desired currency e.g. xht
 
-## Create Withdrawal Request
-
-> Request
-
-```shell
-curl -X POST
-  -H "api-key: $API_KEY"
-  -H "api-signature: $API_SIGNATURE"
-  -H "api-expires: $API_EXPIRES"
-  -H "Content-Type: application/json"
-  -d '{"currency":$currency,"amount":$amount,"address":$address}'
-  "https://api.hollaex.com/v2/user/request-withdrawal"
-```
-
-> Response
-
-```json
-{
-	"message": "Success"
-}
-```
-
-This endpoint creates a withdrawal request for the user
-
-### HTTP Request
-
-`POST https://api.hollaex.com/v2/user/request-withdrawal`
-
-### PARAMETERS
-
-Parameter | Type | Required/Optional | Description
---------- | ------- | ------- | -------
-currency | string | Required | The desired currency e.g. xht
-amount | number | Required | The amount to withdrawal e.g. 5
-address | string | Required | The recipient wallet's address
-network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
-otp_code | string | Optional | OTP for user if user has OTP enabled
-
-## Make Direct Withdrawal
+## Withdrawal
 
 > Request
 
