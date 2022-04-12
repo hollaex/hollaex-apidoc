@@ -1542,7 +1542,7 @@ wallet | Private even for wallet balance updates.
 		client.send(
 			JSON.stringify({
 				op: 'unsubscribe',
-				args: ['orderbook', 'trades']
+				args: ['orderbook', 'trade']
 			})
 		);
 	})
@@ -1556,7 +1556,7 @@ The public events you can subscribe to are:
 Event | Description
 --------- | -----------
 orderbook | Notification with orderbook symbol and data update. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `orderbook:xht-usdt`.
-trades | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trades:xht-usdt`.
+trades | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trade:xht-usdt`.
 
 ## Public Updates
 
