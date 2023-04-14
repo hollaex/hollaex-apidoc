@@ -1428,6 +1428,874 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 symbol | string | Required | The currency pair symbol (xht-usdt, etc.)
 
+
+# Admin API
+
+Endpoints only accessible to Admins of Hollaex Kit
+
+
+## getExchangeInfo
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/exchange"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Get admin exchange information
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/exchange`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+
+
+## getExchangeUserReferrer
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user/referer"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's referer info by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user/referer`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+
+
+## getExchangeUserReferrals
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user/affiliation"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's referrals info by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user/affiliation`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+endDate | date | Optional | End date of query in ISO8601 format.
+
+
+## deactivateExchangeUserOtp
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/deactivate-otp"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Deactivate user otp by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/deactivate-otp`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+
+
+## getExchangeUserReferrals
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user/affiliation"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's referrals info by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user/affiliation`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+
+
+## deactivateExchangeUser
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user/activate"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Deactivate exchange user account by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/user/activate`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+
+
+
+
+## getExchangeUserLogins
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/logins"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's login info by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/logins`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+
+
+## createExchangeUserBank
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user/activate"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Create bank account for user by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/user/activate`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+bankAccount | object | Required |  Array of objects with bank account info
+
+
+## getExchangeUserBalance
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user/balance"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's balance by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user/balance`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+
+
+## getExchangeUserWallet
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user/wallet"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve users' wallets by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user/wallet`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+address | string | Optional | Address of crypto
+isValid | boolean | Optional | Specify whether or not wallet is valid
+network | string | Optional | Crypto network of currency
+format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
+
+
+## createExchangeUserWallet
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user/wallet"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Create wallet for exchange user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/user/wallet`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user
+crypto | number | Required | The coin for the wallet e.g btc, eth 
+network | number | Optional | The network info 
+
+
+## createExchangeUser
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Create exchange user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/user`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+email | string | Required | The mail address for the user
+password | string | Required | The password for the user
+
+
+## getExchangeUsers
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/user"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve list of the user info by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/user`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+search | string | Optional | The search text to filter by, pass undefined to receive data on all fields
+pending | boolean | Optional | The pending field to filter by, pass undefined to receive all data
+pendingType | string | Optional | The pending type info to filter by, pass undefined to receive data
+format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
+
+
+## cancelExchangeUserOrder
+
+> Request
+
+```shell
+curl -X DELETE "https://api.hollaex.com/v2/admin/order"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Cancel user's order by order id
+
+### HTTP Request
+
+`DELETE https://api.hollaex.com/v2/admin/order`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+
+## getExchangeOrders
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/orders"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's orders by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/orders`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+side | string | Optional | The order side (buy or side)
+status | string | Optional | The order's status e.g open, filled, canceled etc
+open | boolean | Optional | The info on whether the order is active or not 
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
+
+
+## getExchangeTrades
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/trades"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve user's trades by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/trades`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
+side | string | Optional | The order side (buy or side)
+symbol | string | Optional | The symbol-pair to filter by, pass undefined to receive data on all currencies
+page | number | Optional | Page of referral data. Default: 1
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+orderBy | string | Optional | The field to order data by e.g. amount, id.
+order | string | Optional | Ascending (asc) or descending (desc).
+startDate | date | Optional | Start date of query in ISO8601 format.
+endDate | date | Optional | End date of query in ISO8601 format.
+format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
+
+
+## settleExchangeFees
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/fees/settle"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Set exchange fees by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/fees/settle`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+
+
+## checkExchangeDepositStatus
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/check-transaction"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Check exchange deposit status
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/check-transaction`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+currency | string | Required | The currency to filter by, pass undefined to receive data on all currencies
+transactionId | string | Required | Deposits with specific transaction ID.
+address | string | Required | Deposits with specific address.
+network | string | Required | The network info
+isTestnet | boolean | Optional | The info on whether it's a testnet or not
+
+
+## updateExchangeWithdrawal
+
+> Request
+
+```shell
+curl -X PUT "https://api.hollaex.com/v2/admin/burn"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Update Exchange Withdrawal
+
+### HTTP Request
+
+`PUT https://api.hollaex.com/v2/admin/burn`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+transactionId | string | Required | Withdrawals with specific transaction ID.
+updatedTransactionId | string | Optional | Withdrawals with updated transaction id
+updatedAddress | string | Optional | Withdrawals with updated address
+status | boolean | Optional | Confirmed status of the withdrawals to set. 
+dismissed | boolean | Optional | Dismissed status of the withdrawals to set.
+rejected | boolean | Optional | Rejected status of the withdrawals to set. 
+processing | boolean | Optional | Processing status of the withdrawals to set.
+waiting | boolean | Optional | Waiting status of the withdrawals to set.
+email | boolean | Optional | Email
+description | string | Optional | The description field
+
+
+## createExchangeWithdrawal
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/burn"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Create exchange withdrawal by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/burn`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+currency | string | Required | The currency to specify
+amount | number | Required | The amount to specify
+transactionId | string | Optional | Withdrawal with specific transaction ID.
+status | boolean | Optional | The status field to confirm the withdrawal
+email | boolean | Optional | The email field
+fee | number | Optional | The fee to specify
+
+
+## updateExchangeDeposit
+
+> Request
+
+```shell
+curl -X PUT "https://api.hollaex.com/v2/admin/mint"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Update exchange deposit by admin
+
+### HTTP Request
+
+`PUT https://api.hollaex.com/v2/admin/mint`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+transactionId | string | Required | Withdrawals with specific transaction ID.
+updatedTransactionId | string | Optional | Withdrawals with updated transaction id
+updatedAddress | string | Optional | Withdrawals with updated address
+status | boolean | Optional | Confirmed status of the withdrawals to set. 
+dismissed | boolean | Optional | Dismissed status of the withdrawals to set.
+rejected | boolean | Optional | Rejected status of the withdrawals to set. 
+processing | boolean | Optional | Processing status of the withdrawals to set.
+waiting | boolean | Optional | Waiting status of the withdrawals to set.
+email | boolean | Optional | Email
+description | string | Optional | The description field
+
+
+## createExchangeDeposit
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/mint"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Create exchange deposit by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/mint`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Required | The identifier of the user to filter by
+currency | string | Required | The currency to specify
+amount | number | Required | The amount to specify
+transactionId | string | Optional | Withdrawal with specific transaction ID.
+status | boolean | Optional | The status field to confirm the withdrawal
+email | boolean | Optional | The email field
+fee | number | Optional | The fee to specify
+
+
+## transferExchangeAsset
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/transfer"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Transfer exchange asset by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/transfer`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+senderId | number | Required | The identifier of the sender
+receiverId | number | Required | The identifier of the receiver
+currency | string | Required | The currency to specify
+amount | number | Required | The amount to specify
+description | string | Optional | The description field
+email | boolean | Optional | The email field
+
+
+## getExchangeBalance
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/balance"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve admin's wallet balance
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/balance`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+
+## getExchangeWithdrawals
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/withdrawals"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve list of the user's withdrawals by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/withdrawals`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+currency | string | Optional | The currency pair symbol
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+transaction_id | string | Optional | Get deposits with this transaction ID
+address | string | Optional | Get deposits made to this address
+status | boolean | Optional | Completed status of deposits to get
+dismissed | boolean | Optional | Dismissed status of deposits to get
+rejected | boolean | Optional | Rejected status of deposits to get
+processing | boolean | Optional | Processing status of deposits to get
+waiting | boolean | Optional | Waiting status of deposits to get
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
+format | string | Optional | Pass value csv to download csv file
+
+
+## getExchangeWithdrawals
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/deposits"
+```
+
+> Response
+
+```json
+{
+   
+}
+```
+Retrieve list of the user's deposits by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/deposits`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+userId | number | Optional | The identifier of the user to filter by
+currency | string | Optional | The currency pair symbol
+limit | number | Optional | Number of elements to return. Default: 50. Maximun: 100
+page | number | Optional | Page of data to retrieve
+order_by | string | Optional | Field to order data
+order | string | Optional | asc or desc
+transaction_id | string | Optional | Get deposits with this transaction ID
+address | string | Optional | Get deposits made to this address
+status | boolean | Optional | Completed status of deposits to get
+dismissed | boolean | Optional | Dismissed status of deposits to get
+rejected | boolean | Optional | Rejected status of deposits to get
+processing | boolean | Optional | Processing status of deposits to get
+waiting | boolean | Optional | Waiting status of deposits to get
+start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
+end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
+format | string | Optional | Pass value csv to download csv file
+
+
 # Websocket
 
 Connection to public and private channels are available through the path `https://api.hollaex.com/stream`. HollaEx Exchanges can be connected to using any websocket libraries. For this documentation, we will use the library [`ws`]('https://github.com/websockets/ws').
