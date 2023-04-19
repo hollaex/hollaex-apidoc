@@ -2749,9 +2749,14 @@ ping | Ping-pong message for keeping connections alive.
 Events | Description
 --------- | -----------
 orderbook | Public event for orderbook updates.
-trades | Public event for trade updates.
+trade | Public event for trade updates.
 order | Private event for user order updates.
+usertrade | Private event for user trades.
 wallet | Private even for wallet balance updates.
+deposit | Private event for user deposits.
+withdrawal | Private event for user withdrawals.
+admin | Private event for exchange admin only.
+
 
 ## Public Events
 
@@ -2792,7 +2797,7 @@ The public events you can subscribe to are:
 Event | Description
 --------- | -----------
 orderbook | Notification with orderbook symbol and data update. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `orderbook:xht-usdt`.
-trades | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trade:xht-usdt`.
+trade | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trade:xht-usdt`.
 
 ## Public Updates
 
