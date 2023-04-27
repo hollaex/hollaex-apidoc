@@ -2663,6 +2663,66 @@ start_date | date-time | Optional | Starting date of queried data in ISO 8601 fo
 end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
 
+## sendExchangeUserEmail
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/send-email"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Send email to exchange user account by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/send-email`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | The identifier of the user
+mail_type | string | Required | The mail type for the email payload
+data | object | Required | The content of the mail
+
+
+## sendRawEmail
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/send-email/raw"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Send email to users with custom html by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/send-email/raw`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+receivers | array | Required | The array of emails to send mail
+html | string | Required | The stringified html content
+title | string | Optional | The title of the mail
+text | string | Optional | The text of the mail
+
 
 # Websocket
 
