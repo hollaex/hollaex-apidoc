@@ -645,7 +645,7 @@ to | string | Required | Ending UNIX timestamp
 > Request
 
 ```shell
-curl -X GET "https://api.hollaex.com/v2/admin/balances"
+curl -X GET "https://api.hollaex.com/v2/minicharts?assets=btc,xht&quote=xht"
 ```
 
 > Response
