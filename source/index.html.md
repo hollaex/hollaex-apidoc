@@ -638,6 +638,56 @@ resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
+
+
+## MiniCharts
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/balances"
+```
+
+> Response
+
+```json
+{
+    "btc": [
+        {
+            "time": "2023-09-12T11:59:00.548Z",
+            "price": "25000.00",
+            "symbol": "btc",
+            "quote": "usdt"
+        },
+      ...
+    ],
+    "xht": [
+        {
+            "time": "2023-09-12T11:59:00.548Z",
+            "price": "0.18",
+            "symbol": "xht",
+            "quote": "usdt"
+        },
+       ...
+    ]
+}
+```
+Get trade history HOLCV for all pairs
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/minicharts`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+assets | array | Required | The list of assets to get the mini charts for
+from | string | Optional | Beginning UNIX timestamp
+to | string | Optional | Ending UNIX timestamp
+quote | string | Optional | Quote asset to receive prices based on
+
+
 # Private
 
 <aside class="notice">
