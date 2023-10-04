@@ -2723,6 +2723,87 @@ html | string | Required | The stringified html content
 title | string | Optional | The title of the mail
 text | string | Optional | The text of the mail
 
+## getExchangeUserBalances
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/balances"
+```
+
+> Response
+
+```json
+{
+   "count": 356,
+   "data": [
+    {
+      "balance": "2.0010000000000000",
+      "available": "2.0010000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T08:27:10.637Z",
+      "user_id": 150,
+      "network_id": 582
+    },
+    {
+      "balance": "2.0110000000000000",
+      "available": "2.0110000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T09:07:46.303Z",
+      "user_id": 33,
+      "network_id": 324
+    },
+    {
+      "balance": "49108.1478000000000000",
+      "available": "49108.1478000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-02-21T18:37:58.966Z",
+      "user_id": 8,
+      "network_id": 138
+    },
+    {
+      "balance": "2.1000000000000000",
+      "available": "2.1000000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-05-22T12:07:39.124Z",
+      "user_id": 11,
+      "network_id": 188
+    },
+    {
+      "balance": "5.0000000000000000",
+      "available": "5.0000000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-07-03T14:22:28.277Z",
+      "user_id": 1664,
+      "network_id": 12392
+    },
+    {
+      "balance": "1.0000000000000000",
+      "available": "1.0000000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T08:25:37.498Z",
+      "user_id": 136,
+      "network_id": 568
+    },
+
+    ...
+   ]
+}
+```
+Retrieve users balances by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/balances`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Optional | The identifier of the user
+currency | string | Optional | The currency pair symbol (xht-usdt, etc.)
+format | string | Optional | Pass value 'all' to download csv file
+
 
 # Websocket
 
