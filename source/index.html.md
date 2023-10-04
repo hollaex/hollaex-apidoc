@@ -638,6 +638,56 @@ resolution | string | Required | Time interval resolution (15, 60, 240, 1D, 1W)
 from | string | Required | Beginning UNIX timestamp
 to | string | Required | Ending UNIX timestamp
 
+
+
+## MiniCharts
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/minicharts?assets=btc,xht&quote=xht"
+```
+
+> Response
+
+```json
+{
+    "btc": [
+        {
+            "time": "2023-09-12T11:59:00.548Z",
+            "price": "25000.00",
+            "symbol": "btc",
+            "quote": "usdt"
+        },
+      ...
+    ],
+    "xht": [
+        {
+            "time": "2023-09-12T11:59:00.548Z",
+            "price": "0.18",
+            "symbol": "xht",
+            "quote": "usdt"
+        },
+       ...
+    ]
+}
+```
+Get trade history HOLCV for all pairs
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/minicharts`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+assets | array | Required | The list of assets to get the mini charts for
+from | string | Optional | Beginning UNIX timestamp
+to | string | Optional | Ending UNIX timestamp
+quote | string | Optional | Quote asset to receive prices based on
+
+
 # Private
 
 <aside class="notice">
@@ -2662,6 +2712,147 @@ waiting | boolean | Optional | Waiting status of deposits to get
 start_date | date-time | Optional | Starting date of queried data in ISO 8601 format
 end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
+
+## sendExchangeUserEmail
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/send-email"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Send email to exchange user account by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/send-email`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | The identifier of the user
+mail_type | string | Required | The mail type for the email payload
+data | object | Required | The content of the mail
+
+
+## sendRawEmail
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/send-email/raw"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Send email to users with custom html by admin
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/send-email/raw`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+receivers | array | Required | The array of emails to send mail
+html | string | Required | The stringified html content
+title | string | Optional | The title of the mail
+text | string | Optional | The text of the mail
+
+## getExchangeUserBalances
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/balances"
+```
+
+> Response
+
+```json
+{
+   "count": 356,
+   "data": [
+    {
+      "balance": "2.0010000000000000",
+      "available": "2.0010000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T08:27:10.637Z",
+      "user_id": 150,
+      "network_id": 582
+    },
+    {
+      "balance": "2.0110000000000000",
+      "available": "2.0110000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T09:07:46.303Z",
+      "user_id": 33,
+      "network_id": 324
+    },
+    {
+      "balance": "49108.1478000000000000",
+      "available": "49108.1478000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-02-21T18:37:58.966Z",
+      "user_id": 8,
+      "network_id": 138
+    },
+    {
+      "balance": "2.1000000000000000",
+      "available": "2.1000000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-05-22T12:07:39.124Z",
+      "user_id": 11,
+      "network_id": 188
+    },
+    {
+      "balance": "5.0000000000000000",
+      "available": "5.0000000000000000",
+      "symbol": "xht",
+      "updated_at": "2023-07-03T14:22:28.277Z",
+      "user_id": 1664,
+      "network_id": 12392
+    },
+    {
+      "balance": "1.0000000000000000",
+      "available": "1.0000000000000000",
+      "symbol": "xht",
+      "updated_at": "2022-02-17T08:25:37.498Z",
+      "user_id": 136,
+      "network_id": 568
+    },
+
+    ...
+   ]
+}
+```
+Retrieve users balances by admin
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/balances`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Optional | The identifier of the user
+currency | string | Optional | The currency pair symbol (xht-usdt, etc.)
+format | string | Optional | Pass value 'all' to download csv file
 
 
 # Websocket
