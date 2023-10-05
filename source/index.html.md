@@ -2868,13 +2868,10 @@ Connection to public and private channels are available through the path `https:
 	const WebSocket = require('ws');
 
 	// Public
-	const client = new WebSocket('https://api.hollaex.com/stream');
-
-	// Private Bearer
-	const client = new WebSocket(`https://api.hollaex.com/stream?authorization=Bearer%20${TOKEN}`);
+	const client = new WebSocket('wss://api.hollaex.com/stream');
 
 	// Private HMAC
-	const client = new WebSocket(`https://api.hollaex.com/stream?api-key=${API-KEY}&api-signature=${API-SIGNATURE}&api-expires=${API-EXPIRES}`);
+	const client = new WebSocket(`wss://api.hollaex.com/stream?api-key=${API-KEY}&api-signature=${API-SIGNATURE}&api-expires=${API-EXPIRES}`);
 
 	client.on('open', () => {
 		// Ping message to keep connection alive
@@ -2896,13 +2893,12 @@ Websocket connections will disconnect if a message is not sent within one minute
 
 ### PATH
 
-`https://api.hollaex.com/stream`
+`wss://api.hollaex.com/stream`
 
 ### PARAMETERS
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
-authorization (*Bearer*) | string | Optional | A bearer token required to subscribe to private events.
 api-key (*HMAC*) | string | Optional | Your exchange api-key
 api-signature (*HMAC*) | string | Optional | An api-signature created using HMAC SHA256
 api-expires (*HMAC*) | string | Optional | Expiry time of request
