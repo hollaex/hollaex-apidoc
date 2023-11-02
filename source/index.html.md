@@ -47,6 +47,8 @@ Examples of strings being encoded:
   - `GET/v2/user/balance1575516146`
 - `POST` request to `https://api.hollaex.com/v2/order` that expires at `1575516146` with body `{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
   - `POST/v2/order1583284849{"symbol":"btc-usdt","side":"buy","size":0.001,"type":"market"}`
+- `DELETE` request to `https://api.hollaex.com/v2/order?order_id=23a75975-3ad9-448c-8f3e-836c1f61f248` that expires at `1697543568`
+  - `DELETE/v2/order?order_id=23a75975-3ad9-448c-8f3e-836c1f61f248`
 
 You can register for a new HollaEx `api-key` and `api-secret` in the [security section](https://pro.hollaex.com/security) of hollaex.com.
 
@@ -1329,7 +1331,7 @@ symbol | string | Required | The currency pair symbol
 > Request
 
 ```shell
-curl -X GET
+curl -X DELETE
   -H "api-key: $API_KEY"
   -H "api-signature: $API_SIGNATURE"
   -H "api-expires: $API_EXPIRES"
