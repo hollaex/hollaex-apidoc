@@ -690,6 +690,44 @@ to | string | Optional | Ending UNIX timestamp
 quote | string | Optional | Quote asset to receive prices based on
 
 
+## Quick Trade
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
+```
+
+> Response
+
+```json
+{
+  "spending_currency": "btc",
+  "receiving_currency": "usdt",
+  "spending_amount": 0.0001,
+  "type": "market",
+  "receiving_amount": 3.45,
+  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
+  "expiry": "2023-11-09T20:47:21.323Z"        
+}
+```
+Get Quick Trade Quote
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/quick-trade`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+spending_currency | string | Required | Currency symbol of the spending currency
+receiving_currency | string | Required | Currency symbol of the receiving currency
+spending_amount | string | Optional | Spending amount
+receiving_amount | string | Optional | Receiving amount
+
+
+
 # Private
 
 <aside class="notice">
@@ -1271,6 +1309,56 @@ stop | number | Optional | Stop price of order
 meta | object | Optional | Object with other options
 meta.post_only | boolean | Optional | Set to true if order should only be made if market maker
 meta.note | string | Optional | Additional note to add to order data
+
+
+## Execute Order
+
+> Request
+
+```shell
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
+  -d '{"token":$token}'
+  "https://api.hollaex.com/v2/order/execute"
+```
+
+> Response
+
+```json
+{
+  "symbol": "btc-usdt",
+  "side": "sell",
+  "size": 0.0001,
+  "type": "market",
+  "price": 0,
+  "fee_structure": { "maker": 0.2, "taker": 0.2 },
+  "fee_coin": "usdt",
+  "id": "6a70663f-8948-4d08-b1b7-6c81a7b13c16",
+  "created_by": 10792,
+  "filled": 0.0001,
+  "method": "market",
+  "created_at": "2023-11-09T21:09:36.060Z",
+  "updated_at": "2023-11-09T21:09:36.060Z",
+  "average": 34500,
+  "status": "filled"
+}
+```
+
+This endpoint executes an order for the user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/order/execute`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+token | string | Required | token
+
 
 
 ## Cancel All Orders
