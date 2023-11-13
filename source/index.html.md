@@ -690,6 +690,71 @@ to | string | Optional | Ending UNIX timestamp
 quote | string | Optional | Quote asset to receive prices based on
 
 
+## Oracle Prices
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/oracle/prices?&assets=xht&quote=usdt&amount=1"
+```
+
+> Response
+
+```json
+{ "xht": 0.19 }
+```
+Retrieve price conversion
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/oracle/prices`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+assets | array | Required | Assets to convert in array
+quote | string | Optional | Quote coin to convert to
+amount | number | Optional |  Amount to convert
+
+## Quick Trade
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
+```
+
+> Response
+
+```json
+{
+  "spending_currency": "btc",
+  "receiving_currency": "usdt",
+  "spending_amount": 0.0001,
+  "type": "market",
+  "receiving_amount": 3.45,
+  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
+  "expiry": "2023-11-09T20:47:21.323Z"        
+}
+```
+Get Quick Trade Quote
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/quick-trade`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+spending_currency | string | Required | Currency symbol of the spending currency
+receiving_currency | string | Required | Currency symbol of the receiving currency
+spending_amount | string | Optional | Spending amount
+receiving_amount | string | Optional | Receiving amount
+
+
+
 # Private
 
 <aside class="notice">
