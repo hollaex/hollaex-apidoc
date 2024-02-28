@@ -1338,6 +1338,56 @@ meta.post_only | boolean | Optional | Set to true if order should only be made i
 meta.note | string | Optional | Additional note to add to order data
 
 
+## Execute Order
+
+> Request
+
+```shell
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
+  -d '{"token":$token}'
+  "https://api.hollaex.com/v2/order/execute"
+```
+
+> Response
+
+```json
+{
+  "symbol": "btc-usdt",
+  "side": "sell",
+  "size": 0.0001,
+  "type": "market",
+  "price": 0,
+  "fee_structure": { "maker": 0.2, "taker": 0.2 },
+  "fee_coin": "usdt",
+  "id": "6a70663f-8948-4d08-b1b7-6c81a7b13c16",
+  "created_by": 10792,
+  "filled": 0.0001,
+  "method": "market",
+  "created_at": "2023-11-09T21:09:36.060Z",
+  "updated_at": "2023-11-09T21:09:36.060Z",
+  "average": 34500,
+  "status": "filled"
+}
+```
+
+This endpoint executes an order for the user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/order/execute`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+token | string | Required | token
+
+
+
 ## Cancel All Orders
 
 > Request
@@ -2920,6 +2970,55 @@ Parameter | Type | Required/Optional | Description
 user_id | number | Optional | The identifier of the user
 currency | string | Optional | The currency pair symbol (xht-usdt, etc.)
 format | string | Optional | Pass value 'all' to download csv file
+
+## createOrderByAdmin
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/order"
+```
+
+> Response
+
+```json
+{
+  "fee": 0,
+  "meta": {},
+  "symbol": "xht-usdt",
+  "side": "buy",
+  "size": 1,
+  "type": "limit",
+  "price": 0.1,
+  "fee_structure": { "maker": 0.186, "taker": 0.186 },
+  "fee_coin": "xht",
+  "id": "a80b5c7f-be88-4d24-b134-cfb7b31b6d7d",
+  "created_by": 10792,
+  "filled": 0,
+  "filled": 0,
+  "average": 0.1,
+  "status": "new",
+  "updated_at": "2023-12-12T23:51:22.239Z",
+  "created_at": "2023-12-12T23:51:22.239Z",
+  "stop": null
+}
+```
+Create order on behalf of user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/order`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | User id for the order
+symbol | string | Required | Currency symbol of the order e.g. xht-usdt
+size  number | Required | Amount of the order
+price | number | Required | Order Price
+side | string | Required | Order Side, buy or sell
+type | string | Required | Order Type, limit or market
 
 
 # Websocket
