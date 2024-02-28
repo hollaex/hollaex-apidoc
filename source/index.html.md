@@ -2258,7 +2258,7 @@ pending_type | string | Optional | The pending type info to filter by, pass unde
 format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
 
 
-## createOrderByAdmin
+## createExchangeUserOrder
 
 > Request
 
