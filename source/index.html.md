@@ -690,6 +690,33 @@ to | string | Optional | Ending UNIX timestamp
 quote | string | Optional | Quote asset to receive prices based on
 
 
+## Oracle Prices
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/oracle/prices?&assets=xht&quote=usdt&amount=1"
+```
+
+> Response
+
+```json
+{ "xht": 0.19 }
+```
+Retrieve price conversion
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/oracle/prices`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+assets | array | Required | Assets to convert in array
+quote | string | Optional | Quote coin to convert to
+amount | number | Optional |  Amount to convert
+
 ## Quick Trade
 
 > Request
@@ -2943,6 +2970,55 @@ Parameter | Type | Required/Optional | Description
 user_id | number | Optional | The identifier of the user
 currency | string | Optional | The currency pair symbol (xht-usdt, etc.)
 format | string | Optional | Pass value 'all' to download csv file
+
+## createOrderByAdmin
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/order"
+```
+
+> Response
+
+```json
+{
+  "fee": 0,
+  "meta": {},
+  "symbol": "xht-usdt",
+  "side": "buy",
+  "size": 1,
+  "type": "limit",
+  "price": 0.1,
+  "fee_structure": { "maker": 0.186, "taker": 0.186 },
+  "fee_coin": "xht",
+  "id": "a80b5c7f-be88-4d24-b134-cfb7b31b6d7d",
+  "created_by": 10792,
+  "filled": 0,
+  "filled": 0,
+  "average": 0.1,
+  "status": "new",
+  "updated_at": "2023-12-12T23:51:22.239Z",
+  "created_at": "2023-12-12T23:51:22.239Z",
+  "stop": null
+}
+```
+Create order on behalf of user
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/order`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | User id for the order
+symbol | string | Required | Currency symbol of the order e.g. xht-usdt
+size  number | Required | Amount of the order
+price | number | Required | Order Price
+side | string | Required | Order Side, buy or sell
+type | string | Required | Order Type, limit or market
 
 
 # Websocket
