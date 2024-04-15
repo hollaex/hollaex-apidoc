@@ -2516,7 +2516,7 @@ network | string | Required | The network info
 is_testnet | boolean | Optional | The info on whether it's a testnet or not
 
 
-## updateExchangeWithdrawal
+## updateExchangeBurn
 
 > Request
 
@@ -2553,7 +2553,7 @@ email | boolean | Optional | Email
 description | string | Optional | The description field
 
 
-## createExchangeWithdrawal
+## createExchangeBurn
 
 > Request
 
@@ -2587,7 +2587,7 @@ email | boolean | Optional | The email field
 fee | number | Optional | The fee to specify
 
 
-## updateExchangeDeposit
+## updateExchangeMint
 
 > Request
 
@@ -2624,7 +2624,7 @@ email | boolean | Optional | Email
 description | string | Optional | The description field
 
 
-## createExchangeDeposit
+## createExchangeMint
 
 > Request
 
@@ -2690,6 +2690,50 @@ amount | number | Required | The amount to specify
 description | string | Optional | The description field
 email | boolean | Optional | The email field
 
+## Withdrawal By Admin
+
+> Request
+
+```shell
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
+  -d '{"user_id":$user_id,"currency":$currency,"amount":$amount,"address":$address}'
+  "https://api.hollaex.com/v2/admin/withdrawal"
+```
+
+> Response
+
+```json
+{
+    "message": "Withdrawal request is in the queue and will be processed.",
+    "id": 1000,
+    "transaction_id": "d696dd5d-3226-4662-8d86-3da3d8eb68ff",
+    "amount": 1,
+    "currency": "xht",
+    "fee": 20,
+    "fee_coin": "xht"
+}
+```
+
+This endpoint directly creates a withdrawal on behave of the user, only available via
+HMAC tokens with the withdrawal permission.
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/withdrawal`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | user id for the withdrawal process
+currency | string | Required | The desired currency e.g. xht
+amount | number | Required | The amount to withdrawal e.g. 5
+address | string | Required | The recipient wallet's address
+network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
 
 ## getExchangeBalance
 
