@@ -2005,6 +2005,7 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 email | string | Required | The mail address for the user
 password | string | Required | The password for the user
+referral | string | Optional | The referral code for the user
 
 
 ## updateExchangeUser(role)
