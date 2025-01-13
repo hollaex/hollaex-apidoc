@@ -3092,6 +3092,58 @@ currency | string | Optional | The currency pair symbol (xht-usdt, etc.)
 format | string | Optional | Pass value 'all' to download csv file
 
 
+## createTradeByAdmin
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/trade"
+```
+
+> Response
+
+```json
+{
+{
+    "side": "buy",
+    "symbol": "xrp-usdt",
+    "size": 10,
+    "price": 0.6,
+    "maker_order_id": "05018676-d8f0-420d-abc0-3c199fb84f4c",
+    "taker_order_id": "4d62d466-fbdb-4819-b60a-8aba3ad1c3e9",
+    "timestamp": "2024-02-27T04:43:57.183Z",
+    "maker_fee": 0.003,
+    "taker_fee": 0.05,
+    "maker_fee_coin": "usdt",
+    "taker_fee_coin": "xrp",
+    "quick": false,
+    "maker_id": 1436,
+    "taker_id": 1,
+    "maker_network_id": 11186,
+    "taker_network_id": 90
+}
+}
+```
+Create trade on behalf of users
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/trade`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+maker_id | number | Required | User id for the maker
+taker_id | number | Required | User id for the taker
+maker_fee | number | Required | fee in percentage for the maker
+taker_fee | number | Required | fee in percentage for the taker
+symbol | string | Required | Currency symbol of the order e.g. xht-usdt
+size  number | Required | Amount of the order
+price | number | Required | Order Price
+side | string | Required | Order Side, buy or sell
+
+
 # Websocket
 
 Connection to public and private channels are available through the path `https://api.hollaex.com/stream`. HollaEx Exchanges can be connected to using any websocket libraries. For this documentation, we will use the library [`ws`]('https://github.com/websockets/ws').
