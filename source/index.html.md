@@ -2034,6 +2034,32 @@ Parameter | Type | Required/Optional | Description
 user_id | number | Required | The identifier of the user
 role | string | Required |The role of the user
 
+## deleteExchangeUser
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Create exchange user
+
+### HTTP Request
+
+`DELETE https://api.hollaex.com/v2/admin/user`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | The id for the user
 
 
 ## updateExchangeUser(meta)
