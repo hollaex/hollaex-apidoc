@@ -1660,15 +1660,14 @@ curl -X GET "https://api.hollaex.com/v2/admin/user/referer"
 
 ```json
 {
-    "count": 1,
-    "data": [
-        {
-            "referrer": {
-                "id": 10,
-                "email": "test@mail.com"
-            }
-        },
-    ]
+    "email": {
+        "created_at": "2020-01-18T18:35:02.418Z",
+        "updated_at": "2020-01-18T18:35:02.418Z",
+        "referer": {
+            "id": 1,
+            "email": "test@mail.com"
+        }
+    }
 }
 ```
 Retrieve user's referer info by admin
