@@ -68,7 +68,7 @@ You must replace <code>API_KEY</code>, <code>API_SIGNATURE</code>, and <code>API
 
 Client libraries make it simple to utilize our API. Currently, there are two libraries for HollaEx that support three languages:
 
-- [HollaEx Node Library](https://github.com/bitholla/hollaex-node-lib) - Our official library that supports Node.js. Connects to both our API and websocket.
+- [HollaEx Node Library](https://github.com/hollaex/hollaex-node-lib) - Our official library that supports Node.js. Connects to both our API and websocket.
 - [CCXT](https://ccxt.trade) - An authorized library that supports Node.js, PHP, and Python. Connects to our API.
 
 # Public
@@ -124,7 +124,7 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "increment_unit": 1,
             "created_at": "2019-08-09T10:45:43.367Z",
             "updated_at": "2019-10-31T05:08:18.907Z",
-            "logo": "https://bitholla.s3.ap-northeast-2.amazonaws.com/icon/XHT-hollaex-asset-01.svg",
+            "logo": "",
             "code": "xht",
             "is_public": true,
             "meta": {},
@@ -154,7 +154,7 @@ curl -X GET "https://api.hollaex.com/v2/constants"
             "increment_unit": 0.1,
             "created_at": "2019-08-09T10:45:43.367Z",
             "updated_at": "2021-04-20T03:02:48.635Z",
-            "logo": "https://bitholla.s3.ap-northeast-2.amazonaws.com/exchange/icons/usdt.",
+            "logo": "",
             "code": "usdt",
             "is_public": true,
             "meta": {},
@@ -231,13 +231,13 @@ curl -X GET "https://api.hollaex.com/v2/kit"
         "type": "full"
     },
     "user_meta": {...},
-    "logo_image": "https://bitholla-sandbox.s3.ap-northeast-2.amazonaws.com/exchange/Sandbox_HollaEx/EXCHANGE_LOGO__dark.png",
-    "description": "HollaEx is a global cryptocurrency exchange for professional trading built based on HollaEx Kit technology developed and managed by bitHolla. Not only it is open for trading but it also allows businesses and individuals to branch out and create their own exchange based on it in the HollaEx Network. HollaEx Token (XHT) is the native token of HollaEx Network used as a collateral among exchanges.",
+    "logo_image": "",
+    "description": "HollaEx is a crypto exchange whitelabel",
     "injected_html": {...},
     "injected_values": [...],
     "native_currency": "usdt",
     "setup_completed": true,
-    "valid_languages": "en,fa,ko,ar,pt,ja,ru",
+    "valid_languages": "en,ko,ar,pt,ja,ru,fr",
     "new_user_is_activated": true,
 	"email_verification_required": true,
     "info": {
@@ -1570,7 +1570,7 @@ curl -X GET "https://api.hollaex.com/v2/udf/symbols?symbol=xht-usdt"
 
 ```json
 {
-    "name": "bitHolla",
+    "name": "HollaEx",
     "ticker": "xht-usdt",
     "exchange": "HollaEx",
     "has_intraday": true,
@@ -1678,7 +1678,7 @@ password | string | Required | The password for the user
 referral | string | Optional | The referral code for the user
 
 
-## Exchange Users
+## Exchange Users List
 
 > Request
 
@@ -1916,7 +1916,7 @@ Parameter | Type | Required/Optional | Description
 user_id | number | Required | The identifier of the user to filter by
 
 
-## User Logins
+## User Logins List
 
 > Request
 
@@ -2141,7 +2141,37 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 
 
-## User Wallet
+## Create User Wallet
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/user/wallet"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+Create a wallet for a user on the exchange
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/user/wallet`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+user_id | number | Required | The identifier of the user
+crypto | number | Required | The coin for the wallet e.g btc, eth
+network | number | Optional | The network info
+
+
+## Wallets List
 
 > Request
 
@@ -2193,36 +2223,6 @@ address | string | Optional | Address of crypto
 is_valid | boolean | Optional | Specify whether or not wallet is valid
 network | string | Optional | Crypto network of currency
 format | string | Optional | Custom format of data set. Enum: ['all', 'csv']
-
-
-## Create User Wallet
-
-> Request
-
-```shell
-curl -X POST "https://api.hollaex.com/v2/admin/user/wallet"
-```
-
-> Response
-
-```json
-{
-   "message": "Success"
-}
-```
-Create a wallet for a user on the exchange
-
-### HTTP Request
-
-`POST https://api.hollaex.com/v2/admin/user/wallet`
-
-### PARAMETERS
-
-Parameter | Type | Required/Optional | Description
---------- | ------- | ------- | -------
-user_id | number | Required | The identifier of the user
-crypto | number | Required | The coin for the wallet e.g btc, eth
-network | number | Optional | The network info
 
 
 ## Update User role
@@ -2474,7 +2474,7 @@ Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 user_id | number | Optional | The identifier of the user to filter by
 
-## All Orders
+## Orders List
 
 > Request
 
@@ -2591,7 +2591,7 @@ price | number | Required | Order Price
 side | string | Required | Order Side, buy or sell
 
 
-## User Trades
+## Trades List
 
 > Request
 
@@ -2901,7 +2901,7 @@ email | boolean | Optional | Email
 description | string | Optional | The description field
 
 
-## Users Deposits List
+## Deposits List
 
 > Request
 
@@ -2980,7 +2980,7 @@ end_date | date-time | Optional | Ending date of queried data in ISO 8601 format
 format | string | Optional | Pass value csv to download csv file
 
 
-## Users Withdrawals List
+## Withdrawals List
 
 > Request
 
