@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://hollaex.com/account/developers'>Sign Up for a Developer Key</a>
+  - <a href='https://pro.hollaex.com/security?apiKeys'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -735,7 +735,7 @@ curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&recei
   "type": "market",
   "receiving_amount": 3.45,
   "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
-  "expiry": "2023-11-09T20:47:21.323Z"        
+  "expiry": "2023-11-09T20:47:21.323Z"
 }
 ```
 Get Quick Trade Quote
@@ -1973,8 +1973,8 @@ Create wallet for exchange user
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 user_id | number | Required | The identifier of the user
-crypto | number | Required | The coin for the wallet e.g btc, eth 
-network | number | Optional | The network info 
+crypto | number | Required | The coin for the wallet e.g btc, eth
+network | number | Optional | The network info
 
 
 ## createExchangeUser
@@ -2417,7 +2417,7 @@ user_id | number | Optional | The identifier of the user to filter by
 limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
 side | string | Optional | The order side (buy or side)
 status | string | Optional | The order's status e.g open, filled, canceled etc
-open | boolean | Optional | The info on whether the order is active or not 
+open | boolean | Optional | The info on whether the order is active or not
 page | number | Optional | Page of referral data. Default: 1
 order_by | string | Optional | The field to order data by e.g. amount, id.
 order | string | Optional | Ascending (asc) or descending (desc).
@@ -2522,7 +2522,7 @@ curl -X GET "https://api.hollaex.com/v2/admin/check-transaction"
 
 ```json
 {
-   
+
 }
 ```
 Check exchange deposit status
@@ -2570,9 +2570,9 @@ Parameter | Type | Required/Optional | Description
 transaction_id | string | Required | Withdrawals with specific transaction ID.
 updated_transactionId | string | Optional | Withdrawals with updated transaction id
 updated_address | string | Optional | Withdrawals with updated address
-status | boolean | Optional | Confirmed status of the withdrawals to set. 
+status | boolean | Optional | Confirmed status of the withdrawals to set.
 dismissed | boolean | Optional | Dismissed status of the withdrawals to set.
-rejected | boolean | Optional | Rejected status of the withdrawals to set. 
+rejected | boolean | Optional | Rejected status of the withdrawals to set.
 processing | boolean | Optional | Processing status of the withdrawals to set.
 waiting | boolean | Optional | Waiting status of the withdrawals to set.
 email | boolean | Optional | Email
@@ -2641,9 +2641,9 @@ Parameter | Type | Required/Optional | Description
 transaction_id | string | Required | Withdrawals with specific transaction ID.
 updated_transactionId | string | Optional | Withdrawals with updated transaction id
 updated_address | string | Optional | Withdrawals with updated address
-status | boolean | Optional | Confirmed status of the withdrawals to set. 
+status | boolean | Optional | Confirmed status of the withdrawals to set.
 dismissed | boolean | Optional | Dismissed status of the withdrawals to set.
-rejected | boolean | Optional | Rejected status of the withdrawals to set. 
+rejected | boolean | Optional | Rejected status of the withdrawals to set.
 processing | boolean | Optional | Processing status of the withdrawals to set.
 waiting | boolean | Optional | Waiting status of the withdrawals to set.
 email | boolean | Optional | Email
@@ -2884,7 +2884,7 @@ curl -X GET "https://api.hollaex.com/v2/admin/deposits"
 
 ```json
 {
-   
+
    {
     "count": 1,
     "data": [
