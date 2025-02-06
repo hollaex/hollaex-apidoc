@@ -717,43 +717,6 @@ assets | array | Required | Assets to convert in array
 quote | string | Optional | Quote coin to convert to
 amount | number | Optional |  Amount to convert
 
-## Quick Trade
-
-> Request
-
-```shell
-curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
-```
-
-> Response
-
-```json
-{
-  "spending_currency": "btc",
-  "receiving_currency": "usdt",
-  "spending_amount": 0.0001,
-  "type": "market",
-  "receiving_amount": 3.45,
-  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
-  "expiry": "2023-11-09T20:47:21.323Z"
-}
-```
-Get Quick Trade Quote
-
-### HTTP Request
-
-`GET https://api.hollaex.com/v2/quick-trade`
-
-### PARAMETERS
-
-Parameter | Type | Required/Optional | Description
---------- | ------- | ------- | -------
-spending_currency | string | Required | Currency symbol of the spending currency
-receiving_currency | string | Required | Currency symbol of the receiving currency
-spending_amount | string | Optional | Spending amount
-receiving_amount | string | Optional | Receiving amount
-
-
 
 # Private
 
@@ -1336,6 +1299,43 @@ stop | number | Optional | Stop price of order
 meta | object | Optional | Object with other options
 meta.post_only | boolean | Optional | Set to true if order should only be made if market maker
 meta.note | string | Optional | Additional note to add to order data
+
+
+## Quick Trade
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
+```
+
+> Response
+
+```json
+{
+  "spending_currency": "btc",
+  "receiving_currency": "usdt",
+  "spending_amount": 0.0001,
+  "type": "market",
+  "receiving_amount": 3.45,
+  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
+  "expiry": "2023-11-09T20:47:21.323Z"
+}
+```
+Get Quick Trade Quote
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/quick-trade`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+spending_currency | string | Required | Currency symbol of the spending currency
+receiving_currency | string | Required | Currency symbol of the receiving currency
+spending_amount | string | Optional | Spending amount
+receiving_amount | string | Optional | Receiving amount
 
 
 ## Execute Order
