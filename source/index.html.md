@@ -717,86 +717,6 @@ assets | array | Required | Assets to convert in array
 quote | string | Optional | Quote coin to convert to
 amount | number | Optional |  Amount to convert
 
-## Quick Trade
-
-> Request
-
-```shell
-curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
-```
-
-> Response
-
-```json
-{
-  "spending_currency": "btc",
-  "receiving_currency": "usdt",
-  "spending_amount": 0.0001,
-  "type": "market",
-  "receiving_amount": 3.45,
-  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
-  "expiry": "2023-11-09T20:47:21.323Z"
-}
-```
-Get Quick Trade Quote
-
-### HTTP Request
-
-`GET https://api.hollaex.com/v2/quick-trade`
-
-### PARAMETERS
-
-Parameter | Type | Required/Optional | Description
---------- | ------- | ------- | -------
-spending_currency | string | Required | Currency symbol of the spending currency
-receiving_currency | string | Required | Currency symbol of the receiving currency
-spending_amount | string | Optional | Spending amount
-receiving_amount | string | Optional | Receiving amount
-
-
-## Execute User Order
-
-> Request
-
-```shell
-curl -X POST "https://api.hollaex.com/v2/order/execute"
-```
-
-> Response
-
-```json
-{
-    "symbol": "xht-usdt",
-    "side": "buy",
-    "size": 13.1,
-    "type": "market",
-    "price": 0,
-    "fee_structure": {
-        "maker": 1,
-        "taker": 0.5
-    },
-    "fee_coin": "xht",
-    "id": "28ac166c-636a-4676-9042-350297028f5f",
-    "created_by": 90,
-    "filled": 13.1,
-    "method": "market",
-    "created_at": "2025-02-05T19:34:55.155Z",
-    "updated_at": "2025-02-05T19:34:55.155Z",
-    "average": 0.3809,
-    "status": "filled"
-}
-```
-Execute user order with the quick trade token
-
-### HTTP Request
-
-`POST https://api.hollaex.com/v2/order/execute`
-
-### PARAMETERS
-
-Parameter | Type | Required/Optional | Description
---------- | ------- | ------- | -------
-token | string | Required | quote that user gets from quick trade api
 
 # Private
 
@@ -1379,6 +1299,43 @@ stop | number | Optional | Stop price of order
 meta | object | Optional | Object with other options
 meta.post_only | boolean | Optional | Set to true if order should only be made if market maker
 meta.note | string | Optional | Additional note to add to order data
+
+
+## Quick Trade
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/quick-trade?&spending_currency=btc&receiving_currency=usdt&spending_amount=0.0001"
+```
+
+> Response
+
+```json
+{
+  "spending_currency": "btc",
+  "receiving_currency": "usdt",
+  "spending_amount": 0.0001,
+  "type": "market",
+  "receiving_amount": 3.45,
+  "token": "wTqpH3aXjfPTnZbK4P94vUbwg7HGk05i",
+  "expiry": "2023-11-09T20:47:21.323Z"
+}
+```
+Get Quick Trade Quote
+
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/quick-trade`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+spending_currency | string | Required | Currency symbol of the spending currency
+receiving_currency | string | Required | Currency symbol of the receiving currency
+spending_amount | string | Optional | Spending amount
+receiving_amount | string | Optional | Receiving amount
 
 
 ## Execute Order
