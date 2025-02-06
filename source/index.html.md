@@ -754,6 +754,49 @@ spending_amount | string | Optional | Spending amount
 receiving_amount | string | Optional | Receiving amount
 
 
+## Execute User Order
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/order/execute"
+```
+
+> Response
+
+```json
+{
+    "symbol": "xht-usdt",
+    "side": "buy",
+    "size": 13.1,
+    "type": "market",
+    "price": 0,
+    "fee_structure": {
+        "maker": 1,
+        "taker": 0.5
+    },
+    "fee_coin": "xht",
+    "id": "28ac166c-636a-4676-9042-350297028f5f",
+    "created_by": 90,
+    "filled": 13.1,
+    "method": "market",
+    "created_at": "2025-02-05T19:34:55.155Z",
+    "updated_at": "2025-02-05T19:34:55.155Z",
+    "average": 0.3809,
+    "status": "filled"
+}
+```
+Execute user order with the quick trade token
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/order/execute`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+token | string | Required | quote that user gets from quick trade api
 
 # Private
 
