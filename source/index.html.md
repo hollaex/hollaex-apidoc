@@ -1766,6 +1766,7 @@ Retrieve a list of users by admin
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
+id | number | Optional | The identifier of the user to filter by
 user_id | number | Optional | The identifier of the user to filter by
 limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
 page | number | Optional | Page of referral data. Default: 1
