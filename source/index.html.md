@@ -1766,6 +1766,7 @@ Retrieve a list of users by admin
 
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
+id | number | Optional | The identifier of the user to filter by
 user_id | number | Optional | The identifier of the user to filter by
 limit | number | Optional | Amount of referrals per page. Maximum: 50. Default: 50
 page | number | Optional | Page of referral data. Default: 1
@@ -3142,6 +3143,224 @@ Settle the exchange fees by admin to a specific user account
 Parameter | Type | Required/Optional | Description
 --------- | ------- | ------- | -------
 user_id | number | Optional | The identifier of the user to filter by
+
+## Create Exchange Stakes
+
+> Request
+
+```shell
+curl -X POST "https://api.hollaex.com/v2/admin/stake" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MATURE USDT",
+    "user_id": 1,
+    "currency": "usdt",
+    "account_id": 228,
+    "apy": 10,
+    "min_amount": 1,
+    "max_amount": 100,
+    "early_unstake": false,
+    "status": "active"
+  }'
+```
+
+> Response
+
+```json
+{
+  "message": "Success"
+}
+```
+Create new exchange stakes
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/admin/stake`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+name | string | Required | Name of the stake pool (max 256 chars)
+user_id | number | Required | User ID associated with stake pool
+currency | string | Required | Currency of the stake pool
+account_id | number | Required | Account ID
+apy | number | Required | Annual Percentage Yield
+min_amount | number | Required | Minimum stake amount
+max_amount | number | Required | Maximum stake amount
+early_unstake | boolean | Required | Whether early unstake is allowed
+status | string | Required | Pool status (uninitialized/active/paused/terminated)
+reward_currency | string | Optional | Currency for rewards
+duration | number | Optional | Duration in days
+slashing | boolean | Optional | Whether slashing is enabled
+slashing_earning_percentage | number | Optional | Slashing percentage for earnings
+slashing_principle_percentage | number | Optional | Slashing percentage for principle
+onboarding | boolean | Optional | Whether pool is for onboarding
+disclaimer | string | Optional | Disclaimer text
+
+## Update Exchange Stakes
+
+> Request
+
+```shell
+curl -X PUT "https://api.hollaex.com/v2/admin/stake" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 43,
+    "apy": 12,
+    "status": "paused"
+  }'
+```
+
+> Response
+
+```json
+{
+  "message": "Success"
+}
+```
+Update exchange stakes
+### HTTP Request
+
+`PUT https://api.hollaex.com/v2/admin/stake`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+id | number | Required | ID of the stake pool to update
+name | string | Optional | Name of the stake pool
+user_id | number | Optional | User ID associated with stake pool
+currency | string | Optional | Currency of the stake pool
+account_id | number | Optional | Account ID
+apy | number | Optional | Annual Percentage Yield
+min_amount | number | Optional | Minimum stake amount
+max_amount | number | Optional | Maximum stake amount
+early_unstake | boolean | Optional | Whether early unstake is allowed
+status | string | Optional | Pool status (uninitialized/active/paused/terminated)
+
+
+## Delete Exchange Stakes
+
+> Request
+
+```shell
+curl -X DELETE "https://api.hollaex.com/v2/admin/stake" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 43
+  }'
+```
+
+> Response
+
+```json
+{
+  "message": "Success"
+}
+```
+Delete exchange stakes
+### HTTP Request
+
+`DELETE https://api.hollaex.com/v2/admin/stake`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+id | number | Required | ID of the stake pool to delete
+
+
+## Get Exchange Stakers
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/stakers"
+```
+
+> Response
+
+```json
+{
+  "count": 14,
+  "data": [
+    {
+      "id": 142,
+      "user_id": 1,
+      "stake_id": 43,
+      "amount": 10,
+      "currency": "usdt",
+      "reward_currency": "usdt",
+      "reward": 0.00277777777777778,
+      "slashed": 0,
+      "status": "closed",
+      "closing": "2024-10-23T18:20:46.498Z",
+      "unstaked_date": "2024-10-28T00:00:00.033Z",
+      "created_at": "2024-10-08T18:20:47.571Z",
+      "updated_at": "2024-11-10T00:00:01.903Z"
+    }
+  ]
+}
+```
+Get exchange stakers information
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/stakers`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+opts.id | number | Optional | Unique identifier for the staker entry
+opts.user_id | number | Optional | The ID of the user who staked
+opts.stake_id | number | Optional | The ID of the stake pool
+opts.currency | string | Optional | The currency in which the user staked
+opts.limit | number | Optional | Number of elements to return. Default: 50. Maximum: 100
+opts.page | number | Optional | Page of data to retrieve
+opts.order_by | string | Optional | Field to order data
+opts.order | string | Optional | Direction to order (asc/desc)
+opts.start_date | string | Optional | Starting date in ISO8601 format
+opts.end_date | string | Optional | Ending date in ISO8601 format
+opts.format | string | Optional | Data format (csv/all)
+
+
+
+## Get Stake Analytics
+
+> Request
+
+```shell
+curl -X GET "https://api.hollaex.com/v2/admin/stake/analytics"
+```
+
+> Response
+
+```json
+{
+  "stakingAmount": [
+    {
+      "currency": "usdt",
+      "total_amount": 317.25
+    }
+  ],
+  "unstakingAmount": [
+    {
+      "currency": "usdt",
+      "total_amount": 8.5
+    }
+  ]
+}
+```
+Get staking and unstaking analytics
+### HTTP Request
+
+`GET https://api.hollaex.com/v2/admin/stake/analytics`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+
 
 
 # Websocket
