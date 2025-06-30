@@ -2532,6 +2532,8 @@ side | string | Optional | The order side (buy or side)
 status | string | Optional | The order's status e.g open, filled, canceled etc
 open | boolean | Optional | The info on whether the order is active or not
 page | number | Optional | Page of referral data. Default: 1
+bank_key | string | Optional | Bank query key to fetch specific bank
+bank_value | string | Optional | Bank query value to fetch specific bank
 order_by | string | Optional | The field to order data by e.g. amount, id.
 order | string | Optional | Ascending (asc) or descending (desc).
 start_date | date | Optional | Start date of query in ISO8601 format.
