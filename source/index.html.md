@@ -3327,6 +3327,43 @@ opts.format | string | Optional | Data format (csv/all)
 
 
 
+## Update Exchange Staker
+
+> Request
+
+```shell
+curl -X PUT "https://api.hollaex.com/v2/admin/staker" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 142,
+    "nav": 10,
+    "reward": 0.0028,
+    "status": "staking"
+  }'
+```
+
+> Response
+
+```json
+{
+  "message": "Success"
+}
+```
+Update exchange staker values for admin
+### HTTP Request
+
+`PUT https://api.hollaex.com/v2/admin/staker`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+id | number | Required | Unique identifier for the staker entry
+nav | number | Optional | Net asset value of the staker entry
+reward | number | Optional | Reward value of the staker entry
+status | string | Optional | Staker status (staking/unstaking/closed)
+
+
 ## Get Stake Analytics
 
 > Request
