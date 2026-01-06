@@ -1,2 +1,2 @@
 #!/bin/bash
-wrangler pages deploy . --project-name hollaex-apidoc
+wrangler pages deploy ./build --project-name hollaex-apidocs --branch=production
