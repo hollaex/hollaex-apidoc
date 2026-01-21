@@ -3484,12 +3484,13 @@ Events | Description
 --------- | -----------
 orderbook | Public event for orderbook updates.
 trade | Public event for trade updates.
+price | Public event for price updates.
 order | Private event for user order updates.
 usertrade | Private event for user trades.
 wallet | Private even for wallet balance updates.
+stake | Private event for user stake updates.
 deposit | Private event for user deposits.
 withdrawal | Private event for user withdrawals.
-admin | Private event for exchange admin only.
 
 
 ## Public Events
@@ -3532,6 +3533,7 @@ Event | Description
 --------- | -----------
 orderbook | Notification with orderbook symbol and data update. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `orderbook:xht-usdt`.
 trade | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trade:xht-usdt`.
+price | Notification with the latest prices (quoted in USDT) per currency and live price updates.
 
 ## Public Updates
 
@@ -3581,6 +3583,44 @@ trade | Notification with trade data. To subscribe to a specific pair, you can p
 
 ```
 
+> price
+
+```json
+
+{
+	"topic": "price",
+	"action": "partial",
+	"data": {
+		"usdt": {
+			"price": 1.0007337033020485,
+			"lastUpdate": "2025-12-02T20:39:36.106Z"
+		},
+		"btc": {
+			"price": 88894.87428027151,
+			"lastUpdate": "2026-01-21T01:30:02.528Z"
+		},
+		"eth": {
+			"price": 4000,
+			"lastUpdate": "2026-01-21T01:40:47.510Z"
+		},
+		...
+	},
+	"time": 1768960063
+}
+
+{
+	"topic": "price",
+	"action": "update",
+	"symbol": "eth",
+	"data": {
+		"price": 4000,
+		"lastUpdate": "2026-01-21T01:50:19.501Z"
+	},
+	"time": 1768960220
+}
+
+```
+
 ## Private Events
 
 > Connection
@@ -3620,6 +3660,10 @@ The private events you can subscribe to are:
 Event | Description
 --------- | -----------
 order | Notifications for newly created orders and order updates.
+usertrade | Notifications for user trades (recent trades snapshot and updates).
+deposit | Notifications for deposits updates.
+withdrawal | Notifications for withdrawals updates.
+stake | Notifications for stake updates (create/delete).
 wallet | Notifications for balance updates.
 
 ## Private Updates
@@ -3736,6 +3780,155 @@ partial | All previous and current orders. Is the first order data received when
 insert | When user's order is added. The status of the order can be either new, pfilled, or filled.
 update | When user's order status is updated. Status can be pfilled, filled, and canceled.
 
+> usertrade
+
+```json
+
+{
+	"topic": "usertrade",
+	"action": "partial",
+	"user_id": 2876,
+	"data": [
+		{
+			"side": "buy",
+			"symbol": "btc-usdt",
+			"size": 0.001,
+			"price": 60000,
+			"timestamp": "2026-01-19T02:54:35.636Z",
+			"order_id": "cc5ebec3-6e3f-4cb5-b5f9-49dd01843a08",
+			"fee": 0.0000005,
+			"fee_coin": "btc"
+		},
+		{
+			"side": "buy",
+			"symbol": "btc-usdt",
+			"size": 0.03074,
+			"price": 61200,
+			"timestamp": "2026-01-19T02:46:15.235Z",
+			"order_id": "0814a018-3e74-4330-9649-b06dc5107e27",
+			"fee": 0.00001537,
+			"fee_coin": "btc"
+		}
+	],
+	"time": 1768959647
+}
+
+{
+	"topic": "usertrade",
+	"action": "insert",
+	"user_id": 2876,
+	"symbol": "eth-usdt",
+	"data": [
+		{
+			"size": "0.001",
+			"side": "sell",
+			"price": 4000,
+			"symbol": "eth-usdt",
+			"timestamp": "2026-01-21T01:40:47.471Z",
+			"order_id": "1df5b4b4-3274-4183-8c52-282afb4dc1df",
+			"fee": "0.004",
+			"fee_coin": "usdt"
+		}
+	],
+	"time": 1768959647
+}
+
+```
+
+> stake
+
+```json
+
+{
+	"topic": "stake",
+	"action": "insert",
+	"user_id": 2976,
+	"user_network_id": 15334,
+	"data": {
+		"reward": 0,
+		"slashed": 0,
+		"id": 28,
+		"user_id": 2976,
+		"stake_id": 7,
+		"amount": 0.5,
+		"nav": 0.5,
+		"currency": "eth",
+		"reward_currency": "eth",
+		"status": "staking",
+		"updated_at": "2026-01-21T01:26:31.449Z",
+		"created_at": "2026-01-21T01:26:31.449Z",
+		"closing": null,
+		"unstaked_date": null
+	},
+	"time": 1768958791
+}
+
+{
+	"topic": "stake",
+	"action": "delete",
+	"user_id": 2976,
+	"user_network_id": 15334,
+	"data": {
+		"id": 28,
+		"user_id": 2976,
+		"stake_id": 7,
+		"amount": 0.5,
+		"nav": 0.5,
+		"currency": "eth",
+		"reward_currency": "eth",
+		"reward": 0,
+		"slashed": 0,
+		"status": "unstaking",
+		"closing": null,
+		"unstaked_date": "2026-01-21T01:31:18.866Z",
+		"created_at": "2026-01-21T01:26:31.449Z",
+		"updated_at": "2026-01-21T01:31:18.867Z"
+	},
+	"time": 1768959078
+}
+
+```
+
+> deposit
+
+```json
+
+{
+	"topic": "deposit",
+	"action": "insert",
+	"user_id": 1,
+	"data": {
+		"amount": 1,
+		"currency": "xht",
+		"status": "COMPLETED",
+		"transaction_id": "123",
+		...
+	},
+	"time": 1608021684
+}
+
+```
+
+> withdrawal
+
+```json
+
+{
+	"topic": "withdrawal",
+	"action": "insert",
+	"user_id": 1,
+	"data": {
+		"amount": 1,
+		"currency": "xht",
+		"status": "COMPLETED",
+		"transaction_id": "123",
+		...
+	},
+	"time": 1608021684
+}
+
+```
+
 > wallet
 
 ```json
@@ -3762,3 +3955,24 @@ update | When user's order status is updated. Status can be pfilled, filled, and
 }
 
 ```
+
+## Admin Events
+
+Admin websocket subscriptions can be used by **exchange admins** to receive **deposit**, **withdrawal**, and **stake** updates for **all users** automatically.
+
+> Connection
+
+```javascript
+
+	client.on('open', () => {
+		client.send(
+			JSON.stringify({
+				op: 'subscribe',
+				args: ['admin']
+			})
+		);
+	})
+
+```
+
+When subscribed to `admin`, the server will send deposit/withdrawal/stake messages in the same payload format as the private user events shown above, but covering all users.
