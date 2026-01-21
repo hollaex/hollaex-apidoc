@@ -3484,6 +3484,7 @@ Events | Description
 --------- | -----------
 orderbook | Public event for orderbook updates.
 trade | Public event for trade updates.
+price | Public event for price updates.
 order | Private event for user order updates.
 usertrade | Private event for user trades.
 wallet | Private even for wallet balance updates.
@@ -3532,6 +3533,7 @@ Event | Description
 --------- | -----------
 orderbook | Notification with orderbook symbol and data update. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `orderbook:xht-usdt`.
 trade | Notification with trade data. To subscribe to a specific pair, you can pass the pair after a colon. Ex: `trade:xht-usdt`.
+price | Notification with the latest prices (quoted in USDT) per currency and live price updates.
 
 ## Public Updates
 
@@ -3577,6 +3579,44 @@ trade | Notification with trade data. To subscribe to a specific pair, you can p
 		...
 	],
 	"time": 1608015328
+}
+
+```
+
+> price
+
+```json
+
+{
+	"topic": "price",
+	"action": "partial",
+	"data": {
+		"usdt": {
+			"price": 1.0007337033020485,
+			"lastUpdate": "2025-12-02T20:39:36.106Z"
+		},
+		"btc": {
+			"price": 88894.87428027151,
+			"lastUpdate": "2026-01-21T01:30:02.528Z"
+		},
+		"eth": {
+			"price": 4000,
+			"lastUpdate": "2026-01-21T01:40:47.510Z"
+		},
+		...
+	},
+	"time": 1768960063
+}
+
+{
+	"topic": "price",
+	"action": "update",
+	"symbol": "eth",
+	"data": {
+		"price": 4000,
+		"lastUpdate": "2026-01-21T01:50:19.501Z"
+	},
+	"time": 1768960220
 }
 
 ```
