@@ -1080,6 +1080,43 @@ amount | number | Required | The amount to withdrawal e.g. 5
 address | string | Required | The recipient wallet's address
 network | string | Optional | Network of currency being withdrawn if there are multiple networks for currency
 
+## Transfer Between Accounts
+
+> Request
+
+```shell
+curl -X POST
+  -H "api-key: $API_KEY"
+  -H "api-signature: $API_SIGNATURE"
+  -H "api-expires: $API_EXPIRES"
+  -H "Content-Type: application/json"
+  -d '{"subaccount_id":$subaccount_id,"currency":$currency,"amount":$amount,"direction":$direction}'
+  "https://api.hollaex.com/v2/subaccount/transfer"
+```
+
+> Response
+
+```json
+{
+   "message": "Success"
+}
+```
+
+Transfer an asset to or from a subaccount. Only master users can initiate, and the subaccount must belong to the master. This endpoint is only available via HMAC tokens with the withdrawal permission.
+
+### HTTP Request
+
+`POST https://api.hollaex.com/v2/subaccount/transfer`
+
+### PARAMETERS
+
+Parameter | Type | Required/Optional | Description
+--------- | ------- | ------- | -------
+subaccount_id | number | Required | The user id of the subaccount
+currency | string | Required | The currency to transfer
+amount | number | Required | The amount to transfer
+direction | string | Required | Transfer direction. Enum: ['to_sub', 'to_master']
+
 ## Get Trades
 
 > Request
